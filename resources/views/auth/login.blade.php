@@ -30,26 +30,153 @@ Log In
 <h1 class="mb-4 my-5 py-5 text-3xl text-center font-extrabold text-gray-900 dark:text-white md:text-4xl lg:text-5xl"><span 
     class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
     @yield('titulo')</span> </h1>
-
+   
+   
     
 <!-- LOGIN FORM--> 
 <section class="h-screen">
     <div class="px-6 h-full text-gray-800">
-      <div
-        class="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6"
-      >
+      <div class="flex xl:justify-center 
+      lg:justify-between justify-center items-center flex-wrap h-full g-6">
         <div
           class="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-12 md:mb-0"
         >
           <img
             src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-            class="w-full"
+            class="w-full hidden md:block"
             alt="Sample image"
           />
         </div>
         <div class="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
             <form action="{{ route('login.post') }}" method="POST" novalidate >
                 @csrf
+
+
+ <!--PASSWORD RESET MESSAGE  SUCCESS -->                                            
+ @if (session('messagepasswordsuccess'))
+  
+ <script>
+   Swal.fire({
+title: 'Great!!',
+text: '{{ session('messagepasswordsuccess') }}',
+icon: 'success',
+confirmButtonText: 'OK'
+})
+  </script>
+
+   @endif
+    <!-- END PASSWORD RESET MESSAGE  SUCCESS -->   
+       
+
+      <!-- MESSAGE IF THE USER HAS NOT BEEN VERIFIED WITH ALPINE JS AND SWEETALERT --> 
+       <!-- WARNING VERIFICATION HTTP/ MIDDLEWARE/ ISVERIFY EMAIL.PHP-->
+      @if (session('emailverificationmessage'))
+  
+  <script>
+    Swal.fire({
+ title: 'Warning! Email has not been verified',
+ text: '{{ session('emailverificationmessage') }}',
+ icon: 'warning',
+ confirmButtonText: 'OK'
+})
+   </script>
+ 
+    @endif
+ <!-- END WARNING VERIFICATION HTTP/ MIDDLEWARE/ ISVERIFY EMAIL.PHP -->
+
+<!-- SUCCESS VERIFICATION -->
+<div x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 6000)">
+  @if (session('emailverificationmessage2'))
+
+  <div class="bg-green-500 shadow-lg mx-auto w-96 max-w-full text-sm pointer-events-auto bg-clip-padding rounded-lg block mb-3" id="static-example" role="alert" aria-live="assertive" aria-atomic="true" data-mdb-autohide="false">
+    <div class="bg-green-500 flex justify-between items-center py-2 px-3 bg-clip-padding border-b border-green-400 rounded-t-lg">
+      <p class="font-bold text-white flex items-center">
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check-circle" class="w-4 h-4 mr-2 fill-current" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+          <path fill="currentColor" d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"></path>
+        </svg>
+        Successful Verification</p>
+      <div class="flex items-center">
+        <p class="text-white opacity-90 text-xs">
+ <!-- DATETIME NOW -->
+ @php
+ $date = new \DateTime();
+ $date->setTimezone(new \DateTimeZone('America/New_York')); //GMT
+$datetime=$date->format('H:i A');
+
+ @endphp
+  {{  $datetime; }}
+
+ <!-- END DATETIME NOW -->
+
+        </p>
+        <button type="button" class="btn-close btn-close-white box-content w-4 h-4 ml-2 text-white border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-white hover:opacity-75 hover:no-underline" data-mdb-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+    <div class="p-3 bg-green-500 rounded-b-lg break-words text-white">
+      {{ session('emailverificationmessage2') }}
+    </div>
+  </div>
+
+  @endif
+</div>
+
+<!-- END SUCCESS VERIFICATION -->
+
+<!-- INFO MESSAGE -->
+      <div x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 6000)">
+
+  @if (session('message'))
+
+  <!-- info message -->
+<div class="bg-blue-600 shadow-lg mx-auto w-96 max-w-full text-sm pointer-events-auto bg-clip-padding rounded-lg block mb-5" id="static-example" role="alert" aria-live="assertive" aria-atomic="true" data-mdb-autohide="false">
+  <div class="bg-blue-600 flex justify-between items-center py-2 px-3 bg-clip-padding border-b border-blue-500 rounded-t-lg">
+    <p class="font-bold text-white flex items-center">
+      <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info-circle" class="w-4 h-4 mr-2 fill-current" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"></path>
+      </svg>
+      Notification Alert</p>
+    <div class="flex items-center">
+      <p class="text-white opacity-90 text-xs">
+
+         <!-- DATETIME NOW -->
+       @php
+       $date = new \DateTime();
+       $date->setTimezone(new \DateTimeZone('America/New_York')); //GMT
+$datetime=$date->format('H:i A');
+    
+       @endphp
+        {{  $datetime; }}
+      
+       <!-- END DATETIME NOW -->
+      </p>
+      <button type="button" class="btn-close btn-close-white box-content w-4 h-4 ml-2 text-white border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-white hover:opacity-75 hover:no-underline" data-mdb-dismiss="toast" aria-label="Close"></button>
+    </div>
+  </div>
+  <div class="p-3 bg-blue-600 rounded-b-lg break-words text-white">
+    {{ session('message') }}
+  </div>
+</div>
+    @endif
+  </div>
+    <!-- END INFO MESSAGE -->
+      <!--END MESSAGE IF THE USER HAS NOT BEEN VERIFIED --> 
+
+       <!-- MESSAGE AUTH INVALID CREDENTIALS  -->                                            
+  @if (session('error'))
+  
+  <script>
+    Swal.fire({
+ title: 'Error!',
+ text: '{{ session('error') }}',
+ icon: 'error',
+ confirmButtonText: 'OK'
+})
+   </script>
+ 
+    @endif
+ 
+      <!--END MESSAGE AUTH INVALID CREDENTIALS--> 
+          
             <div class="flex flex-row items-center justify-center lg:justify-start">
               <p class="text-lg mb-0 mr-4">Sign in with</p>
               <button
@@ -141,15 +268,19 @@ Log In
             <div class="flex justify-between items-center mb-6">
               <div class="form-group form-check">
                 <input
-                  type="checkbox"
-                  class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                  type="checkbox" name="remember"
+                  class="form-check-input appearance-none h-4 w-4 border
+                   border-gray-300 rounded-sm bg-white checked:bg-blue-600
+                    checked:border-blue-600 focus:outline-none transition
+                     duration-200 mt-1 align-top bg-no-repeat bg-center 
+                     bg-contain float-left mr-2 cursor-pointer"
                   id="exampleCheck2"
                 />
                 <label class="form-check-label inline-block text-gray-800" for="exampleCheck2"
                   >Remember me</label
                 >
               </div>
-              <a href="#!" class="text-gray-800">Forgot password?</a>
+              <a class="text-blue-700 font-bold" href="{{ route('forget.password.get') }}" class="text-gray-800">Forgot password?</a>
             </div>
   
             <div class="text-center lg:text-left">
@@ -159,6 +290,7 @@ Log In
                 text-sm leading-snug uppercase  shadow-md hover:bg-blue-700 hover:shadow-lg
                  focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 rounded-lg active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
               >
+              
                 Login
               </button>
               <p class="text-sm font-semibold mt-2 pt-1 mb-0">

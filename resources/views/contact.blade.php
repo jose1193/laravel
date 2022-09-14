@@ -48,7 +48,7 @@
       <div class="flex flex-wrap">
         <div class="grow-0 shrink-0 basis-auto w-full lg:w-5/12 mb-12 lg:mb-0">
           <div class="flex lg:py-12">
-            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80" class="w-full rounded-lg shadow-lg"
+            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80" class=" hidden md:block  w-full rounded-lg shadow-lg"
               id="cta-img-nml-50" style="z-index: 10" alt="" />
           </div>
         </div>
