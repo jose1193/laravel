@@ -48,7 +48,7 @@ Log In
           />
         </div>
         <div class="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
-            <form action="{{ route('login.post') }}" method="POST" novalidate >
+            <form action="{{ route('login.post') }}" method="POST" novalidate autocomplete="off">
                 @csrf
 
             <div class="flex flex-row items-center justify-center lg:justify-start">
@@ -182,3 +182,5 @@ Log In
   </section>
 <!--lOGIN FORM--> 
     @endsection
+
+    

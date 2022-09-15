@@ -46,7 +46,7 @@ Change Password
         
 
 
-                    <form action="{{ route('forget.password.post') }}" method="POST">
+                    <form action="{{ route('forget.password.post') }}" method="POST" autocomplete="off">
                       @csrf
               <div>
                   <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>

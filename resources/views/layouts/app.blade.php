@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-       
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Web App - @yield('titulo')</title>
         <!-- TAILWIND CSS--> 
         @vite('resources/css/app.css','resources/js/app.js')
@@ -14,6 +14,8 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
        <!-- END ALPINE JS - SWEET ALERT2 --> 
+
+       
     </head>
     <body>
 
