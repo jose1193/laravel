@@ -91,6 +91,9 @@ Home
 @endsection
 
    
+<!-- END INCLUDE ALERTS MESSAGES--> 
+@include('message')
+<!-- END INCLUDE ALERTS MESSAGES--> 
 @section('container')
 <section class="bg-white dark:bg-gray-900">
     <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
@@ -99,13 +102,34 @@ Home
             leading-none md:text-5xl xl:text-6xl dark:text-white uppercase ">{{ __('Dashboard') }}  Welcome  {{ auth()->user()->name }}
              </h1>
             <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
-               You are Logged In</p>
+               </p>
                 
-  @if (session('success'))
-  <div class="w-full  bg-green-100 rounded-lg py-5 px-6  text-base text-green-700 mb-3" role="alert">
-    {{ session('success') }}
+  @if (session('successlogin'))
+  
+  <div class=" mb-5 pb-5 w-full bg-green-100 border-t-4 border-green-500 rounded-b text-green-900 px-4 py-3 shadow-md" role="alert">
+    <div class="flex">
+      <div class="py-1">
+
+        <svg  class="fill-current h-6 w-6 text-green-500 mr-4"
+         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M243.8 339.8C232.9 350.7 215.1 350.7 204.2 339.8L140.2 275.8C129.3 264.9 129.3 247.1 140.2 236.2C151.1 225.3 168.9 225.3 179.8 236.2L224 280.4L332.2 172.2C343.1 161.3 360.9 161.3 371.8 172.2C382.7 183.1 382.7 200.9 371.8 211.8L243.8 339.8zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z"/></svg>
+
+       
+        </div>
+      <div>
+        <p class="font-bold">Logged In <!-- DATETIME NOW -->
+          @php
+          $date = new \DateTime();
+          $date->setTimezone(new \DateTimeZone('America/New_York')); //GMT
+          $datetime=$date->format('H:i A');
+          
+          @endphp
+          {{  $datetime; }}
+          
+          <!-- END DATETIME NOW --></p>
+        <p class="text-sm"> {{ session('successlogin') }}</p>
+      </div>
+    </div>
   </div>
- 
     @endif
             <a href="/register" class="inline-flex items-center justify-center px-5 py-3 mr-3
              text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">

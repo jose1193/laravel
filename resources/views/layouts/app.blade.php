@@ -66,6 +66,11 @@
     </nav>
 </header>
 
+
+<!-- END INCLUDE ALERTS MESSAGES--> 
+@include('message')
+ <!-- END INCLUDE ALERTS MESSAGES--> 
+
 <!-- CONTENIDO A MOSTRAR CADA PAGINA--> 
 @yield('container')
 

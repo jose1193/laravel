@@ -44,9 +44,7 @@ Change Password
              
           </h2>
         
-<!-- END INCLUDE ALERTS MESSAGES--> 
-@include('message')
-<!-- END INCLUDE ALERTS MESSAGES--> 
+
 
                     <form action="{{ route('forget.password.post') }}" method="POST">
                       @csrf

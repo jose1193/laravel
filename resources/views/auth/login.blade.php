@@ -51,9 +51,6 @@ Log In
             <form action="{{ route('login.post') }}" method="POST" novalidate >
                 @csrf
 
-<!-- END INCLUDE ALERTS MESSAGES--> 
-@include('message')
- <!-- END INCLUDE ALERTS MESSAGES--> 
             <div class="flex flex-row items-center justify-center lg:justify-start">
               <p class="text-lg mb-0 mr-4">Sign in with</p>
               <button

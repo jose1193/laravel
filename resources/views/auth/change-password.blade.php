@@ -40,10 +40,7 @@ Change Password User
         <img class="w-13 h-15 mr-2" src="{{asset('img/logo.png')}}" alt="logo">
       </a>
      
-      <!-- END INCLUDE ALERTS MESSAGES--> 
-@include('message')
-<!-- END INCLUDE ALERTS MESSAGES--> 
-   
+     
 
       <div class="w-full p-6 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md dark:bg-gray-800 dark:border-gray-700 sm:p-8">
           <h2 class="mb-1 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
