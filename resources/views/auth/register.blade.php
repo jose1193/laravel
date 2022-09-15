@@ -34,20 +34,9 @@ User Registration
     
 <!-- REGISTER FORM--> 
     <div class="flex items-center justify-center min-h-screen ">
-           <!--REGISTER MESSAGE  SUCCESS -->                                            
-  @if (session('success'))
-  
-  <script>
-    Swal.fire({
- title: 'Great!!',
- text: '{{ session('success') }}',
- icon: 'success',
- confirmButtonText: 'OK'
-})
-   </script>
- 
-    @endif
-     <!-- END REGISTER MESSAGE  SUCCESS -->   
+           <!-- END INCLUDE ALERTS MESSAGES--> 
+@include('message')
+<!-- END INCLUDE ALERTS MESSAGES--> 
         
         <div class="px-8 py-6 mx-4 mt-4 text-left bg-white shadow-lg md:w-1/3 lg:w-1/3 sm:w-1/3">
             <div class="flex justify-center">
