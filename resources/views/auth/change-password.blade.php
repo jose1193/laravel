@@ -40,57 +40,10 @@ Change Password User
         <img class="w-13 h-15 mr-2" src="{{asset('img/logo.png')}}" alt="logo">
       </a>
      
-       <!--ERROR MESSAGE ALPINE JS -->
-      <div x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 6000)"> 
-      @if(session()->has('error'))
-      <div class="bg-red-600 shadow-lg mx-auto w-96 max-w-full text-sm pointer-events-auto bg-clip-padding rounded-lg block mb-3" id="static-example" role="alert" aria-live="assertive" aria-atomic="true" data-mdb-autohide="false">
-        <div class="bg-red-600 flex justify-between items-center py-2 px-3 bg-clip-padding border-b border-red-500 rounded-t-lg">
-          <p class="font-bold text-white flex items-center">
-            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times-circle" class="w-4 h-4 mr-2 fill-current" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-              <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"></path>
-            </svg>
-            Notification Alert</p>
-          <div class="flex items-center">
-            <p class="text-white opacity-90 text-xs">
- <!-- DATETIME NOW -->
- @php
- $date = new \DateTime();
-$date->setTimezone(new \DateTimeZone('America/New_York')); //GMT
-$datetime=$date->format('H:i A');
-
- @endphp
-  {{  $datetime; }}
-
- <!-- END DATETIME NOW -->
-
-            </p>
-            <button type="button" class="btn-close btn-close-white box-content w-4 h-4 ml-2 text-white border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-white hover:opacity-75 hover:no-underline" data-mdb-dismiss="toast" aria-label="Close"></button>
-          </div>
-        </div>
-        <div class="p-3 bg-red-600 rounded-b-lg break-words text-white font-bold">
-          {{ session()->get('error') }}
-        </div>
-      </div>
-     
-     
-  @endif
-    </div>
-    <!--END ERROR MESSAGE -->
+      <!-- END INCLUDE ALERTS MESSAGES--> 
+@include('message')
+<!-- END INCLUDE ALERTS MESSAGES--> 
    
-    <!--successful message -->
-  @if(session()->has('success'))
-
-  <script>
-    Swal.fire({
- title: 'Great!!',
- text: '{{ session()->get('success') }}',
- icon: 'success',
- confirmButtonText: 'OK'
-})
-   </script>
-      
-  @endif
- <!-- end successful message -->
 
       <div class="w-full p-6 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md dark:bg-gray-800 dark:border-gray-700 sm:p-8">
           <h2 class="mb-1 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
@@ -154,7 +107,7 @@ $datetime=$date->format('H:i A');
                hover:bg-primary-700 focus:ring-4 focus:outline-none
                 focus:ring-primary-300 font-medium rounded-lg
                  text-sm px-5 py-2.5 text-center dark:bg-primary-600
-                  dark:hover:bg-primary-700 dark:focus:ring-primary-800">Change password</button>
+                  dark:hover:bg-primary-700 dark:focus:ring-primary-800">Change Password</button>
                
             </form>
       </div>

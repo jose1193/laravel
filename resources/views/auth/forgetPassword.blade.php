@@ -43,20 +43,10 @@ Change Password
           <h2 class="mb-1 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
              
           </h2>
-          <!--MAIL FORGET PASSWORD -->    
-          @if (Session::has('message'))
-
-  <script>
-    Swal.fire({
- title: 'Password Reset Notification',
- text: ' {{ Session::get('message') }}',
- icon: 'info',
- confirmButtonText: 'OK'
-})
-   </script> 
-                    
-              @endif
-                     <!-- END MAIL FORGET PASSWORD -->  
+        
+<!-- END INCLUDE ALERTS MESSAGES--> 
+@include('message')
+<!-- END INCLUDE ALERTS MESSAGES--> 
 
                     <form action="{{ route('forget.password.post') }}" method="POST">
                       @csrf
