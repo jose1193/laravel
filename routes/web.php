@@ -13,6 +13,9 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ChangePasswordController;
 /* IMPORT CLASS CHANGE PASSWORD CONTROLLER*/
 
+/* IMPORT CLASS EMAILS CONTROLLER*/
+use App\Http\Controllers\EmailsController;
+/* IMPORT CLASS EMAILS CONTROLLER*/
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -75,3 +78,6 @@ Route::get('account/verify/{token}', [AuthController::class, 'verifyAccount'])->
 
 /* ------- END RUTAS MODULO AUTH*/
 
+/* ROUTE CRUD EMAILS*/
+Route::resource('emails', EmailsController::class);
+/* FIN  CRUD EMAILS*/
