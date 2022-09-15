@@ -39,7 +39,7 @@ class EmailsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'email' => 'required|email',
+            'email' => 'required|email|unique:emails',
             
         ]);
       

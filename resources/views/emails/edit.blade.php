@@ -50,7 +50,7 @@ Edit Email
                 <div class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
 
                     @if ($errors->any())
-                        <div class="p-5 rounded bg-red-500 text-white m-3">
+                        <div class="p-5 rounded bg-red-500 text-white m-3" x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 6000)">
                             <strong>Whoops!</strong> There were some problems with your input.<br><br>
                             <ul>
                                 @foreach ($errors->all() as $error)

@@ -96,7 +96,7 @@ Emails CRUD
                                   @csrf
                                   @method('DELETE')
                                   
-                                  <button type="submit">
+                                  <button type="submit" >
                                       <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-600 hover:text-red-800 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                       </svg>
@@ -121,7 +121,39 @@ Emails CRUD
           </div>
       </div>
   </div>
-
+ 
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script type="text/javascript">
+ 
+    $('.show_confirm').click(function(event) {
+         var form =  $(this).closest("form");
+         var email = $(this).data("email");
+         event.preventDefault();
+         Swal.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire(
+              'Deleted!',
+              'Your file has been deleted.',
+              'success'
+            )
+          }
+        })
+         .then((willDelete) => {
+           if (willDelete) {
+             form.submit();
+           }
+         });
+     });
+ 
+</script>
 
 <!-- END INDEX SHOW EMAILS CRUD--> 
 
