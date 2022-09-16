@@ -78,7 +78,9 @@
                            dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
                          placeholder="Write your name" name="name" value="{{ old('name') }}" required>
                          @if ($errors->has('name'))
-                                            <span class="text-danger">{{ $errors->first('name') }}</span>
+                         <span class="bg-red-500 text-white my-2 rounded-lg text-sm
+                                    p-2 text-center" x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 6000)">                   
+                         {{ $errors->first('name') }}</span>
                                         @endif
                     </div>
 
@@ -94,7 +96,9 @@
                                   dark:focus:border-primary-500 dark:shadow-sm-light" 
                                   value="{{ old('email') }}" placeholder="name@mail.com" required>
                             @if ($errors->has('email'))
-                            <span class="text-danger">{{ $errors->first('email') }}</span>
+                            <span class="bg-red-500 text-white my-2 rounded-lg text-sm
+                                    p-2 text-center" x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 6000)">
+                            {{ $errors->first('email') }}</span>
                         @endif
                           </div>
 
@@ -108,7 +112,9 @@
                                dark:shadow-sm-light" placeholder="Your phone"
                                value="{{ old('phone') }}" required>
                             @if ($errors->has('phone'))
-                            <span class="text-danger">{{ $errors->first('phone') }}</span>
+                            <span class="bg-red-500 text-white my-2 rounded-lg text-sm
+                            p-2 text-center" x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 6000)">
+                            {{ $errors->first('phone') }}</span>
                         @endif
                           </div>
 
@@ -121,7 +127,9 @@
                                 dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
                                  placeholder="Let us know how we can help you" value="{{ old('subject') }}" required>
                             @if ($errors->has('subject'))
-                            <span class="text-danger">{{ $errors->first('subject') }}</span>
+                            <span class="bg-red-500 text-white my-2 rounded-lg text-sm
+                            p-2 text-center" x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 6000)">
+                            {{ $errors->first('subject') }}</span>
                         @endif
                           </div>
                         <div class="sm:col-span-2">
@@ -133,10 +141,18 @@
                                 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                  placeholder="Leave a comment...">{{ old('message') }}</textarea>
                             @if ($errors->has('message'))
-                            <span class="text-danger">{{ $errors->first('message') }}</span>
+                            <span class="bg-red-500 text-white my-2 rounded-lg text-sm
+                                    p-2 text-center " x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 6000)">
+                                    {{ $errors->first('message') }}</span>
                         @endif
                           </div>
-                        <button type="submit" class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Send message</button>
+                        <button type="submit" class="py-3 px-5 text-sm
+                         font-medium text-center text-white rounded-lg
+                          bg-primary-700 sm:w-fit hover:bg-primary-800 
+                          focus:ring-4 focus:outline-none focus:ring-primary-300
+                           dark:bg-primary-600 dark:hover:bg-primary-700
+                            dark:focus:ring-primary-800 
+                            transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110">Send message</button>
                     </form>
                 </div>
              

@@ -28,10 +28,10 @@ class ContactController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required|digits:10|numeric',
-            'subject' => 'required',
-            'message' => 'required',
+            'email' => 'required|email|max:60',
+            'phone' => 'required|max:20|min:7',
+            'subject' => 'required|max:30|min:4',
+            'message' => 'required|min:4',
         ]);
 
         $input = $request->all();
@@ -39,7 +39,7 @@ class ContactController extends Controller
         Contact::create($input);
 
         //  Send mail to admin
-        \Mail::send('contactMail', array(
+        \Mail::send('email.contactMail', array(
             'name' => $input['name'],
             'email' => $input['email'],
             'phone' => $input['phone'],
