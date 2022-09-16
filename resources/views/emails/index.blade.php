@@ -47,7 +47,8 @@ Emails CRUD
 
       <div class="flex flex-col mt-10">
           <div class="flex flex-col">
-              <div class="inline-block min-w-full overflow-hidden align-middle border-b border-primary-200 shadow sm:rounded-lg">
+              <div class="inline-block min-w-full overflow-hidden align-middle border-b
+               border-primary-200 shadow-xl sm:rounded-lg ">
 
                 <div class="flex flex-col">
                   <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -58,6 +59,9 @@ Emails CRUD
                             <tr>
                               <th scope="col" class="text-sm font-medium uppercase text-white px-6 py-4">
                                 Nro
+                              </th>
+                              <th scope="col" class="text-sm font-medium uppercase text-white px-6 py-4">
+                                Name
                               </th>
                               <th scope="col" class="text-sm font-medium uppercase text-white px-6 py-4">
                                 Email
@@ -73,6 +77,9 @@ Emails CRUD
                             <tr class="bg-white border-b">
                               <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"> 
                                 {{ ++$i }}
+                              </td>
+                              <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
+                                {{ $email->name }}
                               </td>
                               <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
                                 {{ $email->email }}

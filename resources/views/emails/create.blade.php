@@ -66,6 +66,13 @@ Create Email
 
                         <form action="{{ route('emails.store') }}" method="POST" novalidate autocomplete="off">
                             @csrf
+                            <div>
+                                <label class="block text-md font-bold text-gray-700" for="title">Name</label>
+                                <input type="text" placeholder="Name"
+                                class="w-full px-4 py-2 mt-2 border rounded-md 
+                                focus:outline-none focus:ring-1 focus:ring-blue-600" 
+                                id="name"  name="name" required  >
+                            </div>
 
                             <div>
                                 <label class="block text-md font-bold text-gray-700" for="title">Email</label>

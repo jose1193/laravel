@@ -47,7 +47,16 @@ Route::group(['middleware' => ['auth']], function () { // PROTEGER RUTAS SIN USU
     Route::get('about-user', function () {
         return view('about-user');
     });
-    });// END PROTEGER RUTAS SIN USUARIO NO ESTA AUTENTICADO
+
+
+/* ROUTE CRUD EMAILS*/
+Route::resource('emails', EmailsController::class);
+/* FIN  CRUD EMAILS*/
+
+    
+    });
+    
+// END PROTEGER RUTAS SIN USUARIO NO ESTA AUTENTICADO
 // END ROUTES USER AUTH PAGES
 
  /* ----- RUTAS MODULO AUTH*/
@@ -77,7 +86,3 @@ Route::get('account/verify/{token}', [AuthController::class, 'verifyAccount'])->
 /* FIN ROUTE USER VERIFY*/
 
 /* ------- END RUTAS MODULO AUTH*/
-
-/* ROUTE CRUD EMAILS*/
-Route::resource('emails', EmailsController::class);
-/* FIN  CRUD EMAILS*/

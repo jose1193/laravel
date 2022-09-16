@@ -47,9 +47,9 @@ Show Email
         </div>
    
         <div class="flex flex-col mt-5 py-5">
-            <div class="w-full px-6 py-4 bg-white rounded shadow-md ring-1 ring-gray-900/10">
+            <div class="w-full px-6 py-4 bg-white rounded shadow-lg ring-1 ring-gray-900/10">
                 <h3 class="text-2xl font-semibold">{{ $email->email }}</h3>
-               
+                <p class="text-base text-blue-700 mt-5">{{ $email->name }}</p>
             </div>
         </div>
     </div>
