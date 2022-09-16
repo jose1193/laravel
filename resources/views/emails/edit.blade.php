@@ -71,7 +71,7 @@ Edit Email
                                 <input type="text" placeholder="Name"
                                 class="w-full px-4 py-2 mt-2 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                id="name"  name="name" required  value="{{ $email->name }}">
+                                id="name" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" name="name" required  value="{{ $email->name }}">
                             </div>
 
 

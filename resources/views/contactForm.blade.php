@@ -76,7 +76,7 @@
                          block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
                           dark:placeholder-gray-400 dark:text-white
                            dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
-                         placeholder="Write your name" name="name" value="{{ old('name') }}" required>
+                         placeholder="Write your name" name="name" value="{{ old('name') }}" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" required>
                          @if ($errors->has('name'))
                          <span class="bg-red-500 text-white my-2 rounded-lg text-sm
                                     p-2 text-center" x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 6000)">                   

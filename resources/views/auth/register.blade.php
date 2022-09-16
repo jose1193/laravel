@@ -49,7 +49,7 @@ User Registration
                                 <input type="text" placeholder="Name"
                                     class="w-full px-4 py-2 mt-2 border rounded-md 
                                     focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                    id="name"  name="name" required  
+                                    id="name" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" name="name" required  
                                     >
                                     @if ($errors->has('name'))
                                     <span class="bg-red-500 text-white my-2 rounded-lg text-sm
