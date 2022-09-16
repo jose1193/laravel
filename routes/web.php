@@ -16,6 +16,11 @@ use App\Http\Controllers\Auth\ChangePasswordController;
 /* IMPORT CLASS EMAILS CONTROLLER*/
 use App\Http\Controllers\EmailsController;
 /* IMPORT CLASS EMAILS CONTROLLER*/
+
+/* IMPORT CLASS FORM CONTACT CONTROLLER*/
+use App\Http\Controllers\ContactController;
+/* IMPORT CLASS FORM CONTACT  CONTROLLER*/
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,9 +42,10 @@ Route::get('/about', function () {
 });
 
 
-Route::get('/contact', function () {
-    return view('contact');
-});
+/* ROUTE CONTACT FORM*/
+Route::get('/contact', [App\Http\Controllers\ContactController::class, 'contactForm'])->name('contact');
+Route::post('/contact', [App\Http\Controllers\ContactController::class, 'storeContactForm'])->name('contact-form.store');
+/* END ROUTE CONTACT FORM*/
 
 // ROUTES USER AUTH PAGES
 Route::group(['middleware' => ['auth']], function () { // PROTEGER RUTAS SIN USUARIO NO ESTA AUTENTICADO

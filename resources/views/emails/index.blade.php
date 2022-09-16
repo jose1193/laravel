@@ -45,16 +45,16 @@ Emails CRUD
             focus:outline-none dark:focus:ring-primary-800 text-white">+ Create New Email</a>
       </div>
 
-      <div class="flex flex-col mt-10">
+      <div class="flex flex-col mt-10 pb-5 mb-5">
           <div class="flex flex-col">
               <div class="inline-block min-w-full overflow-hidden align-middle border-b
                border-primary-200 shadow-xl sm:rounded-lg ">
 
-                <div class="flex flex-col">
+                <div class="flex flex-col ">
                   <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-4 inline-block min-w-full sm:px-6 lg:px-8">
                       <div class="overflow-hidden">
-                        <table class="min-w-full text-center">
+                        <table class="min-w-full text-center ">
                           <thead class="border-b bg-primary-800">
                             <tr>
                               <th scope="col" class="text-sm font-medium uppercase text-white px-6 py-4">
@@ -103,12 +103,13 @@ Emails CRUD
                                   @csrf
                                   @method('DELETE')
                                   
-                                  <button type="submit" >
+                                  <button type="submit"  >
                                       <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-600 hover:text-red-800 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                       </svg>
                                   </button>
 
+                                
                               </form>
                               </td>
                               
@@ -130,37 +131,7 @@ Emails CRUD
   </div>
  
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script type="text/javascript">
- 
-    $('.show_confirm').click(function(event) {
-         var form =  $(this).closest("form");
-         var email = $(this).data("email");
-         event.preventDefault();
-         Swal.fire({
-          title: 'Are you sure?',
-          text: "You won't be able to revert this!",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            Swal.fire(
-              'Deleted!',
-              'Your file has been deleted.',
-              'success'
-            )
-          }
-        })
-         .then((willDelete) => {
-           if (willDelete) {
-             form.submit();
-           }
-         });
-     });
- 
-</script>
+
 
 <!-- END INDEX SHOW EMAILS CRUD--> 
 
