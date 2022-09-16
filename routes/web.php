@@ -21,6 +21,11 @@ use App\Http\Controllers\EmailsController;
 use App\Http\Controllers\ContactController;
 /* IMPORT CLASS FORM CONTACT  CONTROLLER*/
 
+
+/* IMPORT CLASS BUDGETS CONTROLLER*/
+use App\Http\Controllers\BudgetsController;
+/* IMPORT CLASS BUDGETS  CONTROLLER*/
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -59,6 +64,10 @@ Route::group(['middleware' => ['auth']], function () { // PROTEGER RUTAS SIN USU
 Route::resource('emails', EmailsController::class);
 /* FIN  CRUD EMAILS*/
 
+
+/* ROUTE CRUD BUDGETS*/
+Route::resource('budgets', BudgetsController::class);
+/* FIN  CRUD BUDGETS*/
     
     });
     
