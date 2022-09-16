@@ -153,10 +153,14 @@
                                     ease-in-out
                                     m-0
                                     focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
-                                      <option value="{{ old('emailsend') }}" >{{ old('emailsend') }}</option>
-                                      <option value="josegonzalezcr2794@gmail.com">josegonzalezcr2794@gmail.com</option>
-                                      <option value="2">Two</option>
-                                      <option value="3">Three</option>
+                                     
+                                    <!-- CONSULTA VARIABLES TABLA SQL EMAILS -->
+                                    @foreach ($email as $email)
+                                    
+                                     <option value=" {{ $email->email }}"> {{ $email->email }}</option>
+                                     
+                                      @endforeach
+                                        <!-- CONSULTA VARIABLES TABLA SQL EMAILS -->
                                   </select>
                                
                           </div>

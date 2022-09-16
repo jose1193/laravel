@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 
+/** IMPORT CLASS SQL TABLE EMAILS **/
+use App\Models\Emails;
+/** END IMPORT CLASS SQL TABLE EMAILS **/
+
 use Mail;
 
 class ContactController extends Controller
@@ -16,7 +20,9 @@ class ContactController extends Controller
      */
     public function contactForm()
     {
-        return view('contactForm');
+        $email = Emails::latest()->get(); /** <-- SQL TABLE EMAILS, FOREACH **/
+
+        return view('contactForm',compact('email')); /** <-- PRINT VARIABLE , CAMPO TABLA **/
     }
 
     /**
