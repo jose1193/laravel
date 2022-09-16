@@ -32,6 +32,7 @@ class ContactController extends Controller
             'phone' => 'required|max:20|min:7',
             'subject' => 'required|max:30|min:4',
             'message' => 'required|min:4',
+            'emailsend' => 'required',
         ]);
 
         $input = $request->all();
@@ -45,9 +46,10 @@ class ContactController extends Controller
             'phone' => $input['phone'],
             'subject' => $input['subject'],
             'message' => $input['message'],
+           
         ), function($message) use ($request){
             $message->from($request->email);
-            $message->to('josegonzalezcr2794@gmail.com', 'Admin')->subject($request->get('subject'));
+            $message->to($request->emailsend, 'Admin')->subject($request->get('subject'));
         });
 
         return redirect()->back()->with(['success' => 'Contact Form Submit Successfully']);
