@@ -2,7 +2,7 @@
 
     
 @section('titulo')
-Edit Email
+Edit Budget
 @endsection
 
 @section('container')
@@ -13,14 +13,14 @@ Edit Email
       <li class="inline-flex items-center">
         <a href="#" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
           <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
-          <a href="/">Home</a> 
+          <a href="/dashboard">Home</a> 
         </a>
       </li>
       <li>
         <div class="flex items-center">
           <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-          <a href="/register" class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white">
-            <a href="/register" class="text-blue-600 hover:text-blue-700">@yield('titulo')</a></a>
+          <a href="/budgets" class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white">
+            <a href="/budgets" class="text-blue-600 hover:text-blue-700">@yield('titulo')</a></a>
         </div>
       </li>
      
@@ -31,7 +31,7 @@ Edit Email
      class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
      @yield('titulo')</span> </h1>
 
-    <!-- EDIT EMAILS CRUD--> 
+    <!-- EDIT BUDGETS CRUD--> 
     <div class="max-w-4xl mx-auto mt-8">
 
         <div class="mb-4">
@@ -41,7 +41,7 @@ Edit Email
                 focus:ring-primary-300 font-medium rounded-lg
                  text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2
                   dark:bg-primary-600 dark:hover:bg-primary-700 
-                  focus:outline-none dark:focus:ring-primary-800 text-white" href="{{ route('emails.index') }}">< Back</a>
+                  focus:outline-none dark:focus:ring-primary-800 text-white" href="{{ route('budgets.index') }}">< Back</a>
             </div>
         </div>
     
@@ -62,27 +62,45 @@ Edit Email
                 
                     <div class="w-full px-6 py-4 bg-white rounded shadow-md ring-1 ring-gray-900/10"> 
 
-                        <form action="{{ route('emails.update',$email->id) }}" method="POST" autocomplete="off">
+                        <form action="{{ route('budgets.update',$budget->id) }}" method="POST" autocomplete="off">
                             @csrf
                             @method('PUT')
 
-                            <div>
-                                <label class="block text-md font-bold text-gray-700" for="title">Name:</label>
-                                <input type="text" placeholder="Name"
-                                class="w-full px-4 py-2 mt-2 border rounded-md 
+                            <div >
+                                <label class="block text-md font-bold text-gray-700" for="title">Work Payment</label>
+                                <input type="text" placeholder="Amount"
+                                class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                id="name" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" name="name" required  value="{{ $email->name }}">
+                                  value="{{ $budget->amount }}"
+                                 name="amount" required maxlength="20" >
                             </div>
 
+                            <div >
+                                <label class="block text-md font-bold text-gray-700" for="title">Dollar Rate</label>
+                                <input type="text" placeholder="Dollar Rate"
+                                class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
+                                focus:outline-none focus:ring-1 focus:ring-blue-600" 
+                                id="amount" value="{{ $budget->dollarchange }}"
+                                 name="dollarchange" required maxlength="20" >
+                            </div>
 
                             <div>
-                                <label class="block text-md font-bold text-gray-700" for="title">Email:</label>
-                                <input type="email" placeholder="Email"
-                                    class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
-                                    id="email_address"  name="email" value="{{ $email->email }}" autocomplete="off" required >
+                                <label class="block text-md font-bold text-gray-700" for="title">Total Budget</label>
+                                <input type="text" placeholder="Total"
+                                class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
+                                focus:outline-none focus:ring-1 focus:ring-blue-600" 
+                                id="totalbudget" value="{{ $budget->totalbudget }}" name="totalbudget" required
+                                 maxlength="20" >
                             </div>
 
-                          
+                             <div>
+                                <label class="block text-md font-bold text-gray-700" for="title">Date</label>
+                                <input type="text" placeholder="Date"
+                                class="w-full px-4 py-2 mt-2 border rounded-md 
+                                focus:outline-none focus:ring-1 mb-5 focus:ring-blue-600" 
+                                id="date" value="{{ $budget->date }}" name="date" required maxlength="20"
+                                 readonly value="{{ date('Y') }}">
+                            </div>
 
                             <div class="flex items-center justify-start mt-4 gap-x-2 my-10">
                                 <button type="submit" class="bg-primary-700 hover:bg-primary-800 focus:ring-4
@@ -100,6 +118,6 @@ Edit Email
             </div>
         </div>
     </div>
- <!--END  EDIT EMAILS CRUD--> 
+ <!--END  EDIT BUDGETS CRUD--> 
 
     @endsection

@@ -71,15 +71,15 @@ Create Budget
                                 <input type="text" placeholder="Amount"
                                 class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                id="amount"  name="amount" required maxlength="20" pattern="[0-9]">
+                                 name="amount" required maxlength="20" >
                             </div>
 
-                            <div >
+                            <div>
                                 <label class="block text-md font-bold text-gray-700" for="title">Dollar Rate</label>
                                 <input type="text" placeholder="Dollar Rate"
                                 class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                id="amount"  name="dollarchange" required maxlength="20" pattern="[0-9]">
+                                 name="dollarchange" required maxlength="20" >
                             </div>
 
                             <div>
@@ -87,7 +87,7 @@ Create Budget
                                 <input type="text" placeholder="Total"
                                 class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                id="amount"  name="totalbudget" required maxlength="20" pattern="[0-9]">
+                                name="totalbudget" required maxlength="20" >
                             </div>
 
                              <div>
@@ -95,7 +95,8 @@ Create Budget
                                 <input type="text" placeholder="Date"
                                 class="w-full px-4 py-2 mt-2 border rounded-md 
                                 focus:outline-none focus:ring-1 mb-5 focus:ring-blue-600" 
-                                id="amount"  name="date" required maxlength="20" readonly value="{{ date('Y') }}">
+                                name="date" required maxlength="20"
+                                 readonly value="{{ date('Y') }}">
                             </div>
                            
 

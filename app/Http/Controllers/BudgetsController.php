@@ -14,9 +14,9 @@ class BudgetsController extends Controller
      */
     public function index()
     {
-        $budgets = Budgets::latest()->get();
+        $budget = Budgets::latest()->get();
       
-        return view('budgets.index',compact('budgets'))
+        return view('budgets.index',compact('budget'))
                 ->with('i', (request()->input('page', 1) - 1) * 5);
     }
   
@@ -58,9 +58,9 @@ class BudgetsController extends Controller
      * @param  \App\Models\Budgets  $Budgets
      * @return \Illuminate\Http\Response
      */
-    public function show(Budgets $budgets)
+    public function show(Budgets $budget)
     {
-        return view('budgets.show',compact('budgets'));
+        return view('budgets.show',compact('budget'));
     }
   
     /**
@@ -69,9 +69,9 @@ class BudgetsController extends Controller
      * @param  \App\Models\Budgets  $Budgets
      * @return \Illuminate\Http\Response
      */
-    public function edit(Budgets $budgets)
+    public function edit(Budgets $budget)
     {
-        return view('budgets.edit',compact('budgets')); // <-- variable $budget a consultar
+        return view('budgets.edit',compact('budget')); // <-- variable $budget a consultar
     }
   
     /**
@@ -81,7 +81,7 @@ class BudgetsController extends Controller
      * @param  \App\Models\Budgets  $Budgets
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Budgets $budgets)
+    public function update(Request $request, Budgets $budget)
     {
         $request->validate([
             'amount' => 'required|max:20|min:2',
@@ -91,7 +91,7 @@ class BudgetsController extends Controller
            
         ]);
       
-        $budgets->update($request->all());
+        $budget->update($request->all());
       
         return redirect()->route('budgets.index')
                         ->with('success','Budget updated successfully');
@@ -102,9 +102,9 @@ class BudgetsController extends Controller
      * @param  \App\Models\Budgets  $Budgets
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Budgets $budgets)
+    public function destroy(Budgets $budget)
     {
-        $budgets->delete();
+        $budget->delete();
        
         return redirect()->route('budgets.index')
                         ->with('success','Budget deleted successfully');

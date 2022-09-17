@@ -4,7 +4,7 @@
 
     
 @section('titulo')
-Show Email
+Show Budget
 @endsection
 
 @section('container')
@@ -42,18 +42,20 @@ Show Email
                  text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2
                   dark:bg-primary-600 dark:hover:bg-primary-700 
                   focus:outline-none dark:focus:ring-primary-800 text-white"
-                 href="{{ route('emails.index') }}">< Back</a>
+                 href="{{ route('budgets.index') }}">< Back</a>
             </div>
         </div>
    
         <div class="flex flex-col mt-5 py-5">
             <div class="w-full px-6 py-4 bg-white rounded shadow-lg ring-1 ring-gray-900/10">
-                <h3 class="text-2xl font-semibold">{{ $email->email }}</h3>
-                <p class="text-base text-blue-700 mt-5">{{ $email->name }}</p>
+                <h3 class="text-2xl font-semibold">{{ $budgets->amount }}</h3>
+                <p class="text-2xl text-blue-700 mt-5">{{ $budgets->dolarchange }}</p>
+                <p class="text-2xl text-blue-700 mt-5">{{ $budgets->totalbudget }}</p>
+                <p class="text-2xl text-blue-700 mt-5">{{ $budgets->date }}</p>
             </div>
         </div>
     </div>
 
-<!--END SHOW EMAILS CRUD--> 
+<!--END SHOW BUDGETS CRUD--> 
 
 @endsection
