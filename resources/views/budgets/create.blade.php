@@ -64,14 +64,14 @@ Create Budget
                     
                     <div class="w-full px-6 py-4 bg-white rounded shadow-md ring-1 ring-gray-900/10">
 
-                        <form action="{{ route('budgets.store') }}" method="POST" novalidate autocomplete="off">
+                        <form action="{{ route('budgets.store') }}" name="calculator" method="POST" novalidate autocomplete="off">
                             @csrf
                             <div >
                                 <label class="block text-md font-bold text-gray-700" for="title">Work Payment</label>
                                 <input type="text" placeholder="Amount"
                                 class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                 name="amount" required maxlength="20" >
+                                 name="amount" onKeyUp="Suma()" required maxlength="20" >
                             </div>
 
                             <div>
@@ -79,7 +79,7 @@ Create Budget
                                 <input type="text" placeholder="Dollar Rate"
                                 class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                 name="dollarchange" required maxlength="20" >
+                                 name="dollarchange" onKeyUp="Suma()" required maxlength="20" >
                             </div>
 
                             <div>
@@ -92,11 +92,12 @@ Create Budget
 
                              <div>
                                 <label class="block text-md font-bold text-gray-700" for="title">Date</label>
+                                
                                 <input type="text" placeholder="Date"
                                 class="w-full px-4 py-2 mt-2 border rounded-md 
                                 focus:outline-none focus:ring-1 mb-5 focus:ring-blue-600" 
                                 name="date" required maxlength="20"
-                                 readonly value="{{ date('Y') }}">
+                                 readonly value="{{ date('M-d-Y') }}">
                             </div>
                            
 
@@ -108,7 +109,8 @@ Create Budget
                                   focus:outline-none dark:focus:ring-primary-800 text-white
                                   transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110
                                   ">Submit</button>
- 
+                            </div>
+
                         </form>
 
                     </div>
@@ -116,6 +118,24 @@ Create Budget
             </div>
         </div>
     </div>
+    <!-- // FUNCTION CALCULATOR BUDGET -->
+ <script>
+    //Función que realiza la suma
+    function Suma() {
+       var amount = document.calculator.amount.value;
+       var dollarchange = document.calculator.dollarchange.value;
+       try{
+          //Calculamos el número escrito:
+          amount = (isNaN(parseInt(amount)))? 0 : parseInt(amount);
+          dollarchange = (isNaN(parseInt(dollarchange)))? 0 : parseInt(dollarchange);
+           document.calculator.totalbudget.value = amount*dollarchange;
+       }
+       //Si se produce un error no hacemos nada
+       catch(e) {}
+    }
+    </script>
+    
+     <!-- // END FUNCTION CALCULATOR BUDGET -->
 <!-- END CREATE BUDGET CRUD--> 
-
+ 
     @endsection

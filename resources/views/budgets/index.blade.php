@@ -157,7 +157,9 @@ Budgets CRUD
         $('#dataTable').DataTable();
   
     });
+    
   </script>
+
   
 <!-- END DATATABLES CRUD--> 
 

@@ -7,7 +7,7 @@ Edit Budget
 
 @section('container')
 
-   
+
 <nav class="flex my-3" aria-label="Breadcrumb">
     <ol class="inline-flex items-center space-x-1 md:space-x-3 mx-auto">
       <li class="inline-flex items-center">

@@ -239,12 +239,6 @@ Home
   </div>
 </footer>
 
-<script>
-  $(document).ready(function () {
-      $('#dataTable').DataTable();
-
-  });
-</script>
 
         </body>
 
