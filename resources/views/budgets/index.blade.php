@@ -54,7 +54,7 @@ Budgets CRUD
                   <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-4 inline-block min-w-full sm:px-6 lg:px-8">
                       <div class="overflow-hidden">
-                        <table class="min-w-full text-center ">
+                        <table class="min-w-full text-center " id="dataTable" >
                           <thead class="border-b bg-primary-800">
                             <tr>
                               <th scope="col" class="text-sm font-medium uppercase text-white px-6 py-4">
@@ -145,8 +145,21 @@ Budgets CRUD
       </div>
   </div>
  
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
+<!-- DATATABLES CRUD--> 
+  
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" charset="utf8"
+    src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+  <script>
+    $(document).ready(function () {
+        $('#dataTable').DataTable();
+  
+    });
+  </script>
+  
+<!-- END DATATABLES CRUD--> 
 
 <!-- END INDEX SHOW EMAILS CRUD--> 
 

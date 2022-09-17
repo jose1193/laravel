@@ -48,10 +48,10 @@ Show Budget
    
         <div class="flex flex-col mt-5 py-5">
             <div class="w-full px-6 py-4 bg-white rounded shadow-lg ring-1 ring-gray-900/10">
-                <h3 class="text-2xl font-semibold">{{ $budgets->amount }}</h3>
-                <p class="text-2xl text-blue-700 mt-5">{{ $budgets->dolarchange }}</p>
-                <p class="text-2xl text-blue-700 mt-5">{{ $budgets->totalbudget }}</p>
-                <p class="text-2xl text-blue-700 mt-5">{{ $budgets->date }}</p>
+                <h3 class="text-2xl font-semibold">Budget: {{ $budget->amount }} $</h3>
+                <p class="text-2xl text-blue-700 mt-5"> <span class="text-purple-700">Dollar Rate:</span> {{ $budget->dollarchange }}$</p>
+                <p class="text-2xl text-blue-700 mt-5"> <span class="text-purple-700">Total Budget:</span> {{ $budget->totalbudget }}</p>
+                <p class="text-2xl text-blue-700 mt-5"><span class="text-purple-700">Date: </span>{{ $budget->date }}</p>
             </div>
         </div>
     </div>

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Budgets;
 use Illuminate\Http\Request;
 
+
+use DataTables;// import DATATABLES
+
 class BudgetsController extends Controller
 {
     /**
