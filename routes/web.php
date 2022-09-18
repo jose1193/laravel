@@ -27,6 +27,10 @@ use App\Http\Controllers\BudgetsController;
 /* IMPORT CLASS BUDGETS  CONTROLLER*/
 
 
+/* IMPORT CLASS COINS CONTROLLER*/
+use App\Http\Controllers\CoinsController;
+/* IMPORT CLASS COINS  CONTROLLER*/
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -63,13 +67,17 @@ Route::group(['middleware' => ['auth']], function () { // PROTEGER RUTAS SIN USU
 
 /* ROUTE CRUD EMAILS*/
 Route::resource('emails', EmailsController::class);
-/* FIN  CRUD EMAILS*/
+/* END CRUD EMAILS*/
 
 
 /* ROUTE CRUD BUDGETS*/
 Route::resource('budgets', BudgetsController::class);
-/* FIN  CRUD BUDGETS*/
+/* END  CRUD BUDGETS*/
     
+
+/* ROUTE API COINS */
+Route::resource('coins', CoinsController::class);
+/* END  API COINS */
 
 
     });

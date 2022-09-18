@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Budgets;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Http;
 
 use DataTables;// import DATATABLES
 
@@ -17,9 +17,12 @@ class BudgetsController extends Controller
      */
     public function index()
     {
+
+        $response = Http::get('https://www.dolarsi.com/api/api.php?type=valoresprincipales');
+        $dataArray=$response->json();
         $budget = Budgets::latest()->get();
       
-        return view('budgets.index',compact('budget'))
+        return view('budgets.index',compact('budget','dataArray'))
                 ->with('i', (request()->input('page', 1) - 1) * 5);
     }
   

@@ -32,10 +32,11 @@ Budgets CRUD
     class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
     @yield('titulo')</span> </h1>
 
-<!-- END INDEX SHOW BUDGETS CRUD--> 
+<!-- INDEX SHOW BUDGETS CRUD--> 
     <div class="max-w-4xl mx-auto mt-8 my-5 pb-5 py-5">
 
-     
+ 
+   
 
       <div class="flex justify-end mt-10">
           <a href="{{ route('budgets.create') }}" class="bg-primary-700 hover:bg-primary-800 focus:ring-4
