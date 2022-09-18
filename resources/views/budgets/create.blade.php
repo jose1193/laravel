@@ -71,15 +71,18 @@ Create Budget
                                 <input type="text" placeholder="Amount"
                                 class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                 name="amount" onKeyUp="Suma()" required maxlength="20" >
+                                 name="amount" onKeyUp="Suma()" value="800" required maxlength="20" >
                             </div>
 
                             <div>
-                                <label class="block text-md font-bold text-gray-700" for="title">Dollar Rate</label>
+                                <label class="block text-md font-bold text-gray-700" for="title">Dollar Rate </label>
+                                
+                                
                                 <input type="text" placeholder="Dollar Rate"
                                 class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                 name="dollarchange" onKeyUp="Suma()" required maxlength="20" >
+                                 name="dollarchange"  onKeyUp="Suma()" required maxlength="20"
+                                 value=" {{$dataArray['blue']['value_sell']}}" >
                             </div>
 
                             <div>
@@ -91,7 +94,7 @@ Create Budget
                             </div>
 
                              <div>
-                                <label class="block text-md font-bold text-gray-700" for="title">Date</label>
+                                <label class="block text-md font-bold text-gray-700" for="title">Create Date</label>
                                 
                                 <input type="text" placeholder="Date"
                                 class="w-full px-4 py-2 mt-2 border rounded-md 
@@ -118,24 +121,7 @@ Create Budget
             </div>
         </div>
     </div>
-    <!-- // FUNCTION CALCULATOR BUDGET -->
- <script>
-    //Función que realiza la suma
-    function Suma() {
-       var amount = document.calculator.amount.value;
-       var dollarchange = document.calculator.dollarchange.value;
-       try{
-          //Calculamos el número escrito:
-          amount = (isNaN(parseInt(amount)))? 0 : parseInt(amount);
-          dollarchange = (isNaN(parseInt(dollarchange)))? 0 : parseInt(dollarchange);
-           document.calculator.totalbudget.value = amount*dollarchange;
-       }
-       //Si se produce un error no hacemos nada
-       catch(e) {}
-    }
-    </script>
-    
-     <!-- // END FUNCTION CALCULATOR BUDGET -->
+   
 <!-- END CREATE BUDGET CRUD--> 
  
     @endsection

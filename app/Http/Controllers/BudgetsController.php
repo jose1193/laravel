@@ -18,11 +18,10 @@ class BudgetsController extends Controller
     public function index()
     {
 
-        $response = Http::get('https://www.dolarsi.com/api/api.php?type=valoresprincipales');
-        $dataArray=$response->json();
+       
         $budget = Budgets::latest()->get();
       
-        return view('budgets.index',compact('budget','dataArray'))
+        return view('budgets.index',compact('budget'))
                 ->with('i', (request()->input('page', 1) - 1) * 5);
     }
   
@@ -33,7 +32,9 @@ class BudgetsController extends Controller
      */
     public function create()
     {
-        return view('budgets.create');
+        $response = Http::get('https://api.bluelytics.com.ar/v2/latest');
+        $dataArray=$response->json();
+        return view('budgets.create',compact('dataArray'));
     }
   
     /**
