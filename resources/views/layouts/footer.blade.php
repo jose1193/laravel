@@ -51,6 +51,14 @@
   </script>
   
    <!-- // END FUNCTION CALCULATOR BUDGET  BUDGETs / CREATE.BLADE.PHP-->
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js"></script>
+   <script>
+    $(document).ready(function(){
+        $('.inputmask').inputmask('#.##0.00');
+       
+    });
+</script>
           </body>
   
           </html>

@@ -52,7 +52,7 @@ class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-40
                 sale
               </th>
               <th scope="col" class="py-3 px-6">
-                purchase
+                buy
               </th>
           </tr>
       </thead>
@@ -79,7 +79,44 @@ class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-40
               </td>
           </tr>
           @endforeach
-         
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <th scope="row" class="py-4 px-6 font-bold text-gray-900 whitespace-nowrap
+            dark:text-white">
+            Euro Oficial
+           </th>
+           <td class="py-4 px-6 font-bold text-gray-900 whitespace-nowrap
+           dark:text-white">
+          
+           </td>
+           <th scope="row" class="py-4 px-6 font-bold text-gray-900 whitespace-nowrap
+           dark:text-white">
+           {{$dataArray2['oficial_euro']['value_sell']}}
+          </th>
+          <th scope="row" class="py-4 px-6 font-bold text-gray-900 whitespace-nowrap
+          dark:text-white">
+          {{$dataArray2['oficial_euro']['value_buy']}}
+         </th>
+        </tr>
+         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          <th scope="row" class="py-4 px-6 font-bold text-gray-900 whitespace-nowrap
+          dark:text-white">
+          Euro Blue
+          </th>
+         <th scope="row" class="py-4 px-6 font-bold text-gray-900 whitespace-nowrap
+            dark:text-white">
+          
+           </th>
+          
+           <th scope="row" class="py-4 px-6 font-bold text-gray-900 whitespace-nowrap
+           dark:text-white">
+           {{$dataArray2['blue_euro']['value_sell']}}
+          </th>
+          <th scope="row" class="py-4 px-6 font-bold text-gray-900 whitespace-nowrap
+          dark:text-white">
+          {{$dataArray2['blue_euro']['value_buy']}}
+         </th>
+            </tr>
+
       </tbody>
   </table>
 </div>

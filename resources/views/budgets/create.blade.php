@@ -88,16 +88,17 @@ Create Budget
                             <div>
                                 <label class="block text-md font-bold text-gray-700" for="title">Total Budget</label>
                                 <input type="text" placeholder="Total"
-                                class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
+                                class="  w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                name="totalbudget" required maxlength="20" >
+                                name="totalbudget" required maxlength="20"
+                                 >
                             </div>
 
                              <div>
                                 <label class="block text-md font-bold text-gray-700" for="title">Create Date</label>
                                 
                                 <input type="text" placeholder="Date"
-                                class="w-full px-4 py-2 mt-2 border rounded-md 
+                                class="  w-full px-4 py-2 mt-2 border rounded-md 
                                 focus:outline-none focus:ring-1 mb-5 focus:ring-blue-600" 
                                 name="date" required maxlength="20"
                                  readonly value="{{ date('M-d-Y') }}">
@@ -113,7 +114,7 @@ Create Budget
                                   transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110
                                   ">Submit</button>
                             </div>
-
+                          
                         </form>
 
                     </div>
