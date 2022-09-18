@@ -87,7 +87,7 @@ Edit Budget
                             <div>
                                 <label class="block text-md font-bold text-gray-700" for="title">Total Budget</label>
                                 <input type="text" placeholder="Total"
-                                class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
+                                class="inputmask w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
                                 id="totalbudget" value="{{ $budget->totalbudget }}" name="totalbudget" required
                                  maxlength="20" >
