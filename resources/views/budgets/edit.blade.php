@@ -99,7 +99,7 @@ Edit Budget
                                 class="w-full px-4 py-2 mt-2 border rounded-md 
                                 focus:outline-none focus:ring-1 mb-5 focus:ring-blue-600" 
                                 id="date" value="{{ $budget->date }}" name="date" required maxlength="20"
-                                 readonly value="{{ date('Y') }}">
+                                 readonly >
                             </div>
 
                             <div class="flex items-center justify-start mt-4 gap-x-2 my-10">

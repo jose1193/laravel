@@ -64,7 +64,8 @@ Create Budget
                     
                     <div class="w-full px-6 py-4 bg-white rounded shadow-md ring-1 ring-gray-900/10">
 
-                        <form action="{{ route('budgets.store') }}" name="calculator" method="POST" novalidate autocomplete="off">
+                        <form action="{{ route('budgets.store') }}" 
+                        name="calculator" method="POST" novalidate autocomplete="off">
                             @csrf
                             <div >
                                 <label class="block text-md font-bold text-gray-700" for="title">Work Payment</label>
