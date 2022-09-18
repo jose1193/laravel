@@ -33,7 +33,7 @@ class MontBudgetsController extends Controller
                     ->make(true);
         }
         
-        return view('montBudget');
+        return view('montBudgets');
     }
        
     /**
@@ -65,8 +65,8 @@ class MontBudgetsController extends Controller
      */
     public function edit($id)
     {
-        $montmudget = MontBudgets::find($id);
-        return response()->json($montmudget);
+        $montbudget = MontBudgets::find($id);
+        return response()->json($montbudget);
     }
     
     /**

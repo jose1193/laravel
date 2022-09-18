@@ -26,6 +26,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\BudgetsController;
 /* IMPORT CLASS BUDGETS  CONTROLLER*/
 
+use App\Http\Controllers\MontBudgetsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -69,6 +70,8 @@ Route::resource('emails', EmailsController::class);
 Route::resource('budgets', BudgetsController::class);
 /* FIN  CRUD BUDGETS*/
     
+Route::resource('montbudgets', MontBudgetsController::class);
+
     });
     
 // END PROTEGER RUTAS SIN USUARIO NO ESTA AUTENTICADO
