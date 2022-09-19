@@ -87,10 +87,10 @@ API's CRUD
                                 {{ ++$i }}
                               </td>
                               <td class="text-sm uppercase text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                              <a hre="{{ $apisurl->nameapi }}" target="blank_">{{ $apisurl->provider }}</a>  
+                              <a href="{{ $apisurl->nameapi }}" target="blank_">{{ $apisurl->provider }}</a>  
                               </td>
                               <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                {{ $apisurl->urlapi }}
+                                <a href="{{ $apisurl->urlapi }}" target="blank_"> {{ $apisurl->urlapi }}</a>
                               </td>
 
                               <td class="text-sm uppercase text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
