@@ -76,6 +76,7 @@ class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-40
               <td class="py-4 px-6 font-bold text-gray-900 whitespace-nowrap
               dark:text-white">
               {{$data['casa']['compra']}}
+              
               </td>
           </tr>
           @endforeach
@@ -120,7 +121,11 @@ class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-40
       </tbody>
   </table>
 </div>
-
+@foreach ($apiss as $apiss)
+                                    
+                                     {{ $apiss->urlapi }}
+                                     
+                                      @endforeach
 <!-- END API COINS --> 
 
 </div>
