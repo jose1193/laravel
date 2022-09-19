@@ -106,7 +106,7 @@ class ApisController extends Controller
      */
     public function destroy(Apis $apisurl)
     {
-        $api->delete();
+        $apisurl->delete();
        
         return redirect()->route('apisurl.index')
                         ->with('success','Api deleted successfully');
