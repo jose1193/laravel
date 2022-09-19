@@ -100,9 +100,9 @@
                           capitalize">coins</a>
                         </li>
                         <li>
-                          <a href="/api" class="
+                          <a href="/apisurl" class="
                           block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600
-                           dark:hover:text-white">API</a>
+                           dark:hover:text-white">API's</a>
                         </li>
                        
                       </ul>

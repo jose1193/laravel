@@ -82,7 +82,7 @@ Create Budget
                                 <input type="text" placeholder="Dollar Rate"
                                 class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                 name="dollarchange"  onKeyUp="Suma()" required maxlength="20"
+                                 name="dollarchange"  onKeyUp="Suma()" required maxlength="120"
                                  value=" {{$dataArray['blue']['value_sell']}}" >
                             </div>
 
@@ -91,7 +91,7 @@ Create Budget
                                 <input type="text" placeholder="Total"
                                 class=" inputmask w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                name="totalbudget" required maxlength="20"
+                                name="totalbudget" required maxlength="100"
                                  >
                             </div>
 
@@ -101,7 +101,7 @@ Create Budget
                                 <input type="text" placeholder="Date"
                                 class="  w-full px-4 py-2 mt-2 border rounded-md 
                                 focus:outline-none focus:ring-1 mb-5 focus:ring-blue-600" 
-                                name="date" required maxlength="20"
+                                name="date" required maxlength="100"
                                  readonly value="{{ date('M-d-Y') }}">
                             </div>
                            

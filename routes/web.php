@@ -31,6 +31,11 @@ use App\Http\Controllers\BudgetsController;
 use App\Http\Controllers\CoinsController;
 /* IMPORT CLASS COINS  CONTROLLER*/
 
+
+/* IMPORT CLASS APIS CONTROLLER*/
+use App\Http\Controllers\ApisController;
+/* IMPORT CLASS APIS  CONTROLLER*/
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -80,6 +85,9 @@ Route::resource('coins', CoinsController::class);
 /* END  API COINS */
 
 
+/* ROUTE API URL */
+Route::resource('apisurl', ApisController::class);
+/* END  API URL */
     });
     
 // END PROTEGER RUTAS SIN USUARIO NO ESTA AUTENTICADO

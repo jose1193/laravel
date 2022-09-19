@@ -2,12 +2,12 @@
 
     
 @section('titulo')
-Edit Budget
+Create Api
 @endsection
 
 @section('container')
 
-
+   
 <nav class="flex my-3" aria-label="Breadcrumb">
     <ol class="inline-flex items-center space-x-1 md:space-x-3 mx-auto">
       <li class="inline-flex items-center">
@@ -19,38 +19,40 @@ Edit Budget
       <li>
         <div class="flex items-center">
           <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-          <a href="/budgets" class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white">
-            <a href="/budgets" class="text-blue-600 hover:text-blue-700">@yield('titulo')</a></a>
+          <a href="/apisurl" class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white">
+            <a href="/apisurl" class="text-blue-600 hover:text-blue-700">@yield('titulo')</a></a>
         </div>
       </li>
      
     </ol>
   </nav>
+
   <h1 class="mb-4 my-5 py-5 text-3xl text-center font-extrabold
   text-gray-900 dark:text-white md:text-4xl lg:text-4xl"><span 
      class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
      @yield('titulo')</span> </h1>
 
-    <!-- EDIT BUDGETS CRUD--> 
-    <div class="max-w-4xl mx-auto mt-8">
 
+    <!-- CREATE BUDGET CRUD--> 
+    <div class="max-w-4xl mx-auto mt-8">
         <div class="mb-4">
-            
+           
             <div class="flex justify-end mt-5">
                 <a class="bg-primary-700 hover:bg-primary-800 focus:ring-4
                 focus:ring-primary-300 font-medium rounded-lg
                  text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2
                   dark:bg-primary-600 dark:hover:bg-primary-700 
-                  focus:outline-none dark:focus:ring-primary-800 text-white" href="{{ route('budgets.index') }}">< Back</a>
+                  focus:outline-none dark:focus:ring-primary-800 text-white"
+                 href="{{ route('apisurl.index') }}">< Back</a>
             </div>
         </div>
-    
+
         <div class="flex flex-col mt-5">
             <div class="flex flex-col">
                 <div class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
 
                     @if ($errors->any())
-                        <div class="p-5 rounded bg-red-500 text-white m-3" x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 6000)">
+                        <div class="p-3 rounded bg-red-500 text-white m-3" x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 10000)">
                             <strong>Whoops!</strong> There were some problems with your input.<br><br>
                             <ul>
                                 @foreach ($errors->all() as $error)
@@ -59,48 +61,58 @@ Edit Budget
                             </ul>
                         </div>
                     @endif
-                
-                    <div class="w-full px-6 py-4 bg-white rounded shadow-md ring-1 ring-gray-900/10"> 
+                    
+                    <div class="w-full px-6 py-4 bg-white rounded shadow-md ring-1 ring-gray-900/10">
 
-                        <form action="{{ route('budgets.update',$budget->id) }}" method="POST" autocomplete="off">
+                        <form action="{{ route('apisurl.store') }}" 
+                         method="POST" novalidate autocomplete="off">
                             @csrf
-                            @method('PUT')
-
                             <div >
-                                <label class="block text-md font-bold text-gray-700" for="title">Work Payment</label>
-                                <input type="text" placeholder="Amount"
+                                <label class="capitalize block text-md font-bold text-gray-700" for="title">
+                                     provider </label>
+                                <input type="url" placeholder="Provider Name"
                                 class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                  value="{{ $budget->amount }}"
-                                 name="amount" required maxlength="50" >
+                                 name="provider" required maxlength="150" >
                             </div>
 
                             <div >
-                                <label class="block text-md font-bold text-gray-700" for="title">Dollar Rate</label>
-                                <input type="text" placeholder="Dollar Rate"
+                                <label class="capitalize block text-md font-bold text-gray-700" for="title">
+                                    web provider </label>
+                                <input type="text" placeholder="Web Provider"
                                 class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                id="amount" value="{{ $budget->dollarchange }}"
-                                 name="dollarchange" required maxlength="50" >
+                                 name="nameapi" required maxlength="150" >
                             </div>
 
                             <div>
-                                <label class="block text-md font-bold text-gray-700" for="title">Total Budget</label>
-                                <input type="text" placeholder="Total"
-                                class="inputmask w-full px-4 py-2 mt-2 mb-5 border rounded-md 
+                                <label class="block text-md capitalize font-bold text-gray-700" for="title">
+                                    api  url</label>
+                                
+                                
+                                <input type="url" placeholder="  Api URL"
+                                class="w-full px-4 py-2 mt-2 mb-5  border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                id="totalbudget" value="{{ $budget->totalbudget }}" name="totalbudget" required
-                                 maxlength="50" >
+                                 name="urlapi" required maxlength="170" >
+                            </div>
+
+                            <div>
+                                <label class="block capitalize text-md font-bold text-gray-700" for="title">country</label>
+                                <input type="text" placeholder="Country Api"
+                                class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
+                                focus:outline-none focus:ring-1 focus:ring-blue-600" 
+                                 name="country" required maxlength="30" >
                             </div>
 
                              <div>
-                                <label class="block text-md font-bold text-gray-700" for="title">Date</label>
-                                <input type="text" placeholder="Date"
-                                class="w-full px-4 py-2 mt-2 border rounded-md 
-                                focus:outline-none focus:ring-1 mb-5 focus:ring-blue-600" 
-                                id="date" value="{{ $budget->date }}" name="date" required maxlength="20"
-                                 readonly >
+                                <label class="block text-md font-bold text-gray-700" for="title">Icon SVG Flag</label>
+                                
+                                <input type="text" placeholder="SVG Flag"
+                                class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
+                                focus:outline-none focus:ring-1 focus:ring-blue-600" 
+                                 name="flag" required  maxlength="100"  >
                             </div>
+                           
 
                             <div class="flex items-center justify-start mt-4 gap-x-2 my-10">
                                 <button type="submit" class="bg-primary-700 hover:bg-primary-800 focus:ring-4
@@ -108,9 +120,10 @@ Edit Budget
                                  text-sm px-4 lg:px-5 py-5 my-4 lg:py-2.5 mr-2
                                   dark:bg-primary-600 dark:hover:bg-primary-700 
                                   focus:outline-none dark:focus:ring-primary-800 text-white
-                                  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110">Submit</button>
+                                  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110
+                                  ">Submit</button>
                             </div>
-                   
+                          
                         </form>
 
                     </div>
@@ -118,6 +131,7 @@ Edit Budget
             </div>
         </div>
     </div>
- <!--END  EDIT BUDGETS CRUD--> 
-
+  
+<!-- END CREATE BUDGET CRUD--> 
+ 
     @endsection
