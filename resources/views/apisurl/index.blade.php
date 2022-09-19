@@ -96,7 +96,7 @@ API's CRUD
                               <td class="text-sm uppercase text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
                                 {{ $apisurl->country }}
                               </td>
-                              <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
+                              <td class="text-sm  text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
                                 <img class="w-8 h-8 " src="{{ $apisurl->flag }}" alt="flag photo">
                                 
                               </td>
