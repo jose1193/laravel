@@ -32,6 +32,10 @@ use App\Http\Controllers\CoinsController;
 /* IMPORT CLASS COINS  CONTROLLER*/
 
 
+/* IMPORT CLASS CALCULATOR CONTROLLER*/
+use App\Http\Controllers\CalculatorController;
+/* IMPORT CLASS CALCULATOR  CONTROLLER*/
+
 /* IMPORT CLASS APIS CONTROLLER*/
 use App\Http\Controllers\ApisController;
 /* IMPORT CLASS APIS  CONTROLLER*/
@@ -84,6 +88,10 @@ Route::resource('budgets', BudgetsController::class);
 Route::resource('coins', CoinsController::class);
 /* END  API COINS */
 
+
+/* ROUTE CALCULATOR COINS */
+Route::resource('calculator', CalculatorController::class);
+/* END  CALCULATOR COINS */
 
 /* ROUTE API URL */
 Route::resource('apisurl', ApisController::class);

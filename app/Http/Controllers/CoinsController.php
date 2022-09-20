@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Http; // <-- guzzle query api
 
 /** IMPORT CLASS SQL TABLE APIS **/
 use App\Models\Apis;

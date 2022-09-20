@@ -126,9 +126,10 @@ class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-40
                                      {{ $apiss->urlapi }}
                                      
                                       @endforeach
-<!-- END API COINS --> 
+
 
 </div>
+<!-- END API COINS --> 
 <!-- Container for demo purpose -->
 
 @endsection
