@@ -33,24 +33,7 @@
 
   
 <!-- END DATATABLES CRUD BUDGETS --> 
-   <!-- // FUNCTION CALCULATOR BUDGETs / CREATE.BLADE.PHP -->
- <script>
-  //Función que realiza la suma
-  function Suma() {
-     var amount = document.calculator.amount.value;
-     var dollarchange = document.calculator.dollarchange.value;
-     try{
-        //Calculamos el número escrito:
-        amount = (isNaN(parseInt(amount)))? 0 : parseInt(amount);
-        dollarchange = (isNaN(parseInt(dollarchange)))? 0 : parseInt(dollarchange);
-         document.calculator.totalbudget.value = amount*dollarchange;
-     }
-     //Si se produce un error no hacemos nada
-     catch(e) {}
-  }
-  </script>
-  
-   <!-- // END FUNCTION CALCULATOR BUDGET  BUDGETs / CREATE.BLADE.PHP-->
+   
 
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js"></script>
    <script>

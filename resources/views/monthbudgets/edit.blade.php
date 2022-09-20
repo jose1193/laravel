@@ -2,12 +2,12 @@
 
     
 @section('titulo')
-Create Budget
+Edit Budget
 @endsection
 
 @section('container')
 
-   
+
 <nav class="flex my-3" aria-label="Breadcrumb">
     <ol class="inline-flex items-center space-x-1 md:space-x-3 mx-auto">
       <li class="inline-flex items-center">
@@ -26,33 +26,32 @@ Create Budget
      
     </ol>
   </nav>
-
   <h1 class="mb-4 my-5 py-5 text-3xl text-center font-extrabold
   text-gray-900 dark:text-white md:text-4xl lg:text-4xl"><span 
      class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
      @yield('titulo')</span> </h1>
 
-
-    <!-- CREATE BUDGET CRUD--> 
+    <!-- EDIT BUDGETS CRUD--> 
     <div class="max-w-4xl mx-auto mt-8">
+
         <div class="mb-4">
-           
+            
             <div class="flex justify-end mt-5">
                 <a class="bg-primary-700 hover:bg-primary-800 focus:ring-4
                 focus:ring-primary-300 font-medium rounded-lg
                  text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2
                   dark:bg-primary-600 dark:hover:bg-primary-700 
                   focus:outline-none dark:focus:ring-primary-800 text-white"
-                 href="{{ route('budgets.index') }}">< Back</a>
+                   href="{{ route('monthbudgest.index') }}">< Back</a>
             </div>
         </div>
-
+    
         <div class="flex flex-col mt-5">
             <div class="flex flex-col">
                 <div class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
 
                     @if ($errors->any())
-                        <div class="p-3 rounded bg-red-500 text-white m-3" x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 5000)">
+                        <div class="p-5 rounded bg-red-500 text-white m-3" x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 6000)">
                             <strong>Whoops!</strong> There were some problems with your input.<br><br>
                             <ul>
                                 @foreach ($errors->all() as $error)
@@ -61,50 +60,48 @@ Create Budget
                             </ul>
                         </div>
                     @endif
-                    
-                    <div class="w-full px-6 py-4 bg-white rounded shadow-md ring-1 ring-gray-900/10">
+                
+                    <div class="w-full px-6 py-4 bg-white rounded shadow-md ring-1 ring-gray-900/10"> 
 
-                        <form action="{{ route('budgets.store') }}" 
-                        name="calculator" method="POST" novalidate autocomplete="off">
+                        <form action="{{ route('budgets.update',$budget->id) }}" method="POST" autocomplete="off">
                             @csrf
+                            @method('PUT')
+
                             <div >
                                 <label class="block text-md font-bold text-gray-700" for="title">Work Payment</label>
                                 <input type="text" placeholder="Amount"
                                 class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                 name="amount" onKeyUp="Suma()" value="800" required maxlength="20" >
+                                  value="{{ $budget->amount }}"
+                                 name="amount" required maxlength="50" >
                             </div>
 
-                            <div>
-                                <label class="block text-md font-bold text-gray-700" for="title">Dollar Rate </label>
-                                
-                                
+                            <div >
+                                <label class="block text-md font-bold text-gray-700" for="title">Dollar Rate</label>
                                 <input type="text" placeholder="Dollar Rate"
                                 class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                 name="dollarchange"  onKeyUp="Suma()" required maxlength="120"
-                                 value=" {{$dataArray['blue']['value_sell']}}" >
+                                id="amount" value="{{ $budget->dollarchange }}"
+                                 name="dollarchange" required maxlength="50" >
                             </div>
 
                             <div>
                                 <label class="block text-md font-bold text-gray-700" for="title">Total Budget</label>
                                 <input type="text" placeholder="Total"
-                                class=" inputmask w-full px-4 py-2 mt-2 mb-5 border rounded-md 
+                                class="inputmask w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                name="totalbudget" required maxlength="100"
-                                 >
+                                id="totalbudget" value="{{ $budget->totalbudget }}" name="totalbudget" required
+                                 maxlength="50" >
                             </div>
 
                              <div>
-                                <label class="block text-md font-bold text-gray-700" for="title">Create Date</label>
-                                
+                                <label class="block text-md font-bold text-gray-700" for="title">Date</label>
                                 <input type="text" placeholder="Date"
-                                class="  w-full px-4 py-2 mt-2 border rounded-md 
+                                class="w-full px-4 py-2 mt-2 border rounded-md 
                                 focus:outline-none focus:ring-1 mb-5 focus:ring-blue-600" 
-                                name="date" required maxlength="100"
-                                 readonly value="{{ date('M-d-Y') }}">
+                                id="date" value="{{ $budget->date }}" name="date" required maxlength="20"
+                                 readonly >
                             </div>
-                           
 
                             <div class="flex items-center justify-start mt-4 gap-x-2 my-10">
                                 <button type="submit" class="bg-primary-700 hover:bg-primary-800 focus:ring-4
@@ -112,10 +109,9 @@ Create Budget
                                  text-sm px-4 lg:px-5 py-5 my-4 lg:py-2.5 mr-2
                                   dark:bg-primary-600 dark:hover:bg-primary-700 
                                   focus:outline-none dark:focus:ring-primary-800 text-white
-                                  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110
-                                  ">Submit</button>
+                                  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110">Submit</button>
                             </div>
-                          
+                   
                         </form>
 
                     </div>
@@ -123,25 +119,6 @@ Create Budget
             </div>
         </div>
     </div>
-  
-<!-- END CREATE BUDGET CRUD--> 
- 
-<!-- // FUNCTION CALCULATOR BUDGETs / CREATE.BLADE.PHP -->
-<script>
-    //Función que realiza la suma
-    function Suma() {
-       var amount = document.calculator.amount.value;
-       var dollarchange = document.calculator.dollarchange.value;
-       try{
-          //Calculamos el número escrito:
-          amount = (isNaN(parseInt(amount)))? 0 : parseInt(amount);
-          dollarchange = (isNaN(parseInt(dollarchange)))? 0 : parseInt(dollarchange);
-           document.calculator.totalbudget.value = amount*dollarchange;
-       }
-       //Si se produce un error no hacemos nada
-       catch(e) {}
-    }
-    </script>
-    
-     <!-- // END FUNCTION CALCULATOR BUDGET  BUDGETs / CREATE.BLADE.PHP-->
+ <!--END  EDIT BUDGETS CRUD--> 
+
     @endsection

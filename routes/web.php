@@ -27,6 +27,10 @@ use App\Http\Controllers\BudgetsController;
 /* IMPORT CLASS BUDGETS  CONTROLLER*/
 
 
+/* IMPORT CLASS MONTHBUDGETS CONTROLLER*/
+use App\Http\Controllers\MonthbudgetsController;
+/* IMPORT CLASS MONTHBUDGETS  CONTROLLER*/
+
 /* IMPORT CLASS COINS CONTROLLER*/
 use App\Http\Controllers\CoinsController;
 /* IMPORT CLASS COINS  CONTROLLER*/
@@ -83,6 +87,10 @@ Route::resource('emails', EmailsController::class);
 Route::resource('budgets', BudgetsController::class);
 /* END  CRUD BUDGETS*/
     
+
+/* ROUTE CRUD MONTHBUDGETS*/
+Route::resource('monthbudgets', MonthbudgetsController::class);
+/* END  CRUD MONTHBUDGETS*/
 
 /* ROUTE API COINS */
 Route::resource('coins', CoinsController::class);

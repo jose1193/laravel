@@ -2,7 +2,7 @@
 
     
 @section('titulo')
-Create Budget
+Create Data
 @endsection
 
 @section('container')
@@ -43,7 +43,7 @@ Create Budget
                  text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2
                   dark:bg-primary-600 dark:hover:bg-primary-700 
                   focus:outline-none dark:focus:ring-primary-800 text-white"
-                 href="{{ route('budgets.index') }}">< Back</a>
+                 href="{{ route('monthbudgets.index') }}">< Back</a>
             </div>
         </div>
 
@@ -64,15 +64,47 @@ Create Budget
                     
                     <div class="w-full px-6 py-4 bg-white rounded shadow-md ring-1 ring-gray-900/10">
 
-                        <form action="{{ route('budgets.store') }}" 
-                        name="calculator" method="POST" novalidate autocomplete="off">
+                        <form action="{{ route('monthbudgets.store') }}" 
+                        name="calculator" method="POST" class="capitalize" novalidate autocomplete="off">
                             @csrf
                             <div >
-                                <label class="block text-md font-bold text-gray-700" for="title">Work Payment</label>
-                                <input type="text" placeholder="Amount"
+                                <label class="block text-md font-bold text-gray-700" for="title">
+                                    Description</label>
+                                <input type="text" placeholder="Description"
                                 class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                 name="amount" onKeyUp="Suma()" value="800" required maxlength="20" >
+                                 name="description"  required maxlength="50" >
+                            </div>
+
+                            <div >
+                                <label class="block text-md font-bold text-gray-700" for="title">
+                                   Amount Qty</label>
+                                <input type="num" placeholder=""
+                                class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
+                                focus:outline-none focus:ring-1 focus:ring-blue-600" 
+                                 name="amount" onKeyUp="Suma()"  required maxlength="20" >
+                            </div>
+
+                            <div>
+                                <label class="block text-md font-bold text-gray-700" for="title">
+                                    Price </label>
+                                
+                                
+                                <input type="text" placeholder=""
+                                class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
+                                focus:outline-none focus:ring-1 focus:ring-blue-600" 
+                                 name="price"  onKeyUp="Suma()" required maxlength="120"
+                                 >
+                            </div>
+
+                            <div>
+                                <label class="block text-md font-bold
+                                 text-gray-700" for="title">Total  </label>
+                                <input type="text" placeholder="Total"
+                                class="  w-full px-4 py-2 mt-2 mb-5 border rounded-md 
+                                focus:outline-none focus:ring-1 focus:ring-blue-600" 
+                                name="total" required maxlength="100"
+                                 >
                             </div>
 
                             <div>
@@ -82,16 +114,19 @@ Create Budget
                                 <input type="text" placeholder="Dollar Rate"
                                 class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                 name="dollarchange"  onKeyUp="Suma()" required maxlength="120"
-                                 value=" {{$dataArray['blue']['value_sell']}}" >
+                                 name="dollarchang"  required maxlength="120"
+                                 value=" {{$dataArray2['blue']['value_sell']}}" >
                             </div>
 
                             <div>
-                                <label class="block text-md font-bold text-gray-700" for="title">Total Budget</label>
-                                <input type="text" placeholder="Total"
+                                <label class="block text-md font-bold text-gray-700" for="title">
+                                    in dollar to change</label>
+                                    
+
+                                <input type="text" placeholder="Dollar"
                                 class=" inputmask w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                name="totalbudget" required maxlength="100"
+                                name="dollar" required maxlength="100"
                                  >
                             </div>
 
@@ -105,6 +140,16 @@ Create Budget
                                  readonly value="{{ date('M-d-Y') }}">
                             </div>
                            
+                            <div>
+                                <label class="block text-md font-bold text-gray-700" for="title">
+                                    Id Budget</label>
+                                
+                                <input type="text" placeholder="Date"
+                                class="  w-full px-4 py-2 mt-2 border rounded-md 
+                                focus:outline-none focus:ring-1 mb-5 focus:ring-blue-600" 
+                                name="idbudget" required maxlength="100"
+                                 readonly value="1">
+                            </div>
 
                             <div class="flex items-center justify-start mt-4 gap-x-2 my-10">
                                 <button type="submit" class="bg-primary-700 hover:bg-primary-800 focus:ring-4
@@ -126,17 +171,18 @@ Create Budget
   
 <!-- END CREATE BUDGET CRUD--> 
  
-<!-- // FUNCTION CALCULATOR BUDGETs / CREATE.BLADE.PHP -->
-<script>
+    @endsection
+    <!-- // FUNCTION CALCULATOR BUDGETs / CREATE.BLADE.PHP -->
+ <script>
     //Función que realiza la suma
     function Suma() {
        var amount = document.calculator.amount.value;
-       var dollarchange = document.calculator.dollarchange.value;
+       var price = document.calculator.price.value;
        try{
           //Calculamos el número escrito:
           amount = (isNaN(parseInt(amount)))? 0 : parseInt(amount);
-          dollarchange = (isNaN(parseInt(dollarchange)))? 0 : parseInt(dollarchange);
-           document.calculator.totalbudget.value = amount*dollarchange;
+          price = (isNaN(parseInt(price)))? 0 : parseInt(price);
+           document.calculator.total.value = amount*price;
        }
        //Si se produce un error no hacemos nada
        catch(e) {}
@@ -144,4 +190,3 @@ Create Budget
     </script>
     
      <!-- // END FUNCTION CALCULATOR BUDGET  BUDGETs / CREATE.BLADE.PHP-->
-    @endsection
