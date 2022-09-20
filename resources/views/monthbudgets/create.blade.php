@@ -52,7 +52,7 @@ Create Data
                 <div class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
 
                     @if ($errors->any())
-                        <div class="p-3 rounded bg-red-500 text-white m-3" x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 5000)">
+                        <div class="p-3 rounded bg-red-500 text-white m-3" x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 8000)">
                             <strong>Whoops!</strong> There were some problems with your input.<br><br>
                             <ul>
                                 @foreach ($errors->all() as $error)
@@ -65,7 +65,7 @@ Create Data
                     <div class="w-full px-6 py-4 bg-white rounded shadow-md ring-1 ring-gray-900/10">
 
                         <form action="{{ route('monthbudgets.store') }}" 
-                        name="calculator" method="POST" class="capitalize" novalidate autocomplete="off">
+                        name="calculator" method="POST" class="capitalize"  autocomplete="off">
                             @csrf
                             <div >
                                 <label class="block text-md font-bold text-gray-700" for="title">
@@ -82,7 +82,7 @@ Create Data
                                 <input type="num" placeholder=""
                                 class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                 name="amount" onKeyUp="Suma()"  required maxlength="20" >
+                                 name="unitquantity" onKeyUp="Suma()"  required maxlength="20" >
                             </div>
 
                             <div>
@@ -90,7 +90,7 @@ Create Data
                                     Price </label>
                                 
                                 
-                                <input type="text" placeholder=""
+                                <input type="num" placeholder=""
                                 class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
                                  name="price"  onKeyUp="Suma()" required maxlength="120"
@@ -103,7 +103,7 @@ Create Data
                                 <input type="text" placeholder="Total"
                                 class="  w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                name="total" required maxlength="100"
+                                name="total" onKeyUp="Suma2()" readonly maxlength="100"
                                  >
                             </div>
 
@@ -114,7 +114,7 @@ Create Data
                                 <input type="text" placeholder="Dollar Rate"
                                 class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                 name="dollarchang"  required maxlength="120"
+                                 name="dollarchang" onKeyUp="Suma2()" readonly maxlength="120"
                                  value=" {{$dataArray2['blue']['value_sell']}}" >
                             </div>
 
@@ -124,9 +124,9 @@ Create Data
                                     
 
                                 <input type="text" placeholder="Dollar"
-                                class=" inputmask w-full px-4 py-2 mt-2 mb-5 border rounded-md 
+                                class="  w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                name="dollar" required maxlength="100"
+                                name="dollar" readonly maxlength="100"
                                  >
                             </div>
 
@@ -136,7 +136,7 @@ Create Data
                                 <input type="text" placeholder="Date"
                                 class="  w-full px-4 py-2 mt-2 border rounded-md 
                                 focus:outline-none focus:ring-1 mb-5 focus:ring-blue-600" 
-                                name="date" required maxlength="100"
+                                name="date"  maxlength="100"
                                  readonly value="{{ date('M-d-Y') }}">
                             </div>
                            
@@ -176,17 +176,35 @@ Create Data
  <script>
     //Función que realiza la suma
     function Suma() {
-       var amount = document.calculator.amount.value;
+       var unitquantity = document.calculator.unitquantity.value;
        var price = document.calculator.price.value;
+       
        try{
           //Calculamos el número escrito:
-          amount = (isNaN(parseInt(amount)))? 0 : parseInt(amount);
+          unitquantity = (isNaN(parseInt(unitquantity)))? 0 : parseInt(unitquantity);
           price = (isNaN(parseInt(price)))? 0 : parseInt(price);
-           document.calculator.total.value = amount*price;
+           document.calculator.total.value = unitquantity*price;
        }
        //Si se produce un error no hacemos nada
        catch(e) {}
     }
     </script>
     
+    <script>
+        //Función que realiza la suma
+        function Suma2() {
+           var total = document.calculator.total.value;
+           var dollarchang = document.calculator.dollarchang.value;
+           
+           try{
+              //Calculamos el número escrito:
+              total = (isNaN(parseInt(total)))? 0 : parseInt(total);
+              dollarchang = (isNaN(parseInt(dollarchang)))? 0 : parseInt(dollarchang);
+               document.calculator.dollar.value = (total/dollarchang).toFixed(2);
+           }
+           //Si se produce un error no hacemos nada
+           catch(e) {}
+        }
+        </script>
+
      <!-- // END FUNCTION CALCULATOR BUDGET  BUDGETs / CREATE.BLADE.PHP-->

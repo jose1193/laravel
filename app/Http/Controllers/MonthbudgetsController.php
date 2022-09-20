@@ -49,6 +49,7 @@ class MonthbudgetsController extends Controller
             'dollar' => 'required',
             'date' => 'required',
             'idbudget' => 'required',
+            'description' => 'required',
         ]);
       
         Monthbudgets::create($request->all());
@@ -95,6 +96,7 @@ class MonthbudgetsController extends Controller
             'dollar' => 'required',
             'date' => 'required',
             'idbudget' => 'required',
+            'description' => 'required',
         ]);
       
         $monthbudget->update($request->all());
