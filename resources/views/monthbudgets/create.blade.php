@@ -65,7 +65,7 @@ Create Data
                     <div class="w-full px-6 py-4 bg-white rounded shadow-md ring-1 ring-gray-900/10">
 
                         <form action="{{ route('monthbudgets.store') }}" 
-                        name="calculator" method="POST" class="capitalize"  autocomplete="off">
+                        name="calculator" method="POST" class="capitalize" novalidate  autocomplete="off">
                             @csrf
                             <div >
                                 <label class="block text-md font-bold text-gray-700" for="title">
@@ -87,7 +87,7 @@ Create Data
 
                             <div>
                                 <label class="block text-md font-bold text-gray-700" for="title">
-                                    Price </label>
+                                    price in dollars $</label>
                                 
                                 
                                 <input type="num" placeholder=""
@@ -108,7 +108,8 @@ Create Data
                             </div>
 
                             <div>
-                                <label class="block text-md font-bold text-gray-700" for="title">Dollar Rate </label>
+                                <label class="block text-md font-bold text-gray-700" for="title">
+                                    Dollar Rate </label>
                                 
                                 
                                 <input type="text" placeholder="Dollar Rate"
@@ -120,7 +121,7 @@ Create Data
 
                             <div>
                                 <label class="block text-md font-bold text-gray-700" for="title">
-                                    in dollar to change</label>
+                                    Total To Change</label>
                                     
 
                                 <input type="text" placeholder="Dollar"
@@ -131,7 +132,8 @@ Create Data
                             </div>
 
                              <div>
-                                <label class="block text-md font-bold text-gray-700" for="title">Create Date</label>
+                                <label class="block text-md font-bold text-gray-700" for="title">
+                                    Create Date</label>
                                 
                                 <input type="text" placeholder="Date"
                                 class="  w-full px-4 py-2 mt-2 border rounded-md 
@@ -200,7 +202,7 @@ Create Data
               //Calculamos el número escrito:
               total = (isNaN(parseInt(total)))? 0 : parseInt(total);
               dollarchang = (isNaN(parseInt(dollarchang)))? 0 : parseInt(dollarchang);
-               document.calculator.dollar.value = (total/dollarchang).toFixed(2);
+               document.calculator.dollar.value = (total*dollarchang).toFixed(2);
            }
            //Si se produce un error no hacemos nada
            catch(e) {}

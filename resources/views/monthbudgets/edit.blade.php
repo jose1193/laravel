@@ -42,7 +42,7 @@ Edit Budget
                  text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2
                   dark:bg-primary-600 dark:hover:bg-primary-700 
                   focus:outline-none dark:focus:ring-primary-800 text-white"
-                   href="{{ route('monthbudgest.index') }}">< Back</a>
+                   href="{{ route('monthbudgets.index') }}">< Back</a>
             </div>
         </div>
     
@@ -51,7 +51,7 @@ Edit Budget
                 <div class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
 
                     @if ($errors->any())
-                        <div class="p-5 rounded bg-red-500 text-white m-3" x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 6000)">
+                        <div class="p-5 rounded bg-red-500 text-white m-3" x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 8000)">
                             <strong>Whoops!</strong> There were some problems with your input.<br><br>
                             <ul>
                                 @foreach ($errors->all() as $error)
@@ -63,44 +63,98 @@ Edit Budget
                 
                     <div class="w-full px-6 py-4 bg-white rounded shadow-md ring-1 ring-gray-900/10"> 
 
-                        <form action="{{ route('budgets.update',$budget->id) }}" method="POST" autocomplete="off">
+                        <form action="{{ route('monthbudgets.update',$monthbudget->id) }}"
+                             method="POST" autocomplete="off" name="calculator2">
                             @csrf
                             @method('PUT')
 
                             <div >
-                                <label class="block text-md font-bold text-gray-700" for="title">Work Payment</label>
-                                <input type="text" placeholder="Amount"
+                                <label class="block text-md font-bold text-gray-700" for="title">
+                                    Description</label>
+                                <input type="text" placeholder="Description"
                                 class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                  value="{{ $budget->amount }}"
-                                 name="amount" required maxlength="50" >
+                                 name="description"  value="{{ $monthbudget->description }}"  required maxlength="50" >
                             </div>
 
                             <div >
-                                <label class="block text-md font-bold text-gray-700" for="title">Dollar Rate</label>
-                                <input type="text" placeholder="Dollar Rate"
+                                <label class="block text-md font-bold text-gray-700" for="title">
+                                   Amount Qty</label>
+                                <input type="num" placeholder=""
                                 class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                id="amount" value="{{ $budget->dollarchange }}"
-                                 name="dollarchange" required maxlength="50" >
+                                 name="unitquantity" value="{{ $monthbudget->unitquantity }}"
+                                 onKeyUp="Suma3()"  required maxlength="20" >
                             </div>
 
                             <div>
-                                <label class="block text-md font-bold text-gray-700" for="title">Total Budget</label>
-                                <input type="text" placeholder="Total"
-                                class="inputmask w-full px-4 py-2 mt-2 mb-5 border rounded-md 
+                                <label class="block text-md font-bold text-gray-700" for="title">
+                                    price in dollars $</label>
+                                
+                                
+                                <input type="num" placeholder=""
+                                class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                id="totalbudget" value="{{ $budget->totalbudget }}" name="totalbudget" required
-                                 maxlength="50" >
+                                 name="price"  onKeyUp="Suma3()" value="{{ $monthbudget->price }}"
+                                  required maxlength="120"
+                                 >
+                            </div>
+
+                            <div>
+                                <label class="block text-md font-bold
+                                 text-gray-700" for="title">Total  </label>
+                                <input type="text" placeholder="Total"
+                                class="  w-full px-4 py-2 mt-2 mb-5 border rounded-md 
+                                focus:outline-none focus:ring-1 focus:ring-blue-600" 
+                                name="total" onKeyUp="Suma2()" value="{{ $monthbudget->total }}"
+                                 readonly maxlength="100"
+                                 >
+                            </div>
+
+                            <div>
+                                <label class="block text-md font-bold text-gray-700" for="title">
+                                    Dollar Rate </label>
+                                
+                                
+                                <input type="text" placeholder="Dollar Rate"
+                                class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
+                                focus:outline-none focus:ring-1 focus:ring-blue-600" 
+                                 name="dollarchang" onKeyUp="Suma2()" readonly maxlength="120"
+                                 value=" {{$dataArray2['blue']['value_sell']}}" >
+                            </div>
+
+                            <div>
+                                <label class="block text-md font-bold text-gray-700" for="title">
+                                    Total To Change</label>
+                                    
+
+                                <input type="text" placeholder="Total To Change"
+                                class="  w-full px-4 py-2 mt-2 mb-5 border rounded-md 
+                                focus:outline-none focus:ring-1 focus:ring-blue-600" 
+                                name="dollar" value="{{ $monthbudget->dollar }}" readonly maxlength="100"
+                                 >
                             </div>
 
                              <div>
-                                <label class="block text-md font-bold text-gray-700" for="title">Date</label>
+                                <label class="block text-md font-bold text-gray-700" for="title">
+                                    Create Date</label>
+                                
                                 <input type="text" placeholder="Date"
-                                class="w-full px-4 py-2 mt-2 border rounded-md 
+                                class="  w-full px-4 py-2 mt-2 border rounded-md 
                                 focus:outline-none focus:ring-1 mb-5 focus:ring-blue-600" 
-                                id="date" value="{{ $budget->date }}" name="date" required maxlength="20"
-                                 readonly >
+                                name="date"  maxlength="100"
+                                 readonly value="{{ date('M-d-Y') }}">
+                            </div>
+                           
+                            <div>
+                                <label class="block text-md font-bold text-gray-700" for="title">
+                                    Id Budget</label>
+                                
+                                <input type="text" placeholder="Date"
+                                class="  w-full px-4 py-2 mt-2 border rounded-md 
+                                focus:outline-none focus:ring-1 mb-5 focus:ring-blue-600" 
+                                name="idbudget" required maxlength="100"
+                                 readonly value="1">
                             </div>
 
                             <div class="flex items-center justify-start mt-4 gap-x-2 my-10">
@@ -119,6 +173,42 @@ Edit Budget
             </div>
         </div>
     </div>
+     <!-- // FUNCTION CALCULATOR BUDGETs / CREATE.BLADE.PHP -->
+ <script>
+    //Función que realiza la suma
+    function Suma3() {
+       var unitquantity = document.calculator.unitquantity.value;
+       var price = document.calculator.price.value;
+       
+       try{
+          //Calculamos el número escrito:
+          unitquantity = (isNaN(parseInt(unitquantity)))? 0 : parseInt(unitquantity);
+          price = (isNaN(parseInt(price2)))? 0 : parseInt(price);
+           document.calculator.total.value = unitquantity*price;
+       }
+       //Si se produce un error no hacemos nada
+       catch(e) {}
+    }
+    </script>
+    
+    <script>
+        //Función que realiza la suma
+        function Suma2() {
+           var total = document.calculator.total.value;
+           var dollarchang = document.calculator.dollarchang.value;
+           
+           try{
+              //Calculamos el número escrito:
+              total = (isNaN(parseInt(total)))? 0 : parseInt(total);
+              dollarchang = (isNaN(parseInt(dollarchang)))? 0 : parseInt(dollarchang);
+               document.calculator.dollar.value = (total*dollarchang).toFixed(2);
+           }
+           //Si se produce un error no hacemos nada
+           catch(e) {}
+        }
+        </script>
+
+     <!-- // END FUNCTION CALCULATOR BUDGET  BUDGETs / CREATE.BLADE.PHP-->
  <!--END  EDIT BUDGETS CRUD--> 
 
     @endsection

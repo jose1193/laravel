@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Monthbudgets;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\DB; // <-- Join Tables Query
+
 
 class MonthbudgetsController extends Controller
 {
@@ -15,9 +17,18 @@ class MonthbudgetsController extends Controller
      */
     public function index()
     {
-        $monthbudget = Monthbudgets::latest()->get();
-      
-        return view('monthbudgets.index',compact('monthbudget'))
+        $monthbudget = DB::table('monthbudgets')
+             ->join('budgets', 'budgets.id', '=', 'monthbudgets.idbudget')
+             ->where('monthbudgets.idbudget','1') //<-- $var query
+            ->select('monthbudgets.*', 'budgets.id','budgets.amount','budgets.totalbudget')
+            ->get();
+
+       
+        $sum = Monthbudgets::sum('dollar');
+        $sum2 = Monthbudgets::sum('total');
+
+        
+        return view('monthbudgets.index',compact('monthbudget','sum','sum2'))
                 ->with('i', (request()->input('page', 1) - 1) * 5);
     }
   
@@ -43,13 +54,13 @@ class MonthbudgetsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'unitquantity' => 'required',
-            'price' => 'required',
-            'total' => 'required',
-            'dollar' => 'required',
-            'date' => 'required',
-            'idbudget' => 'required',
-            'description' => 'required',
+            'unitquantity' => 'required|max:30|min:1',
+            'price' => 'required|max:30|min:1',
+            'total' => 'required|max:30|min:1',
+            'dollar' => 'required|max:30|min:1',
+            'date' => 'required|max:30|min:3',
+            'idbudget' => 'required|max:30|min:1',
+            'description' => 'required|max:30|min:3',
         ]);
       
         Monthbudgets::create($request->all());
@@ -77,7 +88,9 @@ class MonthbudgetsController extends Controller
      */
     public function edit(Monthbudgets $monthbudget)
     {
-        return view('monthbudgets.edit',compact('monthbudget'));
+        $response2 = Http::get('https://api.bluelytics.com.ar/v2/latest');
+        $dataArray2=$response2->json();
+        return view('monthbudgets.edit',compact('monthbudget','dataArray2'));
     }
   
     /**
@@ -90,13 +103,13 @@ class MonthbudgetsController extends Controller
     public function update(Request $request, Monthbudgets $monthbudget)
     {
         $request->validate([
-            'unitquantity' => 'required',
-            'price' => 'required',
-            'total' => 'required',
-            'dollar' => 'required',
-            'date' => 'required',
-            'idbudget' => 'required',
-            'description' => 'required',
+            'unitquantity' => 'required|max:30|min:1',
+            'price' => 'required|max:30|min:1',
+            'total' => 'required|max:30|min:1',
+            'dollar' => 'required|max:30|min:1',
+            'date' => 'required|max:30|min:3',
+            'idbudget' => 'required|max:30|min:1',
+            'description' => 'required|max:30|min:3',
         ]);
       
         $monthbudget->update($request->all());

@@ -68,13 +68,13 @@ MonthBudgets CRUD
                                Qty
                                    </th>
                               <th scope="col" class="text-sm font-medium uppercase text-white px-6 py-4">
-                               Price
+                                price in dollars $
                               </th>
                                <th scope="col" class="text-sm font-medium uppercase text-white px-6 py-4">
                                 Total 
                               </th>
                               <th scope="col" class="text-sm font-medium uppercase text-white px-6 py-4">
-                                Dollar Rounded
+                                Total To Change
                               </th>
 
                               <th scope="col" class="text-sm font-medium uppercase text-white px-6 py-4">
@@ -106,7 +106,8 @@ MonthBudgets CRUD
                                 {{ $monthbudget->total }}
                               </td>
                               <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                {{ $monthbudget->dollar }}
+                                ${{ $monthbudget->dollar }} 
+                               
                               </td>
                               <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
                                 {{ $monthbudget->date }}
@@ -152,7 +153,23 @@ MonthBudgets CRUD
                   </div>
                 </div>
 
-                 
+                <div class="mb-5 ml-5 text-lg font-bold">
+                <p class=" capitalize  text-blue-700 mt-5"><span class="text-purple-700">
+                  Total Dollars: </span>{{ $sum2 }}$</p>
+                <p class="capitalize  text-blue-700 mt-5"><span class="text-purple-700">
+                  Total To Change: </span>${{ $sum }}</p>
+                  <p class=" capitalize  text-green-700 mt-5"><span class="text-purple-700">
+                    salary work: </span>{{ $monthbudget->amount }}$</p>
+
+                    <p class=" capitalize  text-red-900 mt-5"><span class="text-purple-700">
+                      remaining salary: </span>{{ $monthbudget->amount-$sum2 }}$</p>
+                      
+                    <p class=" capitalize  text-blue-700 mt-5"><span class="text-purple-700">
+                      salary work to change: </span>${{ $monthbudget->totalbudget }}</p>
+
+                        <p class=" capitalize  text-red-900 mt-5 "><span class="text-purple-700">
+                          remaining salary work to change: </span>${{ $monthbudget->totalbudget-$sum }} </p>
+                        </div>
               </div>
           </div>
       </div>

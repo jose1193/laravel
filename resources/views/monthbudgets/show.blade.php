@@ -4,7 +4,7 @@
 
     
 @section('titulo')
-Show Budget
+Show Date
 @endsection
 
 @section('container')
@@ -42,17 +42,20 @@ Show Budget
                  text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2
                   dark:bg-primary-600 dark:hover:bg-primary-700 
                   focus:outline-none dark:focus:ring-primary-800 text-white"
-                 href="{{ route('budgets.index') }}">< Back</a>
+                 href="{{ route('monthbudgets.index') }}">< Back</a>
             </div>
         </div>
-        {{ $budget->id }}
+       
 
         <div class="flex flex-col mt-5 py-5">
             <div class="w-full px-6 py-4 bg-white rounded shadow-lg ring-1 ring-gray-900/10">
-                <h3 class="text-2xl font-semibold">Budget: {{ $budget->amount }} $</h3>
-                <p class="text-2xl text-blue-700 mt-5"> <span class="text-purple-700">Dollar Rate:</span> {{ $budget->dollarchange }}$</p>
-                <p class="text-2xl text-blue-700 mt-5"> <span class="text-purple-700">Total Budget:</span> {{ $budget->totalbudget }}</p>
-                <p class="text-2xl text-blue-700 mt-5"><span class="text-purple-700">Date: </span>{{ $budget->date }}</p>
+                <h3 class="text-2xl font-semibold">Description: {{ $monthbudget->description }} </h3>
+                <p class="text-2xl text-blue-700 mt-5"> <span class="text-purple-700">Price in Dollars:</span> {{ $monthbudget->price }}$</p>
+                <p class="text-2xl text-blue-700 mt-5"> <span class="text-purple-700">Total:</span> {{ $monthbudget->total }}</p>
+                <p class="text-2xl text-blue-700 mt-5"><span class="text-purple-700">
+                  Total To Change: </span>{{ $monthbudget->dollar }}</p>
+
+                <p class="text-2xl text-blue-700 mt-5"><span class="text-purple-700">Date: </span>{{ $monthbudget->date }}</p>
             </div>
         </div>
     </div>
