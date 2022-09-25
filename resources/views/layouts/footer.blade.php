@@ -8,7 +8,7 @@
     <div class="text-white text-center p-4" style="background-color: rgba(0, 0, 0, 0.2);">
       © {{ date('Y') }}
       Copyright - 
-      <a class="text-yellow-300 font-bold" href="/">Web App</a>
+      <a class="text-yellow-300 font-bold" href="dashboard">Web App</a>
     </div>
   </footer>
   
