@@ -115,7 +115,7 @@ MonthBudgets CRUD
 
                               <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
                                 <form action="{{ route('monthbudgets.destroy',$monthbudget->id) }}" method="POST">
-                      
+                     
                                   <a class="text-indigo-600 hover:text-indigo-900" 
                                   href="{{ route('monthbudgets.show',$monthbudget->id) }}">
                                       <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -152,24 +152,28 @@ MonthBudgets CRUD
                     </div>
                   </div>
                 </div>
+<!-- Two columns -->
+<div class="flex mb-4 text-lg font-bold mt-5  ">
+  <div class=" ml-5 w-1/2  h-full"> 
+    <p class=" capitalize  text-green-700 mt-5"><span class="text-purple-700">
+      salary work: </span>{{ $monthbudget->amount }}$</p>
+    <p class=" capitalize  text-blue-700 mt-5"><span class="text-purple-700">
+    Total Dollars: </span>{{ number_format($sum2, 2, ',', ' ') }}$</p>
+  <p class="capitalize  text-blue-700 mt-5"><span class="text-purple-700">
+    total monthly expenses: </span>${{ number_format($sum, 2, ',', ' ') }}</p>
+   </div>
+  
+      <div class="w-1/2  h-full">  
+    <p class=" capitalize  text-green-700 mt-5"><span class="text-purple-700">
+      salary work to change: </span>${{ number_format($monthbudget->totalbudget, 2, ',', ' ')  }}</p>
+      <p class=" capitalize  text-red-900 mt-5"><span class="text-purple-700">
+        remaining salary: </span>{{ $monthbudget->amount-$sum2 }}$</p>
+        <p class=" capitalize  text-red-900 mt-5 "><span class="text-purple-700">
+          remaining salary work to change: </span>${{ number_format($monthbudget->totalbudget-$sum, 2, ',', ' ') }} </p>
 
-                <div class="mb-5 ml-5 text-lg font-bold">
-                <p class=" capitalize  text-blue-700 mt-5"><span class="text-purple-700">
-                  Total Dollars: </span>{{ $sum2 }}$</p>
-                <p class="capitalize  text-blue-700 mt-5"><span class="text-purple-700">
-                  Total To Change: </span>${{ $sum }}</p>
-                  <p class=" capitalize  text-green-700 mt-5"><span class="text-purple-700">
-                    salary work: </span>{{ $monthbudget->amount }}$</p>
-
-                    <p class=" capitalize  text-red-900 mt-5"><span class="text-purple-700">
-                      remaining salary: </span>{{ $monthbudget->amount-$sum2 }}$</p>
-                      
-                    <p class=" capitalize  text-blue-700 mt-5"><span class="text-purple-700">
-                      salary work to change: </span>${{ $monthbudget->totalbudget }}</p>
-
-                        <p class=" capitalize  text-red-900 mt-5 "><span class="text-purple-700">
-                          remaining salary work to change: </span>${{ $monthbudget->totalbudget-$sum }} </p>
-                        </div>
+        </div>
+</div>
+               
               </div>
           </div>
       </div>

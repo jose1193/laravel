@@ -72,7 +72,7 @@ Create Budget
                                 <input type="text" placeholder="Amount"
                                 class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                 name="amount" onKeyUp="Suma()" value="800" required maxlength="20" >
+                                 name="amount" onKeyUp="Suma()" value="" required maxlength="20" >
                             </div>
 
                             <div>
@@ -82,14 +82,14 @@ Create Budget
                                 <input type="text" placeholder="Dollar Rate"
                                 class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                 name="dollarchange"  onKeyUp="Suma()" readonly maxlength="120"
-                                 value=" {{$dataArray['blue']['value_sell']}}" >
+                                 name="dollarchange"  onKeyUp="Suma()" value="{{$dataArray['blue']['value_sell']}}" maxlength="120"
+                                 value="" >
                             </div>
 
                             <div>
                                 <label class="block text-md font-bold text-gray-700" for="title">Total Budget</label>
                                 <input type="text" placeholder="Total"
-                                class=" inputmask w-full px-4 py-2 mt-2 mb-5 border rounded-md 
+                                class="  w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
                                 name="totalbudget" required maxlength="100"
                                  >
@@ -136,7 +136,7 @@ Create Budget
           //Calculamos el número escrito:
           amount = (isNaN(parseInt(amount)))? 0 : parseInt(amount);
           dollarchange = (isNaN(parseInt(dollarchange)))? 0 : parseInt(dollarchange);
-           document.calculator.totalbudget.value = amount*dollarchange;
+           document.calculator.totalbudget.value = (amount/dollarchange).toFixed(2);
        }
        //Si se produce un error no hacemos nada
        catch(e) {}

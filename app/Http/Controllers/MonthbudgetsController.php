@@ -17,16 +17,20 @@ class MonthbudgetsController extends Controller
      */
     public function index()
     {
+        $id='1';
         $monthbudget = DB::table('monthbudgets')
              ->join('budgets', 'budgets.id', '=', 'monthbudgets.idbudget')
-             ->where('monthbudgets.idbudget','1') //<-- $var query
-            ->select('monthbudgets.*', 'budgets.id','budgets.amount','budgets.totalbudget')
+             ->where('monthbudgets.idbudget',$id)//<-- $var query
+            ->select( 'monthbudgets.*', 'budgets.amount','budgets.totalbudget')
             ->get();
 
-       
-        $sum = Monthbudgets::sum('dollar');
-        $sum2 = Monthbudgets::sum('total');
+           
 
+        $sum=  DB::table('monthbudgets')->where('idbudget',$id)->select('monthbudgets.*')->sum('dollar');
+              
+        $sum2=  DB::table('monthbudgets')->where('idbudget',$id)->select('monthbudgets.*')->sum('total');
+       
+        
         
         return view('monthbudgets.index',compact('monthbudget','sum','sum2'))
                 ->with('i', (request()->input('page', 1) - 1) * 5);

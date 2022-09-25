@@ -65,7 +65,7 @@ Create Data
                     <div class="w-full px-6 py-4 bg-white rounded shadow-md ring-1 ring-gray-900/10">
 
                         <form action="{{ route('monthbudgets.store') }}" 
-                        name="calculator" method="POST" class="capitalize" novalidate  autocomplete="off">
+                        name="calculator" id="calculator" method="POST" class="capitalize" novalidate  autocomplete="off">
                             @csrf
                             <div >
                                 <label class="block text-md font-bold text-gray-700" for="title">
@@ -78,8 +78,8 @@ Create Data
 
                             <div >
                                 <label class="block text-md font-bold text-gray-700" for="title">
-                                   Amount Qty</label>
-                                <input type="num" placeholder=""
+                                   Amount Qty </label>
+                                <input type="number" placeholder="" value="1"
                                 class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
                                  name="unitquantity" onKeyUp="Suma()"  required maxlength="20" >
@@ -96,7 +96,17 @@ Create Data
                                  name="price"  onKeyUp="Suma()" required maxlength="120"
                                  >
                             </div>
+                            <div>
+                                <label class="block text-md font-bold text-gray-700" for="title">
+                                   Dollar Rate</label>
+                                    
 
+                                <input type="text" placeholder="Dollar"
+                                class="  w-full px-4 py-2 mt-2 mb-5 border rounded-md 
+                                focus:outline-none focus:ring-1 focus:ring-blue-600" 
+                                name="dollar"  value=" {{$dataArray2['blue']['value_sell']}}"  readonly maxlength="100"
+                                 >
+                            </div>
                             <div>
                                 <label class="block text-md font-bold
                                  text-gray-700" for="title">Total  </label>
@@ -107,29 +117,9 @@ Create Data
                                  >
                             </div>
 
-                            <div>
-                                <label class="block text-md font-bold text-gray-700" for="title">
-                                    Dollar Rate </label>
-                                
-                                
-                                <input type="text" placeholder="Dollar Rate"
-                                class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
-                                focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                 name="dollarchang" onKeyUp="Suma2()" readonly maxlength="120"
-                                 value=" {{$dataArray2['blue']['value_sell']}}" >
-                            </div>
+                           
 
-                            <div>
-                                <label class="block text-md font-bold text-gray-700" for="title">
-                                    Total To Change</label>
-                                    
-
-                                <input type="text" placeholder="Dollar"
-                                class="  w-full px-4 py-2 mt-2 mb-5 border rounded-md 
-                                focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                name="dollar" readonly maxlength="100"
-                                 >
-                            </div>
+                           
 
                              <div>
                                 <label class="block text-md font-bold text-gray-700" for="title">
@@ -175,38 +165,26 @@ Create Data
  
     @endsection
     <!-- // FUNCTION CALCULATOR BUDGETs / CREATE.BLADE.PHP -->
- <script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jautocalc@1.3.1/dist/jautocalc.js"></script>
+    
+
+<script>
     //Función que realiza la suma
     function Suma() {
-       var unitquantity = document.calculator.unitquantity.value;
+       var dollar = document.calculator.dollar.value;
        var price = document.calculator.price.value;
        
        try{
           //Calculamos el número escrito:
-          unitquantity = (isNaN(parseInt(unitquantity)))? 0 : parseInt(unitquantity);
+          dollar = (isNaN(parseInt(dollar)))? 0 : parseInt(dollar);
           price = (isNaN(parseInt(price)))? 0 : parseInt(price);
-           document.calculator.total.value = unitquantity*price;
+           document.calculator.total.value = (price*dollar).toFixed(2);
        }
        //Si se produce un error no hacemos nada
        catch(e) {}
     }
     </script>
     
-    <script>
-        //Función que realiza la suma
-        function Suma2() {
-           var total = document.calculator.total.value;
-           var dollarchang = document.calculator.dollarchang.value;
-           
-           try{
-              //Calculamos el número escrito:
-              total = (isNaN(parseInt(total)))? 0 : parseInt(total);
-              dollarchang = (isNaN(parseInt(dollarchang)))? 0 : parseInt(dollarchang);
-               document.calculator.dollar.value = (total*dollarchang).toFixed(2);
-           }
-           //Si se produce un error no hacemos nada
-           catch(e) {}
-        }
-        </script>
+    
 
      <!-- // END FUNCTION CALCULATOR BUDGET  BUDGETs / CREATE.BLADE.PHP-->
