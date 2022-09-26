@@ -104,7 +104,7 @@ Budgets CRUD
                                 <form action="{{ route('budgets.destroy',$budget->id) }}" method="POST">
                       
                                   <a class="" 
-                                  href="{{ route('monthbudgets.index',['id' => $budget->id]) }}"><!-- ENVIAR RUTA POR PARAMETRO-->
+                                  href="{{ route('monthbudgets.index',['id' => $budget->id]) }}"><!-- ENVIAR RUTA POR PARAMETRO ERL-->
                                   <svg class="w-6 h-6 inline-block text-indigo-600 hover:text-indigo-900" stroke="currentColor"
                                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Pro 6.2.0 by
                                        @fontawesome - https://fontawesome.com License 
