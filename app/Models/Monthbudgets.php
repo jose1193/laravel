@@ -14,6 +14,6 @@ class Monthbudgets extends Model
      * @var array
     */
     public $fillable = [
-        'unitquantity', 'price', 'total', 'dollar', 'date', 'idbudget','description','id'
+        'unitquantity', 'price', 'total', 'dollar', 'date', 'idbudget','description',
     ];
 }

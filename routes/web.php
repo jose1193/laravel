@@ -105,7 +105,13 @@ Route::resource('calculator', CalculatorController::class);
 Route::resource('apisurl', ApisController::class);
 /* END  API URL */
     });
-    
+
+    /* ROUTE ENVIAR VARIABLE POR PARAMETROS BUDGETS A MONTHBUDGETS */
+    Route::get('monthbudgets/{id}', function ($id) {
+       
+    });
+ /* END ROUTE ENVIAR VARIABLE POR PARAMETROS BUDGETS A MONTHBUDGETS */
+
 // END PROTEGER RUTAS SIN USUARIO NO ESTA AUTENTICADO
 // END ROUTES USER AUTH PAGES
 

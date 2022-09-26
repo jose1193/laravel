@@ -18,7 +18,7 @@ class CoinsController extends Controller
         
         $api = 'https://www.dolarsi.com/api/api.php?type=valoresprincipales'; /** <-- SQL TABLE Apis, FOREACH **/
         
-        $response = Http::get($api); // <-- API COINS
+        $response = Http::get($apiss); // <-- API COINS
         $dataArray=$response->json();
        
         $response2 = Http::get('https://api.bluelytics.com.ar/v2/latest');

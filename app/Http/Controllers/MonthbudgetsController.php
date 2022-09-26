@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Monthbudgets;
+use App\Models\Budgets;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB; // <-- Join Tables Query
@@ -15,9 +16,10 @@ class MonthbudgetsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    
+    public function index(Request $request) //RECIBIR VARIABLE POR PARAMETROS CON REQUEST
     {
-        $id='1';
+        $id=$request->id; //CONSULTA RECIBIDA POR PARAMETROS CON REQUEST
         $monthbudget = DB::table('monthbudgets')
              ->join('budgets', 'budgets.id', '=', 'monthbudgets.idbudget')
              ->where('monthbudgets.idbudget',$id)//<-- $var query
