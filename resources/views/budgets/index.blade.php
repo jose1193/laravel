@@ -101,7 +101,7 @@ Budgets CRUD
                               </td>
 
                               <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                <form action="{{ route('budgets.destroy',$budget->id) }}" method="POST">
+                                <form action="{{ route('budgets.destroy',$budget->id) }}" id="form-delete" method="POST">
                       
                                   <a class="" 
                                   href="{{ route('monthbudgets.index',['id' => $budget->id]) }}"><!-- ENVIAR RUTA POR PARAMETRO ERL-->

@@ -65,14 +65,14 @@ Create Budget
                     <div class="w-full px-6 py-4 bg-white rounded shadow-md ring-1 ring-gray-900/10">
 
                         <form action="{{ route('budgets.store') }}" 
-                        name="calculator" method="POST" novalidate autocomplete="off">
+                        id="calculator" method="POST" novalidate autocomplete="off">
                             @csrf
                             <div >
                                 <label class="block text-md font-bold text-gray-700" for="title">Work Payment</label>
                                 <input type="text" placeholder="Amount"
                                 class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                 name="amount" onKeyUp="Suma()" value="" required maxlength="20" >
+                                 name="amount"  value="" required maxlength="20" >
                             </div>
 
                             <div>
@@ -82,7 +82,7 @@ Create Budget
                                 <input type="text" placeholder="Dollar Rate"
                                 class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                 name="dollarchange"  onKeyUp="Suma()" value="{{$dataArray['blue']['value_sell']}}" maxlength="120"
+                                 name="dollarchange"  value="{{$dataArray['blue']['value_sell']}}" maxlength="120"
                                  value="" >
                             </div>
 
@@ -91,7 +91,7 @@ Create Budget
                                 <input type="text" placeholder="Total"
                                 class="  w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                name="totalbudget" required maxlength="100"
+                                name="totalbudget" jAutoCalc="{amount} / {dollarchange}" required maxlength="100"
                                  >
                             </div>
 
@@ -126,22 +126,4 @@ Create Budget
   
 <!-- END CREATE BUDGET CRUD--> 
  
-<!-- // FUNCTION CALCULATOR BUDGETs / CREATE.BLADE.PHP -->
-<script>
-    //Función que realiza la suma
-    function Suma() {
-       var amount = document.calculator.amount.value;
-       var dollarchange = document.calculator.dollarchange.value;
-       try{
-          //Calculamos el número escrito:
-          amount = (isNaN(parseInt(amount)))? 0 : parseInt(amount);
-          dollarchange = (isNaN(parseInt(dollarchange)))? 0 : parseInt(dollarchange);
-           document.calculator.totalbudget.value = (amount/dollarchange).toFixed(2);
-       }
-       //Si se produce un error no hacemos nada
-       catch(e) {}
-    }
-    </script>
-    
-     <!-- // END FUNCTION CALCULATOR BUDGET  BUDGETs / CREATE.BLADE.PHP-->
     @endsection

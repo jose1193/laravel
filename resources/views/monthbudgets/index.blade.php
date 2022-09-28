@@ -19,8 +19,8 @@ MonthBudgets CRUD
       <li>
         <div class="flex items-center">
           <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-          <a href="/monthbudgets" class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white">
-            <a href="/monthbudgets" class="text-blue-600 hover:text-blue-700">@yield('titulo')</a></a>
+          <a href="{{ route('monthbudgets.index',['id' => $id]) }}" class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white">
+            <a href="{{ route('monthbudgets.index',['id' => $id]) }}" class="text-blue-600 hover:text-blue-700">@yield('titulo')</a></a>
         </div>
       </li>
      
@@ -39,7 +39,7 @@ MonthBudgets CRUD
      
 
       <div class="flex justify-end mt-10">
-          <a href="{{ route('monthbudgets.create') }}" class="bg-primary-700 hover:bg-primary-800 focus:ring-4
+          <a href="{{ route('monthbudgets.create',['id' => $id]) }}" class="bg-primary-700 hover:bg-primary-800 focus:ring-4
           focus:ring-primary-300 font-medium rounded-lg
            text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2
             dark:bg-primary-600 dark:hover:bg-primary-700 
@@ -112,10 +112,10 @@ MonthBudgets CRUD
                               <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
                                 {{ $monthbudget->date }}
                               </td>
-
+                             
                               <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                <form action="{{ route('monthbudgets.destroy',$monthbudget->id) }}" method="POST">
-                                 
+                                <form action="{{ route('monthbudgets.destroy',$monthbudget->id) }}"  id="form-delete"  method="POST">
+                                  <input type="hidden" value={{$monthbudget->idbudget}} name="idbudget">
                                   <a class="text-indigo-600 hover:text-indigo-900" 
                                   href="{{ route('monthbudgets.show',$monthbudget->id) }}">
                                       <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">

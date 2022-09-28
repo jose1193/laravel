@@ -21,21 +21,38 @@ class MonthbudgetsController extends Controller
     {
         $id=$request->id; //CONSULTA RECIBIDA POR PARAMETROS CON REQUEST
         $monthbudget = DB::table('monthbudgets')
-             ->join('budgets', 'budgets.id', '=', 'monthbudgets.idbudget')
-             ->where('monthbudgets.idbudget',$id)//<-- $var query
-            ->select( 'monthbudgets.*', 'budgets.amount','budgets.totalbudget')
-            ->get();
+        ->join('budgets', 'budgets.id', '=', 'monthbudgets.idbudget')
+        ->where('monthbudgets.idbudget',$id)//<-- $var query
+       ->select( 'monthbudgets.*', 'budgets.amount','budgets.totalbudget')
+       ->get();
+
+       
+        if (count($monthbudget)) { //CONDICION SI LA CONSULTA ES VALIDA O EXISTENTE  
+        $monthbudget = DB::table('monthbudgets')
+            ->join('budgets', 'budgets.id', '=', 'monthbudgets.idbudget')
+            ->where('monthbudgets.idbudget',$id)//<-- $var query
+           ->select( 'monthbudgets.*', 'budgets.amount','budgets.totalbudget')
+           ->get();
+    
+       $sum=  DB::table('monthbudgets')->where('idbudget',$id)->select('monthbudgets.*')->sum('dollar');
+             
+       $sum2=  DB::table('monthbudgets')->where('idbudget',$id)->select('monthbudgets.*')->sum('total');
+           
+       return view('monthbudgets.index',compact('monthbudget','sum','sum2','id'))
+                    ->with('i', (request()->input('page', 1) - 1) * 5);
 
            
+        } 
+        
+        else { //CONDICION SI LA CONSULTA NO ES VALIDA O NO EXISTE , REDIRECCION A OTRA VISTA
+           
+            $response2 = Http::get('https://api.bluelytics.com.ar/v2/latest');
+        $dataArray2=$response2->json();
+        return view('monthbudgets.create',compact('dataArray2','id'));
+        
+    }
 
-        $sum=  DB::table('monthbudgets')->where('idbudget',$id)->select('monthbudgets.*')->sum('dollar');
-              
-        $sum2=  DB::table('monthbudgets')->where('idbudget',$id)->select('monthbudgets.*')->sum('total');
        
-        
-        
-        return view('monthbudgets.index',compact('monthbudget','sum','sum2'))
-                ->with('i', (request()->input('page', 1) - 1) * 5);
     }
   
     /**
@@ -43,12 +60,12 @@ class MonthbudgetsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-
+        $id=$request->id; //CONSULTA RECIBIDA POR PARAMETROS CON REQUEST
         $response2 = Http::get('https://api.bluelytics.com.ar/v2/latest');
         $dataArray2=$response2->json();
-        return view('monthbudgets.create',compact('dataArray2'));
+        return view('monthbudgets.create',compact('dataArray2','id'));
     }
   
     /**
@@ -59,6 +76,7 @@ class MonthbudgetsController extends Controller
      */
     public function store(Request $request)
     {
+       
         $request->validate([
             'unitquantity' => 'required|max:30|min:1',
             'price' => 'required|max:30|min:1',
@@ -71,7 +89,7 @@ class MonthbudgetsController extends Controller
       
         Monthbudgets::create($request->all());
        
-        return redirect()->route('monthbudgets.index')
+        return redirect()->route('monthbudgets.index',['id' => $request->idbudget]) //VARIABLE CONSULTA POR PARAMETROS CON REQUEST
                         ->with('success','Data created successfully.');
     }
   
@@ -81,9 +99,9 @@ class MonthbudgetsController extends Controller
      * @param  \App\Models\Monthbudgets  $Monthbudgets
      * @return \Illuminate\Http\Response
      */
-    public function show(Monthbudgets $monthbudget)
+    public function show(Request $request, Monthbudgets $monthbudget)
     {
-        return view('monthbudgets.show',compact('monthbudget'));
+        return view('monthbudgets.show',compact('monthbudget'), ['id' => $request->id]);
     }
   
     /**
@@ -120,7 +138,7 @@ class MonthbudgetsController extends Controller
       
         $monthbudget->update($request->all());
       
-        return redirect()->route('monthbudgets.index')
+        return redirect()->route('monthbudgets.index',['id' => $request->idbudget]) //VARIABLE CONSULTA POR PARAMETROS CON REQUEST
                         ->with('success','Data updated successfully');
     }
     /**
@@ -129,11 +147,12 @@ class MonthbudgetsController extends Controller
      * @param  \App\Models\Monthbudgets  $Monthbudgets
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Monthbudgets $monthbudget)
+    public function destroy(Request $request,Monthbudgets $monthbudget )
     {
+        $id = $request->idbudget;
         $monthbudget->delete();
        
-        return redirect()->route('monthbudgets.index')
+        return redirect()->route('monthbudgets.index', ['id' => $id])
                         ->with('success','Data deleted successfully');
     }
 }

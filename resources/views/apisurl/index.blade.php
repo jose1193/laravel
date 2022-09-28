@@ -102,7 +102,7 @@ API's CRUD
                               </td>
 
                               <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                <form action="{{ route('apisurl.destroy',$apisurl->id) }}" method="POST">
+                                <form action="{{ route('apisurl.destroy',$apisurl->id) }}" id="form-delete" method="POST">
                       
                                   <a class="text-indigo-600 hover:text-indigo-900" 
                                   href="{{ route('apisurl.show',$apisurl->id) }}">

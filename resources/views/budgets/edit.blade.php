@@ -41,7 +41,7 @@ Edit Budget
                 focus:ring-primary-300 font-medium rounded-lg
                  text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2
                   dark:bg-primary-600 dark:hover:bg-primary-700 
-                  focus:outline-none dark:focus:ring-primary-800 text-white" href="{{ route('budgets.index') }}">< Back</a>
+                  focus:outline-none dark:focus:ring-primary-800 text-white" href="javascript:history.back()">< Back</a>
             </div>
         </div>
     
@@ -62,7 +62,8 @@ Edit Budget
                 
                     <div class="w-full px-6 py-4 bg-white rounded shadow-md ring-1 ring-gray-900/10"> 
 
-                        <form action="{{ route('budgets.update',$budget->id) }}" method="POST" autocomplete="off">
+                        <form action="{{ route('budgets.update',$budget->id) }}" id="calculator"
+                            method="POST" autocomplete="off">
                             @csrf
                             @method('PUT')
 
@@ -88,7 +89,7 @@ Edit Budget
                                 <label class="block text-md font-bold text-gray-700" for="title">Total Budget</label>
                                 <input type="text" placeholder="Total"
                                 class="inputmask w-full px-4 py-2 mt-2 mb-5 border rounded-md 
-                                focus:outline-none focus:ring-1 focus:ring-blue-600" 
+                                focus:outline-none focus:ring-1 focus:ring-blue-600" jAutoCalc="{amount} / {dollarchange}"
                                 id="totalbudget" value="{{ $budget->totalbudget }}" name="totalbudget" required
                                  maxlength="50" >
                             </div>

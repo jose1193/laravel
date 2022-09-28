@@ -19,8 +19,8 @@ Create Data
       <li>
         <div class="flex items-center">
           <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-          <a href="/budgets" class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white">
-            <a href="/budgets" class="text-blue-600 hover:text-blue-700">@yield('titulo')</a></a>
+          <a href="{{ route('monthbudgets.create',['id' => $id]) }}" class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white">
+            <a href="{{ route('monthbudgets.create',['id' => $id]) }}" class="text-blue-600 hover:text-blue-700">@yield('titulo')</a></a>
         </div>
       </li>
      
@@ -33,7 +33,7 @@ Create Data
      @yield('titulo')</span> </h1>
 
 
-    <!-- CREATE BUDGET CRUD--> 
+    <!-- CREATE MONTHBUDGET CRUD--> 
     <div class="max-w-4xl mx-auto mt-8">
         <div class="mb-4">
            
@@ -43,7 +43,7 @@ Create Data
                  text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2
                   dark:bg-primary-600 dark:hover:bg-primary-700 
                   focus:outline-none dark:focus:ring-primary-800 text-white"
-                 href="{{ route('monthbudgets.index') }}">< Back</a>
+                 href="{{ route('monthbudgets.index',['id' => $id]) }}">< Back</a>
             </div>
         </div>
 
@@ -93,7 +93,7 @@ Create Data
                                 <input type="num" placeholder=""
                                 class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                 name="price"  onKeyUp="Suma()" required maxlength="120"
+                                 name="price"  required maxlength="120"
                                  >
                             </div>
                             <div>
@@ -113,7 +113,7 @@ Create Data
                                 <input type="text" placeholder="Total"
                                 class="  w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                name="total" onKeyUp="Suma2()" readonly maxlength="100"
+                                name="total" jAutoCalc="{unitquantity} * {price} * {dollar}" readonly maxlength="100"
                                  >
                             </div>
 
@@ -125,7 +125,7 @@ Create Data
                                 <label class="block text-md font-bold text-gray-700" for="title">
                                     Create Date</label>
                                 
-                                <input type="text" placeholder="Date"
+                                <input type="text" placeholder=""
                                 class="  w-full px-4 py-2 mt-2 border rounded-md 
                                 focus:outline-none focus:ring-1 mb-5 focus:ring-blue-600" 
                                 name="date"  maxlength="100"
@@ -136,11 +136,11 @@ Create Data
                                 <label class="block text-md font-bold text-gray-700" for="title">
                                     Id Budget</label>
                                 
-                                <input type="text" placeholder="Date"
+                                <input type="text" placeholder=""
                                 class="  w-full px-4 py-2 mt-2 border rounded-md 
                                 focus:outline-none focus:ring-1 mb-5 focus:ring-blue-600" 
                                 name="idbudget" required maxlength="100"
-                                 readonly value="1">
+                                 readonly value="{{ $id }}">
                             </div>
 
                             <div class="flex items-center justify-start mt-4 gap-x-2 my-10">
@@ -162,29 +162,9 @@ Create Data
     </div>
   
 <!-- END CREATE BUDGET CRUD--> 
- 
+
     @endsection
-    <!-- // FUNCTION CALCULATOR BUDGETs / CREATE.BLADE.PHP -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jautocalc@1.3.1/dist/jautocalc.js"></script>
-    
+   
+   
 
-<script>
-    //Función que realiza la suma
-    function Suma() {
-       var dollar = document.calculator.dollar.value;
-       var price = document.calculator.price.value;
-       
-       try{
-          //Calculamos el número escrito:
-          dollar = (isNaN(parseInt(dollar)))? 0 : parseInt(dollar);
-          price = (isNaN(parseInt(price)))? 0 : parseInt(price);
-           document.calculator.total.value = (price*dollar).toFixed(2);
-       }
-       //Si se produce un error no hacemos nada
-       catch(e) {}
-    }
-    </script>
-    
-    
-
-     <!-- // END FUNCTION CALCULATOR BUDGET  BUDGETs / CREATE.BLADE.PHP-->
+     

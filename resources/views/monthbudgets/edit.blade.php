@@ -42,7 +42,7 @@ Edit Budget
                  text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2
                   dark:bg-primary-600 dark:hover:bg-primary-700 
                   focus:outline-none dark:focus:ring-primary-800 text-white"
-                   href="{{ route('monthbudgets.index') }}">< Back</a>
+                   href="{{ url()->previous() }}">< Back</a>
             </div>
         </div>
     
@@ -61,10 +61,10 @@ Edit Budget
                         </div>
                     @endif
                 
-                    <div class="w-full px-6 py-4 bg-white rounded shadow-md ring-1 ring-gray-900/10"> 
+                    <div class="w-full px-6 py-4 bg-white rounded capitalize shadow-md ring-1 ring-gray-900/10"> 
 
                         <form action="{{ route('monthbudgets.update',$monthbudget->id) }}"
-                             method="POST" autocomplete="off" name="calculator2">
+                             method="POST" autocomplete="off"  name="calculator" id="calculator">
                             @csrf
                             @method('PUT')
 
@@ -84,7 +84,7 @@ Edit Budget
                                 class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
                                  name="unitquantity" value="{{ $monthbudget->unitquantity }}"
-                                 onKeyUp="Suma3()"  required maxlength="20" >
+                                  required maxlength="20" >
                             </div>
 
                             <div>
@@ -95,19 +95,8 @@ Edit Budget
                                 <input type="num" placeholder=""
                                 class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                 name="price"  onKeyUp="Suma3()" value="{{ $monthbudget->price }}"
+                                 name="price"  value="{{ $monthbudget->price }}"
                                   required maxlength="120"
-                                 >
-                            </div>
-
-                            <div>
-                                <label class="block text-md font-bold
-                                 text-gray-700" for="title">Total  </label>
-                                <input type="text" placeholder="Total"
-                                class="  w-full px-4 py-2 mt-2 mb-5 border rounded-md 
-                                focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                name="total" onKeyUp="Suma2()" value="{{ $monthbudget->total }}"
-                                 readonly maxlength="100"
                                  >
                             </div>
 
@@ -119,25 +108,26 @@ Edit Budget
                                 <input type="text" placeholder="Dollar Rate"
                                 class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                 name="dollarchang" onKeyUp="Suma2()" readonly maxlength="120"
+                                 name="dollar" readonly maxlength="120"
                                  value=" {{$dataArray2['blue']['value_sell']}}" >
                             </div>
-
                             <div>
-                                <label class="block text-md font-bold text-gray-700" for="title">
-                                    Total To Change</label>
-                                    
-
-                                <input type="text" placeholder="Total To Change"
+                                <label class="block text-md font-bold
+                                 text-gray-700" for="title">Total  </label>
+                                <input type="text" placeholder="Total"
                                 class="  w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                name="dollar" value="{{ $monthbudget->dollar }}" readonly maxlength="100"
+                                name="total" jAutoCalc="{unitquantity} * {price} * {dollar}" value="{{ $monthbudget->total }}"
+                                 readonly maxlength="100"
                                  >
                             </div>
 
+
+                           
+
                              <div>
                                 <label class="block text-md font-bold text-gray-700" for="title">
-                                    Create Date</label>
+                                    Edit Date</label>
                                 
                                 <input type="text" placeholder="Date"
                                 class="  w-full px-4 py-2 mt-2 border rounded-md 
@@ -150,11 +140,11 @@ Edit Budget
                                 <label class="block text-md font-bold text-gray-700" for="title">
                                     Id Budget</label>
                                 
-                                <input type="text" placeholder="Date"
+                                <input type="text" placeholder=""
                                 class="  w-full px-4 py-2 mt-2 border rounded-md 
                                 focus:outline-none focus:ring-1 mb-5 focus:ring-blue-600" 
                                 name="idbudget" required maxlength="100"
-                                 readonly value="1">
+                                 readonly value="">
                             </div>
 
                             <div class="flex items-center justify-start mt-4 gap-x-2 my-10">

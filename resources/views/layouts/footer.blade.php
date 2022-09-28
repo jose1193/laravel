@@ -42,6 +42,81 @@
        
     });
 </script>
+
+
+  
+<!-- ALERT MESSAGE SWEET ALERT DELETE CONFIRM FUNCTION --> 
+ <!-- jQuery first, then Popper.js para e.preventDefault(), -->
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        
+      <script>
+        $(function() {
+          $('#form-delete').on('submit', function (event) {
+                     event.preventDefault();
+
+                     Swal.fire({
+                      title: 'Are you sure?',
+                      text: "You won't be able to revert this!",
+                      icon: 'warning',
+                      showCancelButton: true,
+                      confirmButtonColor: '#3085d6',
+                      cancelButtonColor: '#d33',
+                      confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                        
+                        this.submit(); <!-- SEND FORM-->
+                      }
+                    })
+
+          });
+        });
+      </script>
+      <!-- END ALERT MESSAGE SWEET ALERT DELETE CONFIRM FUNCTION --> 
+
+
+       <!-- // FUNCTION CALCULATOR  / CREATE/EDIT.BLADE.PHP -->
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jautocalc@1.3.1/dist/jautocalc.js"></script>
+      <script type="text/javascript">
+         
+          $(function() {
+  
+              function autoCalcSetup() {
+                  $('form#calculator').jAutoCalc('destroy');
+                  $('form#calculator ').jAutoCalc({keyEventsFire: true, decimalPlaces: 2, 
+                      emptyAsZero: true});
+                  $('form#calculator').jAutoCalc({decimalPlaces: 2});
+              }
+              autoCalcSetup();
+  
+  
+              $('button.row-remove').on("click", function(e) {
+                  e.preventDefault();
+  
+                  var form = $(this).parents('form')
+                  $(this).parents('tr').remove();
+                  autoCalcSetup();
+  
+              });
+  
+              $('button.row-add').on("click", function(e) {
+                  e.preventDefault();
+  
+                  var $table = $(this).parents('form');
+                  var $top = $table.find('input').first();
+                  var $new = $top.clone(true);
+  
+                  $new.jAutoCalc('destroy');
+                  $new.insertBefore($top);
+                  $new.find('input[type=text]').val('');
+                  autoCalcSetup();
+  
+              });
+  
+          });
+          //-->
+      </script>
+      <!-- // END FUNCTION CALCULATOR BUDGET  BUDGETs / CREATE/EDIT.BLADE.PHP-->
           </body>
   
           </html>
