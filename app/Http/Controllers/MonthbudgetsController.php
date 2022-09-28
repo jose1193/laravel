@@ -101,7 +101,8 @@ class MonthbudgetsController extends Controller
      */
     public function show(Request $request, Monthbudgets $monthbudget)
     {
-        return view('monthbudgets.show',compact('monthbudget'), ['id' => $request->id]);
+        $id=$request->id; //CONSULTA RECIBIDA POR PARAMETROS CON REQUEST
+        return view('monthbudgets.show',compact('monthbudget','id'));
     }
   
     /**
@@ -110,11 +111,12 @@ class MonthbudgetsController extends Controller
      * @param  \App\Models\Monthbudgets  $monthbudget
      * @return \Illuminate\Http\Response
      */
-    public function edit(Monthbudgets $monthbudget)
+    public function edit(Request $request,Monthbudgets $monthbudget)
     {
+        $id = $request->id;
         $response2 = Http::get('https://api.bluelytics.com.ar/v2/latest');
         $dataArray2=$response2->json();
-        return view('monthbudgets.edit',compact('monthbudget','dataArray2'));
+        return view('monthbudgets.edit',compact('monthbudget','dataArray2','id'));
     }
   
     /**

@@ -19,8 +19,8 @@ Edit Budget
       <li>
         <div class="flex items-center">
           <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-          <a href="/budgets" class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white">
-            <a href="/budgets" class="text-blue-600 hover:text-blue-700">@yield('titulo')</a></a>
+          <a href="{{ route('monthbudgets.edit', [$monthbudget->id, 'id' => $id]) }}" class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white">
+            <a href="{{ route('monthbudgets.edit', [$monthbudget->id, 'id' => $id]) }}" class="text-blue-600 hover:text-blue-700">@yield('titulo')</a></a>
         </div>
       </li>
      
@@ -42,7 +42,7 @@ Edit Budget
                  text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2
                   dark:bg-primary-600 dark:hover:bg-primary-700 
                   focus:outline-none dark:focus:ring-primary-800 text-white"
-                   href="{{ url()->previous() }}">< Back</a>
+                   href="{{ route('monthbudgets.index',['id' => $id]) }}">< Back</a>
             </div>
         </div>
     
@@ -137,14 +137,13 @@ Edit Budget
                             </div>
                            
                             <div>
-                                <label class="block text-md font-bold text-gray-700" for="title">
-                                    Id Budget</label>
+                               
                                 
-                                <input type="text" placeholder=""
+                                <input type="hidden" placeholder=""
                                 class="  w-full px-4 py-2 mt-2 border rounded-md 
                                 focus:outline-none focus:ring-1 mb-5 focus:ring-blue-600" 
                                 name="idbudget" required maxlength="100"
-                                 readonly value="">
+                                 readonly value="{{$id}}">
                             </div>
 
                             <div class="flex items-center justify-start mt-4 gap-x-2 my-10">
