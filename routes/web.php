@@ -44,6 +44,10 @@ use App\Http\Controllers\CalculatorController;
 use App\Http\Controllers\ApisController;
 /* IMPORT CLASS APIS  CONTROLLER*/
 
+/* IMPORT CLASS SENDBUDGETS CONTROLLER*/
+use App\Http\Controllers\SendbudgetsController;
+/* IMPORT CLASS SENDBUDGETS  CONTROLLER*/
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -104,6 +108,12 @@ Route::resource('calculator', CalculatorController::class);
 /* ROUTE API URL */
 Route::resource('apisurl', ApisController::class);
 /* END  API URL */
+
+/* ROUTE SENDBUDGETS */
+Route::resource('sendbudgets', SendbudgetsController::class);
+ /* END ROUTE SENDBUDGETS */
+
+ 
     });
 
 /* ROUTE ENVIAR VARIABLE POR PARAMETROS BUDGETS A MONTHBUDGETS 
@@ -111,6 +121,7 @@ Route::get('monthbudgets/{id}', function ($id) {
        
     });
  END ROUTE ENVIAR VARIABLE POR PARAMETROS BUDGETS A MONTHBUDGETS */
+
 
 // END PROTEGER RUTAS SIN USUARIO NO ESTA AUTENTICADO
 // END ROUTES USER AUTH PAGES

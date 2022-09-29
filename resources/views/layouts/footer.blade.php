@@ -123,6 +123,38 @@
 
   
 <!-- END DATATABLES CRUD BUDGETS --> 
+
+<!-- PLUGIN SELECT MULTIPLE -->
+
+<script src="{{ asset('js/jquery.multi-select.min.js') }}"></script>
+
+<script type="text/javascript">
+  $(function(){
+      $('#email').multiSelect();
+      $('#ice-cream').multiSelect();
+      $('#line-wrap-example').multiSelect({
+          positionMenuWithin: $('.position-menu-within')
+      });
+      $('#categories').multiSelect({
+          noneText: 'All categories',
+          presets: [
+              {
+                  name: 'All categories',
+                  all: true
+              },
+              {
+                  name: 'My categories',
+                  options: ['a', 'c']
+              }
+          ]
+      });
+      $('#modal-example').multiSelect({
+          'modalHTML': '<div class="multi-select-modal">'
+      });
+  });
+  </script>
+<!-- END PLUGIN SELECT MULTIPLE -->
+
           </body>
   
           </html>

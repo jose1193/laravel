@@ -25,23 +25,15 @@ class MonthbudgetsController extends Controller
         ->where('monthbudgets.idbudget',$id)//<-- $var query
        ->select( 'monthbudgets.*', 'budgets.amount','budgets.totalbudget')
        ->get();
-
-       
-        if (count($monthbudget)) { //CONDICION SI LA CONSULTA ES VALIDA O EXISTENTE  
-        $monthbudget = DB::table('monthbudgets')
-            ->join('budgets', 'budgets.id', '=', 'monthbudgets.idbudget')
-            ->where('monthbudgets.idbudget',$id)//<-- $var query
-           ->select( 'monthbudgets.*', 'budgets.amount','budgets.totalbudget')
-           ->get();
-    
        $sum=  DB::table('monthbudgets')->where('idbudget',$id)->select('monthbudgets.*')->sum('dollar');
              
        $sum2=  DB::table('monthbudgets')->where('idbudget',$id)->select('monthbudgets.*')->sum('total');
-           
+       
+        if (count($monthbudget)) { //CONDICION SI LA CONSULTA ES VALIDA O EXISTENTE  
+       
        return view('monthbudgets.index',compact('monthbudget','sum','sum2','id'))
                     ->with('i', (request()->input('page', 1) - 1) * 5);
 
-           
         } 
         
         else { //CONDICION SI LA CONSULTA NO ES VALIDA O NO EXISTE , REDIRECCION A OTRA VISTA
