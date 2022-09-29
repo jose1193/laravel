@@ -133,10 +133,9 @@ Create Data
                             </div>
                            
                             <div>
-                                <label class="block text-md font-bold text-gray-700" for="title">
-                                    Id Budget</label>
+                               
                                 
-                                <input type="text" placeholder=""
+                                <input type="hidden" placeholder=""
                                 class="  w-full px-4 py-2 mt-2 border rounded-md 
                                 focus:outline-none focus:ring-1 mb-5 focus:ring-blue-600" 
                                 name="idbudget" required maxlength="100"
