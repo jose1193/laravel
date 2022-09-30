@@ -7,6 +7,7 @@ use App\Models\Budgets;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB; // <-- Join Tables Query
+use PDF;
 
 
 class MonthbudgetsController extends Controller
@@ -25,7 +26,7 @@ class MonthbudgetsController extends Controller
         ->where('monthbudgets.idbudget',$id)//<-- $var query
        ->select( 'monthbudgets.*', 'budgets.amount','budgets.totalbudget')
        ->get();
-       $sum=  DB::table('monthbudgets')->where('idbudget',$id)->select('monthbudgets.*')->sum('dollar');
+       $sum=  DB::table('monthbudgets')->where('idbudget',$id)->select('monthbudgets.*')->sum('price');
              
        $sum2=  DB::table('monthbudgets')->where('idbudget',$id)->select('monthbudgets.*')->sum('total');
        
@@ -46,7 +47,35 @@ class MonthbudgetsController extends Controller
 
        
     }
-  
+
+     // Generate PDF
+     public function downloadPdf(Request $request) {
+        
+        $id=$request->id; //CONSULTA RECIBIDA POR PARAMETROS CON REQUEST
+        $datenow=$request->datenow;
+        // retreive all records from db
+        $monthbudget =DB::table('monthbudgets')
+        ->join('budgets', 'budgets.id', '=', 'monthbudgets.idbudget')
+        ->where('monthbudgets.idbudget',$id)//<-- $var query
+       ->select( 'monthbudgets.*', 'budgets.amount','budgets.totalbudget','budgets.date')
+       ->get();
+       $sum=  DB::table('monthbudgets')->where('idbudget',$id)->select('monthbudgets.*')->sum('price');
+             
+       $sum2=  DB::table('monthbudgets')->where('idbudget',$id)->select('monthbudgets.*')->sum('total');
+        // share data to view
+        view()->share('monthbudget.pdf',$monthbudget);
+        $pdf = PDF::loadView('monthbudgets.pdf', ['monthbudget' => $monthbudget,'id' => $id, 
+        'sum' => $sum, 'sum2' => $sum2 ]);
+       
+        // download PDF file with download method
+       
+        $fileName = 'budget'.'-ID-'.$id .'-'.$datenow. '.' . 'pdf' ;
+       
+        return $pdf->download($fileName);
+        
+      }
+    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -149,4 +178,6 @@ class MonthbudgetsController extends Controller
         return redirect()->route('monthbudgets.index', ['id' => $id])
                         ->with('success','Data deleted successfully');
     }
+
+    
 }

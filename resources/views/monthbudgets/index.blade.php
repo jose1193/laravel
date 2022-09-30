@@ -32,13 +32,38 @@ MonthBudgets CRUD
     class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
     @yield('titulo')</span> </h1>
 
-<!-- INDEX SHOW BUDGETS CRUD--> 
+<!-- INDEX SHOW MONTHBUDGETS CRUD--> 
     <div class="max-w-4xl mx-auto mt-8 my-5 pb-5 py-5">
 
  
      
 
       <div class="flex justify-end mt-10">
+        @php
+         $date = new DateTime("now", new DateTimeZone('America/Argentina/Buenos_Aires') );
+         $datenow=$date->format('M-d-Y g:i a');
+        @endphp
+        <a href="{{ route('monthbudget-pdf',['id' => $id, 'datenow'=>$datenow]) }}" 
+         target="_blank" class="bg-primary-700 hover:bg-primary-800 focus:ring-4
+          focus:ring-primary-300 font-medium rounded-lg
+           text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2
+            dark:bg-primary-600 dark:hover:bg-primary-700 
+            focus:outline-none dark:focus:ring-primary-800 text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" style="color:#ffff;"
+            class="w-6 h-6 inline-block  " stroke="currentColor" viewBox="0 0 384 512">
+            <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License
+               - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc.
+               --><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7
+                64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM64 224H88c30.9 0
+                 56 25.1 56 56s-25.1 56-56 56H80v32c0 8.8-7.2 16-16 16s-16-7.2-16-16V320 240c0-8.8
+                  7.2-16 16-16zm24 80c13.3 0 24-10.7 24-24s-10.7-24-24-24H80v48h8zm72-64c0-8.8 
+                  7.2-16 16-16h24c26.5 0 48 21.5 48 48v64c0 26.5-21.5 48-48 48H176c-8.8
+                   0-16-7.2-16-16V240zm32 112h8c8.8 0 
+                   16-7.2 16-16V272c0-8.8-7.2-16-16-16h-8v96zm96-128h48c8.8 0 16 7.2 16 16s-7.2 16-16 
+                   16H304v32h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H304v48c0 8.8-7.2 16-16 16s-16-7.2-16-16V304
+                    240c0-8.8 7.2-16 16-16z"/></svg>
+            Export to PDF</a>
+
           <a href="{{ route('monthbudgets.create',['id' => $id]) }}" class="bg-primary-700 hover:bg-primary-800 focus:ring-4
           focus:ring-primary-300 font-medium rounded-lg
            text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2
@@ -68,13 +93,13 @@ MonthBudgets CRUD
                                Qty
                                    </th>
                               <th scope="col" class="text-sm font-medium uppercase text-white px-6 py-4">
-                                price in dollars $
+                                price in dollar
                               </th>
                                <th scope="col" class="text-sm font-medium uppercase text-white px-6 py-4">
                                 Total 
                               </th>
                               <th scope="col" class="text-sm font-medium uppercase text-white px-6 py-4">
-                                Total To Change
+                               Dollar Rate
                               </th>
 
                               <th scope="col" class="text-sm font-medium uppercase text-white px-6 py-4">
@@ -158,20 +183,24 @@ MonthBudgets CRUD
 <div class="flex mb-4 text-lg font-bold mt-5  ">
   <div class=" ml-5 w-1/2  h-full"> 
     <p class=" capitalize  text-green-700 mt-5"><span class="text-purple-700">
-      salary work: </span>{{ $monthbudget->amount }}$</p>
+      salary work: </span>${{ number_format($monthbudget->amount, 2, ',', ' ') }}</p>
     <p class=" capitalize  text-blue-700 mt-5"><span class="text-purple-700">
-    Total Dollars: </span>{{ number_format($sum2, 2, ',', ' ') }}$</p>
-  <p class="capitalize  text-blue-700 mt-5"><span class="text-purple-700">
-    total monthly expenses: </span>${{ number_format($sum, 2, ',', ' ') }}</p>
+      total expenses local currency: </span>${{ number_format($sum2, 2, ',', ' ') }} 
+   </p>
+  <p class="capitalize  text-red-900 mt-5"><span class="text-purple-700">
+    total dollar monthly expenses: </span>{{ number_format($sum, 2, ',', ' ') }}$</p>
    </div>
   
       <div class="w-1/2  h-full">  
     <p class=" capitalize  text-green-700 mt-5"><span class="text-purple-700">
-      salary work to change: </span>${{ number_format($monthbudget->totalbudget, 2, ',', ' ')  }}</p>
-      <p class=" capitalize  text-red-900 mt-5"><span class="text-purple-700">
-        remaining salary: </span>{{ $monthbudget->amount-$sum2 }}$</p>
+      salary work in dollars: </span>{{ number_format($monthbudget->totalbudget, 2, ',', ' ')  }}$
+      
+     </p>
+      <p class=" capitalize  text-blue-700 mt-5"><span class="text-purple-700">
+        remaining salary Local Currency: </span>${{ number_format($monthbudget->amount-$sum2, 2, ',', ' ') }}</p>
         <p class=" capitalize  text-red-900 mt-5 "><span class="text-purple-700">
-          remaining salary work to change: </span>${{ number_format($monthbudget->totalbudget-$sum, 2, ',', ' ') }} </p>
+          remaining salary work in dollars: </span>
+          {{ number_format($monthbudget->totalbudget-$sum, 2, ',', ' ') }}$ </p>
 
         </div>
 </div>
@@ -183,6 +212,6 @@ MonthBudgets CRUD
  
 
 
-<!-- END INDEX SHOW EMAILS CRUD--> 
+<!-- END INDEX SHOW MONTHBUDGETS CRUD--> 
 
     @endsection

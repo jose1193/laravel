@@ -20,6 +20,7 @@ class SendbudgetsController extends Controller
         $sendbudgets = DB::table('sendbudgets')
         ->join('budgets', 'budgets.id', '=', 'sendbudgets.idbudget')
         ->select( 'sendbudgets.*', 'budgets.amount','budgets.totalbudget','budgets.dollarchange')
+       
        ->get();
 
         if (count($sendbudgets)) { //CONDICION SI LA CONSULTA ES VALIDA O EXISTENTE  

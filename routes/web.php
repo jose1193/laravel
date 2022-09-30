@@ -94,7 +94,11 @@ Route::resource('budgets', BudgetsController::class);
 
 /* ROUTE CRUD MONTHBUDGETS*/
 Route::resource('monthbudgets', MonthbudgetsController::class);
+/* ROUTE PDF MONTHBUDGETS*/
+Route::get('monthbudget-pdf', [MonthbudgetsController::class, 'downloadPdf'])->name('monthbudget-pdf');
+/* ROUTE PDF MONTHBUDGETS*/
 /* END  CRUD MONTHBUDGETS*/
+
 
 /* ROUTE API COINS */
 Route::resource('coins', CoinsController::class);
