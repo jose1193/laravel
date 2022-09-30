@@ -67,7 +67,9 @@ class AuthController extends Controller
     public function postRegistration(Request $request)
     {  
         $request->validate([
-            'name' => 'required|unique:users|max:20|min:6',
+            'name' => 'required|max:20|min:6',
+            'lastname' => 'required|max:20|min:6',
+            'username' => 'required|unique:users|max:20|min:6',
             'email' => 'required|email|unique:users|max:60',
             'password' => 'required|confirmed|min:6',
         ]);
@@ -114,6 +116,8 @@ class AuthController extends Controller
     {
       return User::create([
         'name' => Str::slug($data['name']),
+        'lastname' => Str::slug($data['lastname']),
+        'username' => Str::slug($data['username']),
         'email' => $data['email'],
         'password' => Hash::make($data['password'])
       ]);

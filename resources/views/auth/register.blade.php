@@ -41,21 +41,47 @@ User Registration
                 <img class="w-13 h-15 mr-2" src="{{asset('img/logo.png')}}" alt="logo">
             </div>
             <h3 class="text-2xl font-bold text-center">Join us</h3>
-            <form action="{{ route('register.post') }}" method="POST" novalidate autocomplete="off">
+            <form action="{{ route('register.post') }}" class="capitalize font-bold" method="POST" novalidate autocomplete="off">
                 @csrf
                 <div class="mt-4">
+                    <label class="block" for="Name">username<label>
+                            <input type="text" placeholder=""
+                                class="w-full px-4 py-2 mt-2 border rounded-md 
+                                focus:outline-none focus:ring-1 focus:ring-blue-600" 
+                                id="name" name="username" required  
+                                >
+                                @if ($errors->has('username'))
+                                <span class="bg-red-500 text-white my-2 rounded-lg text-sm
+                                p-2 text-center">{{ $errors->first('username') }}</span>
+                            @endif
+                            </div>
+
+                <div class="mt-4">
                     <div>
-                        <label class="block" for="Name">Name<label>
-                                <input type="text" placeholder="Name"
+                        <label class="block" for="Name">first name<label>
+                                <input type="text" placeholder=""
                                     class="w-full px-4 py-2 mt-2 border rounded-md 
                                     focus:outline-none focus:ring-1 focus:ring-blue-600" 
                                     id="name" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" name="name" required  
                                     >
                                     @if ($errors->has('name'))
                                     <span class="bg-red-500 text-white my-2 rounded-lg text-sm
-                                    p-2 text-center">{{ $errors->first('name') }}</span>
+                                    p-2 text-center">{{ $errors->first('lastname') }}</span>
                                 @endif
                                 </div>
+                                <div class="mt-4">
+                                    <label class="block" for="Name">last name<label>
+                                            <input type="text" placeholder=""
+                                                class="w-full px-4 py-2 mt-2 border rounded-md 
+                                                focus:outline-none focus:ring-1 focus:ring-blue-600" 
+                                                id="name" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" name="lastname" required  
+                                                >
+                                                @if ($errors->has('name'))
+                                                <span class="bg-red-500 text-white my-2 rounded-lg text-sm
+                                                p-2 text-center">{{ $errors->first('name') }}</span>
+                                            @endif
+                                            </div>
+
                     <div class="mt-4">
                         <label class="block" for="email">Email<label>
                                 <input type="email" placeholder="Email"
