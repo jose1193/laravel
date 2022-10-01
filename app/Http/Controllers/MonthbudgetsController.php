@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB; // <-- Join Tables Query
 use PDF;
-
+use Mail;
 
 class MonthbudgetsController extends Controller
 {
@@ -62,6 +62,7 @@ class MonthbudgetsController extends Controller
         ->where('monthbudgets.idbudget',$id)//<-- $var query
        ->select( 'monthbudgets.*', 'budgets.amount','budgets.totalbudget','budgets.date')
        ->get();
+       
        $sum=  DB::table('monthbudgets')->where('idbudget',$id)->select('monthbudgets.*')->sum('price');
              
        $sum2=  DB::table('monthbudgets')->where('idbudget',$id)->select('monthbudgets.*')->sum('total');
@@ -70,13 +71,22 @@ class MonthbudgetsController extends Controller
        $user = DB::table('users')->where('id', $iduser)->first();
         // share data to view
         view()->share('monthbudget.pdf',$monthbudget);
+      $email=$user->email;
         $pdf = PDF::loadView('monthbudgets.pdf', ['monthbudget' => $monthbudget,
         'sum' => $sum, 'sum2' => $sum2, 'user' => $user ]);
-       
-        // download PDF file with download method
-       
+              
         $fileName = 'budget'.'-'.$user->name .'-'.$user->lastname. '-'.$datenow. '.' . 'pdf' ;
        
+        // Send Email
+        Mail::send('monthbudgets.pdf', ['monthbudget' => $monthbudget,
+        'sum' => $sum, 'sum2' => $sum2, 'user' => $user ],
+         function($message)use($monthbudget, $pdf,$fileName ) {
+            $message->to('argenis692@gmail.com','argenis692@gmail.com')
+                    ->subject('Web App - '.$fileName)
+                    ->attachData($pdf->output(), $fileName);
+        });
+
+         // download PDF file with download method
         return $pdf->download($fileName);
         
       }

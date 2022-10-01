@@ -29,11 +29,11 @@
 <body class="bg">
     <br>
     <div class="container-fluid mt-5 mx-auto">
-        <h5 class=" font-weight-bold">MONTHLY BUDGET PDF Report</h5>
-        <h6 class=" text-capitalize font-weight-bold">User: <span style="color:#01579B;">
+        <h5 class=" font-weight-bold" style="font-size:21px;">MONTHLY BUDGET PDF Report</h5>
+        <h6 class=" text-capitalize font-weight-bold" style="font-size:16px;">User: <span style="color:#01579B;">
             {{$user->name }}  {{$user->lastname }}
         </span></h6>
-        <h6 class=" font-weight-bold">Budget Date: <span style="color:#01579B;">
+        <h6 class=" font-weight-bold" style="font-size:16px;">Budget Date: <span style="color:#01579B;">
             
             @php
          
@@ -41,10 +41,10 @@
            echo $date->format('M-d-Y g:i a');  @endphp
            </span></h6>
        
-        <table class="table table-borderless  text-center mt-5 mb-5
+        <table class="table table-borderless  text-center mt-5 
          text-capitalize font-weight-bold" border="1"  >
             <thead>
-                <tr style="background-color:#1A237E" class="text-white">
+                <tr style="background-color:#1A237E; color:#ffff;" class="text-white">
                    
                     <th>Description</th>
                     <th> Qty</th>
@@ -54,7 +54,7 @@
                     <th>Create Date</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody style="font-weight:bold;">
                 @forelse ($monthbudget as $monthbudget)
                 <tr>
                     
@@ -71,9 +71,9 @@
                 @endforelse
             </tbody>
         </table>
-
-        <table border="0" class="font-weight-bold text-capitalize"
-         cellpadding="1" cellspacing="1" style="width:750px; ">
+<br> <br>
+        <table border="0"  class="font-weight-bold text-capitalize"
+         cellpadding="1" cellspacing="1" style="width:750px; font-weight:bold;text-transform: capitalize; ">
             <tbody>
                 <tr>
                     <td> salary work: <span style="color:#05852c;"> ${{ number_format($monthbudget->amount, 2, ',', ' ') }}</span></td>
@@ -115,7 +115,8 @@
             </u>
             
         </p>
-       <span style="position:relative;left:-20px;top:-10px;"> {{$user->name }}  {{$user->lastname }}</span>
+       <span style="position:relative;left:-20px;top:-10px;
+       font-weight:bold; text-transform: capitalize; "> {{$user->name }}  {{$user->lastname }}</span>
 
         </div>
 
