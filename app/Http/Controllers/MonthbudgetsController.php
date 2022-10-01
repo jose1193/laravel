@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Monthbudgets;
 use App\Models\Budgets;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB; // <-- Join Tables Query
@@ -53,6 +54,8 @@ class MonthbudgetsController extends Controller
         
         $id=$request->id; //CONSULTA RECIBIDA POR PARAMETROS CON REQUEST
         $datenow=$request->datenow;
+        $iduser=$request->iduser;
+        
         // retreive all records from db
         $monthbudget =DB::table('monthbudgets')
         ->join('budgets', 'budgets.id', '=', 'monthbudgets.idbudget')
@@ -62,14 +65,17 @@ class MonthbudgetsController extends Controller
        $sum=  DB::table('monthbudgets')->where('idbudget',$id)->select('monthbudgets.*')->sum('price');
              
        $sum2=  DB::table('monthbudgets')->where('idbudget',$id)->select('monthbudgets.*')->sum('total');
+       
+       
+       $user = DB::table('users')->where('id', $iduser)->first();
         // share data to view
         view()->share('monthbudget.pdf',$monthbudget);
-        $pdf = PDF::loadView('monthbudgets.pdf', ['monthbudget' => $monthbudget,'id' => $id, 
-        'sum' => $sum, 'sum2' => $sum2 ]);
+        $pdf = PDF::loadView('monthbudgets.pdf', ['monthbudget' => $monthbudget,
+        'sum' => $sum, 'sum2' => $sum2, 'user' => $user ]);
        
         // download PDF file with download method
        
-        $fileName = 'budget'.'-ID-'.$id .'-'.$datenow. '.' . 'pdf' ;
+        $fileName = 'budget'.'-'.$user->name .'-'.$user->lastname. '-'.$datenow. '.' . 'pdf' ;
        
         return $pdf->download($fileName);
         

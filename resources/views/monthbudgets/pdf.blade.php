@@ -9,7 +9,7 @@
     <style>
         
         table {
-            font-size: 13px;
+            font-size: 14px;
             
         }
         .bg {
@@ -30,13 +30,16 @@
     <br>
     <div class="container-fluid mt-5 mx-auto">
         <h5 class=" font-weight-bold">MONTHLY BUDGET PDF Report</h5>
-        
+        <h6 class=" text-capitalize font-weight-bold">User: <span style="color:#01579B;">
+            {{$user->name }}  {{$user->lastname }}
+        </span></h6>
         <h6 class=" font-weight-bold">Budget Date: <span style="color:#01579B;">
+            
             @php
-           
-           
+         
             $date = new DateTime("now", new DateTimeZone('America/Argentina/Buenos_Aires') );
-           echo $date->format('M-d-Y g:i a');  @endphp</span></h6>
+           echo $date->format('M-d-Y g:i a');  @endphp
+           </span></h6>
        
         <table class="table table-borderless  text-center mt-5 mb-5
          text-capitalize font-weight-bold" border="1"  >
@@ -70,7 +73,7 @@
         </table>
 
         <table border="0" class="font-weight-bold text-capitalize"
-         cellpadding="1" cellspacing="1" style="width:750px; font-size:13px;">
+         cellpadding="1" cellspacing="1" style="width:750px; ">
             <tbody>
                 <tr>
                     <td> salary work: <span style="color:#05852c;"> ${{ number_format($monthbudget->amount, 2, ',', ' ') }}</span></td>
@@ -100,8 +103,23 @@
                 </tr>
             </tbody>
         </table>
+<br>
+        <div class="text-right font-weight-bold text-capitalize"
+        style="position:relative;top:70px;">
+            <img src="https://venmasters.com/img/firma-digital.png"
+            style="z-index: 100;position:relative;left:-20px;top:30px" width="130" height="85">
+            <p><u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
+            </u>
+            
+        </p>
+       <span style="position:relative;left:-20px;top:-10px;"> {{$user->name }}  {{$user->lastname }}</span>
 
-        
+        </div>
+
+
     </div>
 </body>
 
