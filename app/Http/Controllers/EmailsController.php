@@ -41,6 +41,7 @@ class EmailsController extends Controller
         $request->validate([
             'email' => 'required|email|unique:emails',
             'name' => 'required|max:20|min:6',
+            'iduser' => 'required',
             
         ]);
       
@@ -84,6 +85,7 @@ class EmailsController extends Controller
         $request->validate([
             'email' => 'required|email',
             'name' => 'required|max:20|min:6',
+            'iduser' => 'required',
            
         ]);
       

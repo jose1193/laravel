@@ -44,6 +44,7 @@ class ApisController extends Controller
             'country' => 'required|max:20|min:3',
             'flag' => 'required|max:150|min:6',
             'provider' => 'required|max:20|min:3',
+            'iduser' => 'required',
             
         ]);
       
@@ -90,6 +91,7 @@ class ApisController extends Controller
             'country' => 'required|max:20|min:3',
             'flag' => 'required|max:150|min:6',
             'provider' => 'required|max:20|min:3',
+            'iduser' => 'required',
            
         ]);
       

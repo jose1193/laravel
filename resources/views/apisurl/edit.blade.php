@@ -63,7 +63,7 @@ Edit Api
                 
                     <div class="w-full px-6 py-4 bg-white rounded shadow-md ring-1 ring-gray-900/10"> 
 
-                        <form action="{{ route('apisurl.update',$apisurl->id) }}" method="POST" autocomplete="off">
+                        <form action="{{ route('apisurl.update',$apisurl->id) }}" method="POST" autocomplete="off" novalidate>
                             @csrf
                             @method('PUT')
                             <div >
@@ -111,7 +111,15 @@ Edit Api
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
                                  name="flag" required value="{{ $apisurl->flag }}" >
                             </div>
-
+                            <div>
+                               
+                                
+                                <input type="hidden" placeholder=""
+                                class="  w-full px-4 py-2 mt-2 border rounded-md 
+                                focus:outline-none focus:ring-1 mb-5 focus:ring-blue-600" 
+                                name="iduser" required maxlength="100"
+                                 readonly value="{{ auth()->user()->id }}">
+                            </div>
                             <div class="flex items-center justify-start mt-4 gap-x-2 my-10">
                                 <button type="submit" class="bg-primary-700 hover:bg-primary-800 focus:ring-4
                                 focus:ring-primary-300 font-medium rounded-lg

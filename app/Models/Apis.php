@@ -14,7 +14,7 @@ class Apis extends Model
      * @var array
     */
     public $fillable = [
-        'nameapi', 'urlapi', 'country', 'flag','provider', 
+        'nameapi', 'urlapi', 'country', 'flag','provider', 'iduser', 
 
     ];
 }

@@ -9,6 +9,6 @@ class Emails extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'email','name'
+        'email','name','iduser'
     ];
 }

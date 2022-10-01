@@ -50,6 +50,7 @@ class BudgetsController extends Controller
             'dollarchange' => 'required|max:20|min:2',
             'totalbudget' => 'required|max:20|min:2',
             'date' => 'required',
+            'iduser' => 'required',
             
         ]);
       

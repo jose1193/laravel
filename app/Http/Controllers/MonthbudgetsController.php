@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB; // <-- Join Tables Query
 use PDF;
 use Mail;
+use Illuminate\Support\Str;
 
 class MonthbudgetsController extends Controller
 {
@@ -116,8 +117,8 @@ class MonthbudgetsController extends Controller
        
         $request->validate([
             'unitquantity' => 'required|max:30|min:1',
-            'price' => 'required|max:30|min:1',
-            'total' => 'required|max:30|min:1',
+            'price' => 'required|max:30|min:1', 
+            'total' => 'required|max:30|min:1', 
             'dollar' => 'required|max:30|min:1',
             'date' => 'required|max:30|min:3',
             'idbudget' => 'required|max:30|min:1',
