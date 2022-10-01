@@ -17,8 +17,11 @@ class SendbudgetsController extends Controller
      */
     public function index()
     {
+        $iduser=auth()->user()->id;
         $sendbudgets = DB::table('sendbudgets')
         ->join('budgets', 'budgets.id', '=', 'sendbudgets.idbudget')
+        ->join('users', 'users.id', '=', 'sendbudgets.iduser')
+        ->where('users.id', $iduser)//<-- $var query
         ->select( 'sendbudgets.*', 'budgets.amount','budgets.totalbudget','budgets.dollarchange')
        
        ->get();
@@ -30,8 +33,17 @@ class SendbudgetsController extends Controller
         }
 
         else {
-            $emails = Emails::latest()->get();
-        $budgets = Budgets::latest()->get();
+            $emails =DB::table('emails')
+        ->join('users', 'users.id', '=', 'emails.iduser')
+        ->where('users.id', $iduser)//<-- $var query
+       ->select( 'emails.*', 'users.id','users.name')
+       ->get();
+
+        $budgets =DB::table('budgets')
+        ->join('users', 'users.id', '=', 'budgets.iduser')
+        ->where('users.id', $iduser)//<-- $var query
+       ->select( 'budgets.*', 'users.id','users.name')
+       ->get();
         return view('sendbudgets.create',compact('emails','budgets'));
 
         }

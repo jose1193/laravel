@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Emails;
 use Illuminate\Http\Request;
+use DB;
 
 class EmailsController extends Controller
 {
@@ -14,7 +15,13 @@ class EmailsController extends Controller
      */
     public function index()
     {
-        $email = Emails::latest()->get();
+        $iduser=auth()->user()->id;
+        $email =DB::table('emails')
+        ->join('users', 'users.id', '=', 'emails.iduser')
+        ->where('users.id', $iduser)//<-- $var query
+       ->select( 'emails.*', 'users.id','users.name')
+       ->get();
+       
       
         return view('emails.index',compact('email'))
                 ->with('i', (request()->input('page', 1) - 1) * 5);

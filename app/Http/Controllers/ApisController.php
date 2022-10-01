@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Apis;
 use Illuminate\Http\Request;
 
+use DB;
 class ApisController extends Controller
 {
     /**
@@ -14,10 +15,24 @@ class ApisController extends Controller
      */
     public function index()
     {
-        $apisurl = Apis::latest()->get();
+        $iduser=auth()->user()->id;
+        $apisurl =DB::table('apis')
+        ->join('users', 'users.id', '=', 'apis.iduser')
+        ->where('users.id', $iduser)//<-- $var query
+       ->select( 'apis.*', 'users.id','users.name')
+       ->get();
+
+       if (count($apisurl)) { //CONDICION SI LA CONSULTA ES VALIDA O EXISTENTE  
+       
       
         return view('apisurl.index',compact('apisurl'))
                 ->with('i', (request()->input('page', 1) - 1) * 5);
+
+       }
+       else
+       {
+        return view('apisurl.create');
+    }
     }
   
     /**

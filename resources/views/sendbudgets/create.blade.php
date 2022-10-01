@@ -62,15 +62,16 @@ Create New SendBudget
                         </div>
                     @endif
                     
-                    <div class="w-full px-6 py-4 bg-white rounded shadow-md ring-1 ring-gray-900/10">
+                    <div class="capitalize 
+                    w-full px-6 py-4 bg-white rounded  shadow-md ring-1 ring-gray-900/10">
 
                         <form action="{{ route('sendbudgets.store') }}" 
                         id="calculator" method="POST" novalidate autocomplete="off">
                             @csrf
 
                             <div class="mb-5">
-                                <label class="block text-md font-bold text-gray-700 mb-3" for="title">
-                                    Select Budget</label>
+                                <label class=" block text-md font-bold text-gray-700 mb-3" for="title">
+                                    select registered budget</label>
                                
                                 <select id="countries"
                                  class="bg-gray-50 border border-gray-300
@@ -96,8 +97,8 @@ Create New SendBudget
 <!-- PLUGIN SELECT MULTIPLE -->
                             <div class="mb-5 demo-example modal-example" >
                                
-                                <label class="block text-md font-bold text-gray-700
-                                mb-3" for="title">Select Emails</label>
+                                <label class=" block text-md font-bold text-gray-700
+                                mb-3" for="title">select registered emails</label>
                                 <select id="modal-example" name="emails" multiple>
                                     @foreach ($emails as $emails)
                                     <option value="{{ $emails->email }}">{{ $emails->name }}</option>

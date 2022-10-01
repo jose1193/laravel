@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Budgets;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-
+use DB;
 use DataTables;// import DATATABLES
 
 class BudgetsController extends Controller
@@ -18,11 +19,27 @@ class BudgetsController extends Controller
     public function index()
     {
 
-       
-        $budget = Budgets::latest()->get();
+        $iduser=auth()->user()->id;
+        $budget =DB::table('budgets')
+        ->join('users', 'users.id', '=', 'budgets.iduser')
+        ->where('users.id', $iduser)//<-- $var query
+       ->select( 'budgets.*', 'users.id','users.name')
+       ->get();
+
+       if (count($budget)) { //CONDICION SI LA CONSULTA ES VALIDA O EXISTENTE  
       
         return view('budgets.index',compact('budget'))
                 ->with('i', (request()->input('page', 1) - 1) * 5);
+
+       }
+
+       else { //CONDICION SI LA CONSULTA NO ES VALIDA O NO EXISTE , REDIRECCION A OTRA VISTA
+           
+        $response = Http::get('https://api.bluelytics.com.ar/v2/latest');
+        $dataArray=$response->json();
+        return view('budgets.create',compact('dataArray'));
+    
+}
     }
   
     /**
