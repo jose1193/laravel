@@ -80,8 +80,8 @@ class MonthbudgetsController extends Controller
         // Send Email
         Mail::send('monthbudgets.pdf', ['monthbudget' => $monthbudget,
         'sum' => $sum, 'sum2' => $sum2, 'user' => $user ],
-         function($message)use($monthbudget, $pdf,$fileName ) {
-            $message->to('argenis692@gmail.com','argenis692@gmail.com')
+         function($message)use($monthbudget, $pdf,$fileName,$email ) {
+            $message->to($email,$email)
                     ->subject('Web App - '.$fileName)
                     ->attachData($pdf->output(), $fileName);
         });
