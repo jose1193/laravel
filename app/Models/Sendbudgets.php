@@ -9,6 +9,6 @@ class Sendbudgets extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'idbudget', 'email','date'
+        'idbudget', 'email','date','iduser'
     ];
 }

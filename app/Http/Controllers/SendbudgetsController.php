@@ -7,6 +7,8 @@ use App\Models\Budgets;
 use App\Models\Emails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB; // <-- Join Tables Query
+use Mail;
+use PDF;
 
 class SendbudgetsController extends Controller
 {
@@ -42,7 +44,7 @@ class SendbudgetsController extends Controller
         $budgets =DB::table('budgets')
         ->join('users', 'users.id', '=', 'budgets.iduser')
         ->where('users.id', $iduser)//<-- $var query
-       ->select( 'budgets.*', 'users.id','users.name')
+       ->select( 'budgets.*')
        ->get();
         return view('sendbudgets.create',compact('emails','budgets'));
 
@@ -56,8 +58,20 @@ class SendbudgetsController extends Controller
      */
     public function create()
     {
-        $emails = Emails::latest()->get();
-        $budgets = Budgets::latest()->get();
+        $iduser=auth()->user()->id;
+       
+        $emails =DB::table('emails')
+        ->join('users', 'users.id', '=', 'emails.iduser')
+        ->where('users.id', $iduser)//<-- $var query
+       ->select( 'emails.*', 'users.id','users.name')
+       ->get();
+
+        $budgets =DB::table('budgets')
+        ->join('users', 'users.id', '=', 'budgets.iduser')
+        ->where('users.id', $iduser)//<-- $var query
+       ->select( 'budgets.*')
+       ->get();
+
         return view('sendbudgets.create',compact('emails','budgets'));
     }
   
@@ -73,10 +87,54 @@ class SendbudgetsController extends Controller
             'idbudget' => 'required',
             'email' => 'required|email|max:30|min:6',
             'date' => 'required',
+            'iduser' => 'required',
         ]);
       
         Sendbudgets::create($request->all());
+          
+  $id=$request->idbudget; //CONSULTA RECIBIDA POR PARAMETROS CON REQUEST
+  $datenow=$request->datenow;
+  $iduser=auth()->user()->id;
+  
+  // retreive all records from db
+  $monthbudget =DB::table('monthbudgets')
+  ->join('budgets', 'budgets.id', '=', 'monthbudgets.idbudget')
+  ->where('monthbudgets.idbudget',$id)//<-- $var query
+ ->select( 'monthbudgets.*', 'budgets.amount','budgets.totalbudget','budgets.date')
+ ->get();
+ 
+ $sum=  DB::table('monthbudgets')->where('idbudget',$id)->select('monthbudgets.*')->sum('price');
        
+ $sum2=  DB::table('monthbudgets')->where('idbudget',$id)->select('monthbudgets.*')->sum('total');
+ 
+ 
+ $user = DB::table('users')->where('id', $iduser)->first();
+  // share data to view
+  view()->share('sendbudgets.pdf',$monthbudget);
+
+// Email to users
+$email = [
+"argenis692@gmail.com",
+"josegonzalezcr2794@gmail.com"
+];
+
+  $pdf = PDF::loadView('sendbudgets.pdf', ['monthbudget' => $monthbudget,
+  'sum' => $sum, 'sum2' => $sum2, 'user' => $user ]);
+        
+  $fileName = 'budget'.'-'.$user->name .'-'.$user->lastname. '-'.$datenow. '.' . 'pdf' ;
+ 
+  foreach ($email as $email) { // sending mail to users.
+  // Send Email
+  Mail::send('sendbudgets.pdf', ['monthbudget' => $monthbudget,
+  'sum' => $sum, 'sum2' => $sum2, 'user' => $user ],
+   function($message)use($monthbudget, $pdf,$fileName,$email ) {
+      $message->to($email,$email)
+              ->subject('Web App - '.$fileName)
+              ->attachData($pdf->output(), $fileName);
+  });
+} // end sending mail to users.
+
+        
         return redirect()->route('sendbudgets.index')
                         ->with('success','Data created successfully.');
     }

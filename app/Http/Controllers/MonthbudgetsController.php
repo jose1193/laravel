@@ -70,9 +70,11 @@ class MonthbudgetsController extends Controller
        
        
        $user = DB::table('users')->where('id', $iduser)->first();
+       $email=$user->email;
+       
         // share data to view
         view()->share('monthbudget.pdf',$monthbudget);
-      $email=$user->email;
+     
         $pdf = PDF::loadView('monthbudgets.pdf', ['monthbudget' => $monthbudget,
         'sum' => $sum, 'sum2' => $sum2, 'user' => $user ]);
               

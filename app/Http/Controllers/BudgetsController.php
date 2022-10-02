@@ -23,7 +23,7 @@ class BudgetsController extends Controller
         $budget =DB::table('budgets')
         ->join('users', 'users.id', '=', 'budgets.iduser')
         ->where('users.id', $iduser)//<-- $var query
-       ->select( 'budgets.*', 'users.id','users.name')
+       ->select( 'budgets.*')
        ->get();
 
        if (count($budget)) { //CONDICION SI LA CONSULTA ES VALIDA O EXISTENTE  

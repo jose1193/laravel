@@ -73,7 +73,7 @@ Create New SendBudget
                                 <label class=" block text-md font-bold text-gray-700 mb-3" for="title">
                                     select registered budget</label>
                                
-                                <select id="countries"
+                                <select 
                                  class="bg-gray-50 border border-gray-300
                                   text-gray-900 text-sm rounded-lg
                                    focus:ring-blue-500
@@ -85,7 +85,7 @@ Create New SendBudget
                                          dark:focus:ring-blue-500
                                           dark:focus:border-blue-500
                                           capitalize" name="idbudget">
-                                  <option selected="">Choose a budget</option>
+                                  <option value="">Choose a budget</option>
                                   @foreach ($budgets as $budgets)
                                   <option value="{{ $budgets->id }}">{{ $budgets->amount }} - {{ $budgets->date }}</option>
                                   @endforeach
@@ -99,9 +99,9 @@ Create New SendBudget
                                
                                 <label class=" block text-md font-bold text-gray-700
                                 mb-3" for="title">select registered emails</label>
-                                <select id="modal-example" name="emails" multiple>
+                                <select id="modal-example" name="email" multiple>
                                     @foreach ($emails as $emails)
-                                    <option value="{{ $emails->email }}">{{ $emails->name }}</option>
+                                    <option value="{{ $emails->email }}">{{ $emails->email }}</option>
                                     @endforeach
                                 </select>
                                <!-- END PLUGIN SELECT MULTIPLE -->
@@ -116,6 +116,24 @@ Create New SendBudget
                                 focus:outline-none focus:ring-1 mb-5 focus:ring-blue-600" 
                                 name="date" required maxlength="100"
                                  readonly value="{{ date('M-d-Y') }}">
+                            </div>
+
+                            @php
+                            $date = new DateTime("now", new DateTimeZone('America/Argentina/Buenos_Aires') );
+                            $datenow=$date->format('M-d-Y g:i a');
+                           @endphp
+                            <div>
+                               
+                                <input type="hidden" placeholder=""
+                                class="  w-full px-4 py-2 mt-2 border rounded-md 
+                                focus:outline-none focus:ring-1 mb-5 focus:ring-blue-600" 
+                                name="datenow" required maxlength="100"
+                                 readonly value="{{ date('M-d-Y') }}">
+                                 <input type="hidden" placeholder=""
+                                class="  w-full px-4 py-2 mt-2 border rounded-md 
+                                focus:outline-none focus:ring-1 mb-5 focus:ring-blue-600" 
+                                name="iduser" required maxlength="100"
+                                 readonly value="{{ auth()->user()->id }}">
                             </div>
 
                             <div class="flex items-center justify-start mt-4 gap-x-2 my-10">
