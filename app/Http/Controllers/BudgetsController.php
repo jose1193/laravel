@@ -68,6 +68,8 @@ class BudgetsController extends Controller
             'totalbudget' => 'required|max:20|min:2',
             'date' => 'required',
             'iduser' => 'required',
+            'year' => 'required',
+            'month' => 'required',
             
         ]);
       

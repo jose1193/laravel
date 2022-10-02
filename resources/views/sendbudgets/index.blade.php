@@ -101,7 +101,8 @@ Sendbudgets CRUD
                               </td>
 
                               <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                <form action="{{ route('sendbudgets.destroy',$sendbudgets->id) }}" id="form-delete" method="POST">
+                                <form action="{{ route('sendbudgets.destroy',$sendbudgets->id) }}"
+                                   id="form-delete" method="POST">
                       
                                   
                                   

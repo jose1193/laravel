@@ -100,8 +100,8 @@ Create New SendBudget
                                 <label class=" block text-md font-bold text-gray-700
                                 mb-3" for="title">select registered emails</label>
                                 <select id="modal-example" name="email" multiple>
-                                    @foreach ($emails as $emails)
-                                    <option value="{{ $emails->email }}">{{ $emails->email }}</option>
+                                    @foreach ($emails as $emails =>$value)
+                                    <option value="{{ $value->email }}">{{ $value->email }}</option>
                                     @endforeach
                                 </select>
                                <!-- END PLUGIN SELECT MULTIPLE -->
@@ -129,6 +129,7 @@ Create New SendBudget
                                 focus:outline-none focus:ring-1 mb-5 focus:ring-blue-600" 
                                 name="datenow" required maxlength="100"
                                  readonly value="{{ date('M-d-Y') }}">
+                                 
                                  <input type="hidden" placeholder=""
                                 class="  w-full px-4 py-2 mt-2 border rounded-md 
                                 focus:outline-none focus:ring-1 mb-5 focus:ring-blue-600" 

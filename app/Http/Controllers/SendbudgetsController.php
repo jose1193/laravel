@@ -85,7 +85,7 @@ class SendbudgetsController extends Controller
     {
         $request->validate([
             'idbudget' => 'required',
-            'email' => 'required|email|max:30|min:6',
+            'email' => 'required',
             'date' => 'required',
             'iduser' => 'required',
         ]);
@@ -112,10 +112,11 @@ class SendbudgetsController extends Controller
   // share data to view
   view()->share('sendbudgets.pdf',$monthbudget);
 
+
 // Email to users
 $email = [
-"argenis692@gmail.com",
-"josegonzalezcr2794@gmail.com"
+    "argenis692@gmail.com",
+    "josegonzalezcr2794@gmail.com"
 ];
 
   $pdf = PDF::loadView('sendbudgets.pdf', ['monthbudget' => $monthbudget,
@@ -147,9 +148,11 @@ $email = [
      */
     public function show(Sendbudgets $sendbudgets)
     {
+        $iduser=auth()->user()->id;
         $sendbudgetsquery = DB::table('sendbudgets')
         ->join('budgets', 'budgets.id', '=', 'sendbudgets.idbudget')
-       
+        ->join('users', 'users.id', '=', 'sendbudgets.iduser')
+        ->where('users.id', $iduser)//<-- $var query
        ->select( 'sendbudgets.*', 'budgets.amount','budgets.totalbudget','budgets.dollarchange')
        ->get();
         return view('sendbudgets.show',compact('sendbudgets','sendbudgetsquery'));
@@ -179,6 +182,7 @@ $email = [
             'idbudget' => 'required',
             'email' => 'required|email|max:30|min:6',
             'date' => 'required',
+            
         ]);
       
         $post->update($request->all());

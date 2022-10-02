@@ -14,6 +14,6 @@ class Budgets extends Model
      * @var array
     */
     public $fillable = [
-        'amount', 'dollarchange', 'totalbudget', 'date', 'iduser', 
+        'amount', 'dollarchange', 'totalbudget', 'date', 'iduser', 'year','month'
     ];
 }

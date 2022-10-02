@@ -48,6 +48,9 @@ use App\Http\Controllers\ApisController;
 use App\Http\Controllers\SendbudgetsController;
 /* IMPORT CLASS SENDBUDGETS  CONTROLLER*/
 
+/* IMPORT CLASS CHART JS CONTROLLER CONTROLLER*/
+use App\Http\Controllers\ChartJSController;
+/* IMPORT CLASS CHART JS CONTROLLER CONTROLLER*/
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -118,8 +121,16 @@ Route::resource('sendbudgets', SendbudgetsController::class);
  /* END ROUTE SENDBUDGETS */
 
  
+/* ROUTE CHART BUDGET */
+Route::resource('chart', ChartJSController::class);
+/* END ROUTE CHART BUDGET */
+
+/* ROUTE CHART MONTHBUDGET */
+Route::get('chart.monthbudgets', [ChartJSController::class, 'chartmonthbudgets'])->name('chart.monthbudgets');
+/* END ROUTE CHART MONTHBUDGET */
     });
 
+   
 /* ROUTE ENVIAR VARIABLE POR PARAMETROS BUDGETS A MONTHBUDGETS 
 Route::get('monthbudgets/{id}', function ($id) {
        

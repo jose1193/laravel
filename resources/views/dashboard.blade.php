@@ -131,7 +131,10 @@
                         capitalize">send monthly budget </a>
                       </li>
 
-                     
+                      <li>
+                        <a href="/chart" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white
+                        capitalize">chart </a>
+                      </li>
                      
                     </ul>
                    

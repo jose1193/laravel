@@ -112,6 +112,18 @@ Create Budget
                                 focus:outline-none focus:ring-1 mb-5 focus:ring-blue-600" 
                                 name="iduser" required maxlength="100"
                                  readonly value="{{ auth()->user()->id }}">
+                               
+                                 <input type="hidden" placeholder="Date"
+                                class="  w-full px-4 py-2 mt-2 border rounded-md 
+                                focus:outline-none focus:ring-1 mb-5 focus:ring-blue-600" 
+                                name="year" required maxlength="100"
+                                 readonly value="{{ date('Y') }}">
+
+                                 <input type="hidden" placeholder="Date"
+                                 class="  w-full px-4 py-2 mt-2 border rounded-md 
+                                 focus:outline-none focus:ring-1 mb-5 focus:ring-blue-600" 
+                                 name="month" required maxlength="100"
+                                  readonly value="{{ date('M') }}">
                             </div>
 
                             <div class="flex items-center justify-start mt-4 gap-x-2 my-10">
