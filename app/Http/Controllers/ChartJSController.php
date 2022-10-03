@@ -54,4 +54,6 @@ class ChartJSController extends Controller
     return view('chart.monthbudgets', $data,compact('sum','id'));
     }
  
+
+
 }

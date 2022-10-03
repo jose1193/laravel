@@ -33,11 +33,14 @@ Month Budget Chart
     @yield('titulo')</span> </h1>
 
 <!-- INDEX SHOW CHART--> 
-    <div class="max-w-4xl mx-auto mt-8 my-5 pb-5 py-5">
+    <div class="max-w-4xl text-center mx-auto mt-8 my-5 pb-5 py-5">
         <canvas id="myChart2" height="100px"></canvas>
-        <p class=" capitalize font-bold text-center text-blue-700 mt-5"><span class="text-purple-700">
+        <p class=" capitalize font-bold text-center text-blue-700 mt-5 mb-5"><span class="text-purple-700">
           total expenses current month: {{date('M-Y')}} </span><br> ${{ number_format($sum, 2, ',', ' ') }} 
        </p>
+
+       
+
   </div>
  
 
