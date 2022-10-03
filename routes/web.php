@@ -126,7 +126,7 @@ Route::resource('chart', ChartJSController::class);
 /* END ROUTE CHART BUDGET */
 
 /* ROUTE CHART MONTHBUDGET */
-Route::get('chart.monthbudgets', [ChartJSController::class, 'chartmonthbudgets'])->name('chart.monthbudgets');
+Route::get('chart-monthbudgets', [ChartJSController::class, 'chartmonthbudgets'])->name('chart.monthbudgets');
 /* END ROUTE CHART MONTHBUDGET */
     });
 
