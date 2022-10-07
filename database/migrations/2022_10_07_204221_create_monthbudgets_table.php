@@ -13,18 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('montbudgest', function (Blueprint $table) {
+        Schema::create('monthbudgets', function (Blueprint $table) {
             $table->id();
             $table->string('unitquantity');
             $table->string('price');
             $table->string('total');
             $table->string('dollar');
             $table->string('date');
-            // define foreign key
-            $table->foreignId('idbudget')
-                  ->constrained('budgets')
-                  ->onUpdate('cascade')
-                  ->onDelete('cascade');
+             // define foreign key
+             $table->foreignId('idbudget')
+             ->constrained('budgets')
+             ->onUpdate('cascade')
+             ->onDelete('cascade');
+
             $table->timestamps();
         });
     }
@@ -36,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('montbudgest');
+        Schema::dropIfExists('monthbudgets');
     }
 };
