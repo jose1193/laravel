@@ -21,6 +21,7 @@ class SendbudgetsController extends Controller
     {
         $iduser=auth()->user()->id;
         $sendbudgets = DB::table('sendbudgets')
+        
         ->join('budgets', 'budgets.id', '=', 'sendbudgets.idbudget')
         ->join('users', 'users.id', '=', 'sendbudgets.iduser')
         ->where('users.id', $iduser)//<-- $var query
@@ -89,9 +90,23 @@ class SendbudgetsController extends Controller
             'date' => 'required',
             'iduser' => 'required',
         ]);
-      
-        Sendbudgets::create($request->all());
-          
+
+        $data = $request->all();
+        foreach ($data['email'] as $index => $dataNumber) {
+            Sendbudgets::create([
+               
+                'idbudget' => $data['idbudget'],
+                'email' => $data['email'][$index],
+                'date' => $data['date'],
+                'iduser' => $data['iduser'],
+               
+            ]);
+
+           
+           
+        }
+       
+        
   $id=$request->idbudget; //CONSULTA RECIBIDA POR PARAMETROS CON REQUEST
   $datenow=$request->datenow;
   $iduser=auth()->user()->id;
@@ -114,18 +129,16 @@ class SendbudgetsController extends Controller
 
 
 // Email to users
-$email = [
-    "argenis692@gmail.com",
-    "josegonzalezcr2794@gmail.com"
-];
 
   $pdf = PDF::loadView('sendbudgets.pdf', ['monthbudget' => $monthbudget,
   'sum' => $sum, 'sum2' => $sum2, 'user' => $user ]);
         
   $fileName = 'budget'.'-'.$user->name .'-'.$user->lastname. '-'.$datenow. '.' . 'pdf' ;
- 
-  foreach ($email as $email) { // sending mail to users.
+  
+  // sending mail to users.
+  $email=$request->email; //variable con emails array seleccionados
   // Send Email
+
   Mail::send('sendbudgets.pdf', ['monthbudget' => $monthbudget,
   'sum' => $sum, 'sum2' => $sum2, 'user' => $user ],
    function($message)use($monthbudget, $pdf,$fileName,$email ) {
@@ -133,7 +146,7 @@ $email = [
               ->subject('Web App - '.$fileName)
               ->attachData($pdf->output(), $fileName);
   });
-} // end sending mail to users.
+// end sending mail to users.
 
         
         return redirect()->route('sendbudgets.index')

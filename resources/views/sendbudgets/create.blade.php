@@ -99,7 +99,7 @@ Create New SendBudget
                                
                                 <label class=" block text-md font-bold text-gray-700
                                 mb-3" for="title">select registered emails</label>
-                                <select id="modal-example" name="email" multiple>
+                                <select id="modal-example" name="email[]" multiple>
                                     @foreach ($emails as $emails =>$value)
                                     <option value="{{ $value->email }}">{{ $value->email }}</option>
                                     @endforeach
