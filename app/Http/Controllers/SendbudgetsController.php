@@ -25,7 +25,8 @@ class SendbudgetsController extends Controller
         ->join('budgets', 'budgets.id', '=', 'sendbudgets.idbudget')
         ->join('users', 'users.id', '=', 'sendbudgets.iduser')
         ->where('users.id', $iduser)//<-- $var query
-        ->select( 'sendbudgets.*', 'budgets.amount','budgets.totalbudget','budgets.dollarchange')
+        ->select( 'sendbudgets.*', 
+        'budgets.amount','budgets.totalbudget','budgets.dollarchange')
        
        ->get();
 
