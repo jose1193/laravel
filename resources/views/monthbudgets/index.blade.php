@@ -46,7 +46,8 @@ MonthBudgets CRUD
             text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2
              dark:bg-primary-600 dark:hover:bg-primary-700 
              focus:outline-none dark:focus:ring-primary-800 text-white capitalize">
-             <svg xmlns="http://www.w3.org/2000/svg"   class="w-6 h-6 inline-block  " stroke="currentColor" viewBox="0 0 384 512" viewBox="0 0 512 512">
+             <svg xmlns="http://www.w3.org/2000/svg"   class="w-6 h-6 inline-block  "
+              stroke="currentColor" viewBox="0 0 384 512" fill="white" viewBox="0 0 512 512">
               <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License -
                  https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
                  <path d="M32 32c17.7 0 32 14.3 32 32V400c0 8.8 7.2 16 16 16H480c17.7 0 32 14.3 32
@@ -68,7 +69,7 @@ MonthBudgets CRUD
            text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2
             dark:bg-primary-600 dark:hover:bg-primary-700 
             focus:outline-none dark:focus:ring-primary-800 text-white">
-            <svg xmlns="http://www.w3.org/2000/svg" style="color:#ffff;"
+            <svg xmlns="http://www.w3.org/2000/svg" fill="white"
             class="w-6 h-6 inline-block  " stroke="currentColor" viewBox="0 0 384 512">
             <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License
                - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc.
