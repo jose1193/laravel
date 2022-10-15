@@ -87,14 +87,16 @@ Budgets CRUD
                                 {{ ++$i }}
                               </td>
                               <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                {{ $budget->amount }}
+                                {{ number_format($budget->amount, 2, ',', ' ')  }}
+                              
                               </td>
                               <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
                                 {{ $budget->dollarchange }}
                               </td>
 
                               <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                {{ $budget->totalbudget }}
+                                {{ number_format($budget->totalbudget, 2, ',', ' ')  }}
+                               
                               </td>
                               <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
                                 {{ $budget->date }}

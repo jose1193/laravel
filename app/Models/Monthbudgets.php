@@ -13,7 +13,13 @@ class Monthbudgets extends Model
      *
      * @var array
     */
-    public $fillable = [
+    protected $fillable = [
         'unitquantity', 'price', 'total', 'dollar', 'date', 'idbudget','description',
     ];
+
+    public function Mbudgets()
+    {
+        return $this->belongsTo('App\Models\Budgets');
+
+    }
 }

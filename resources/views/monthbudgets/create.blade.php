@@ -101,7 +101,7 @@ Create Data
                                    Dollar Rate</label>
                                     
 
-                                <input type="text" placeholder="Dollar"
+                                <input type="num" placeholder="Dollar"
                                 class="  w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
                                 name="dollar"  value=" {{$dataArray2['blue']['value_sell']}}"  readonly maxlength="100"
@@ -110,10 +110,10 @@ Create Data
                             <div>
                                 <label class="block text-md font-bold
                                  text-gray-700" for="title">Total  </label>
-                                <input type="text" placeholder="Total"
+                                <input type="num" placeholder="Total"
                                 class="  w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                name="total" jAutoCalc="{unitquantity} * {price} * {dollar}" readonly maxlength="100"
+                                name="total" jAutoCalc="{unitquantity} * {price} *  {{$dataArray2['blue']['value_sell']}}" readonly maxlength="100"
                                  >
                             </div>
 

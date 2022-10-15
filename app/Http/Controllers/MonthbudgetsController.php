@@ -127,7 +127,16 @@ class MonthbudgetsController extends Controller
             'description' => 'required|max:30|min:3',
         ]);
       
-        Monthbudgets::create($request->all());
+        Monthbudgets::create(
+            [
+                'unitquantity' => $request->unitquantity,
+                'price' => $request->price,
+                'total' => Str::replace(',', '', $request->total),
+                'dollar' => $request->dollar,
+                'date' => $request->date,
+                'idbudget' => $request->idbudget,
+                'description' => $request->description,
+              ]);
        
         return redirect()->route('monthbudgets.index',['id' => $request->idbudget]) //VARIABLE CONSULTA POR PARAMETROS CON REQUEST
                         ->with('success','Data created successfully.');
@@ -178,7 +187,15 @@ class MonthbudgetsController extends Controller
             'description' => 'required|max:30|min:3',
         ]);
       
-        $monthbudget->update($request->all());
+        $monthbudget->update( [
+            'unitquantity' => $request->unitquantity,
+            'price' => $request->price,
+            'total' => Str::replace(',', '', $request->total),
+            'dollar' => $request->dollar,
+            'date' => $request->date,
+            'idbudget' => $request->idbudget,
+            'description' => $request->description,
+          ]);
       
         return redirect()->route('monthbudgets.index',['id' => $request->idbudget]) //VARIABLE CONSULTA POR PARAMETROS CON REQUEST
                         ->with('success','Data updated successfully');

@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Budgets;
-
+use App\Models\Monthbudgets;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use DB;
 use DataTables;// import DATATABLES
+use Illuminate\Support\Str;
 
 class BudgetsController extends Controller
 {
@@ -73,7 +74,16 @@ class BudgetsController extends Controller
             
         ]);
       
-        Budgets::create($request->all());
+        Budgets::create( [
+            'amount' => $request->amount,
+            'dollarchange' => $request->dollarchange,
+            'totalbudget' => Str::replace(',', '', $request->totalbudget),
+            'dollar' => $request->dollar,
+            'date' => $request->date,
+            'iduser' => $request->iduser,
+            'year' => $request->year,
+            'month' => $request->month,
+          ]);
        
         return redirect()->route('budgets.index')
                         ->with('success','Budget created successfully.');
@@ -118,7 +128,14 @@ class BudgetsController extends Controller
            
         ]);
       
-        $budget->update($request->all());
+        $budget->update([
+            'amount' => $request->amount,
+            'dollarchange' => $request->dollarchange,
+            'totalbudget' => Str::replace(',', '', $request->totalbudget),
+            'dollar' => $request->dollar,
+            'date' => $request->date,
+           
+          ]);
       
         return redirect()->route('budgets.index')
                         ->with('success','Budget updated successfully');
@@ -132,7 +149,7 @@ class BudgetsController extends Controller
     public function destroy(Budgets $budget)
     {
         $budget->delete();
-       
+        $monthbudgets = DB::table('monthbudgets')->where('idbudget',  $budget->id)->delete();  
         return redirect()->route('budgets.index')
                         ->with('success','Budget deleted successfully');
     }

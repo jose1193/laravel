@@ -16,4 +16,10 @@ class Budgets extends Model
     public $fillable = [
         'amount', 'dollarchange', 'totalbudget', 'date', 'iduser', 'year','month'
     ];
+
+    public function Bmonthbudgets()
+    {
+return $this->hasMany('App\Models\Monthbudgets');
+
+    }
 }
