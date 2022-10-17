@@ -31,10 +31,12 @@ class MonthbudgetsController extends Controller
        $sum=  DB::table('monthbudgets')->where('idbudget',$id)->select('monthbudgets.*')->sum('price');
              
        $sum2=  DB::table('monthbudgets')->where('idbudget',$id)->select('monthbudgets.*')->sum('total');
+      
+       $totalbudget = Budgets::find($id);
        
         if (count($monthbudget)) { //CONDICION SI LA CONSULTA ES VALIDA O EXISTENTE  
        
-       return view('monthbudgets.index',compact('monthbudget','sum','sum2','id'))
+       return view('monthbudgets.index',compact('monthbudget','sum','sum2','id','totalbudget'))
                     ->with('i', (request()->input('page', 1) - 1) * 5);
 
         } 
@@ -126,20 +128,35 @@ class MonthbudgetsController extends Controller
             'idbudget' => 'required|max:30|min:1',
             'description' => 'required|max:30|min:3',
         ]);
+       
       
-        Monthbudgets::create(
-            [
-                'unitquantity' => $request->unitquantity,
-                'price' => $request->price,
-                'total' => Str::replace(',', '', $request->total),
-                'dollar' => $request->dollar,
-                'date' => $request->date,
-                'idbudget' => $request->idbudget,
-                'description' => $request->description,
-              ]);
+       $budget =  Budgets::find($request->idbudget);
+       $sum2=  DB::table('monthbudgets')->where('idbudget',$request->idbudget)->select('monthbudgets.*')->sum('total');
+      
+       $sumbudget= $sum2+Str::replace(',', '', $request->total);
+       if($sumbudget > $budget->amount){
        
         return redirect()->route('monthbudgets.index',['id' => $request->idbudget]) //VARIABLE CONSULTA POR PARAMETROS CON REQUEST
-                        ->with('success','Data created successfully.');
+        ->with('error','This expense exceeded the total Budget limit.'); 
+                    }
+                    else
+                    {
+
+                        Monthbudgets::create(
+                            [
+                                'unitquantity' => $request->unitquantity,
+                                'price' => $request->price,
+                                'total' => Str::replace(',', '', $request->total),
+                                'dollar' => $request->dollar,
+                                'date' => $request->date,
+                                'idbudget' => $request->idbudget,
+                                'description' => $request->description,
+                              ]);
+                       
+                        return redirect()->route('monthbudgets.index',['id' => $request->idbudget]) //VARIABLE CONSULTA POR PARAMETROS CON REQUEST
+                                        ->with('success','Data created successfully.'); 
+                    }
+                
     }
   
     /**

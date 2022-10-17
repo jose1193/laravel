@@ -142,7 +142,7 @@ $datetime=$date->format('H:i A');
                      <!-- END MAIL FORGET PASSWORD -->  
 
 
-<!--END ERROR  PASSWORD CHANGE AUTH MESSAGE ALPINE JS-->
+<!-- ERROR  PASSWORD CHANGE AUTH MESSAGE ALPINE JS-->
       
 <div x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 6000)"> 
     @if(session()->has('errorchangepassword'))

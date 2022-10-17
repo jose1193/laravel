@@ -84,12 +84,27 @@ MonthBudgets CRUD
                     240c0-8.8 7.2-16 16-16z"/></svg>
             Export to PDF</a>
 
-          <a href="{{ route('monthbudgets.create',['id' => $id]) }}" class="bg-primary-700 hover:bg-primary-800 focus:ring-4
+         
+      </div>
+
+     
+      
+      @if( $sum2>=$totalbudget->amount)
+      
+      <button class="bg-red-500 capitalize text-white font-bold py-2
+       px-4 rounded opacity-50 cursor-not-allowed">
+        total budget completed
+      </button>
+      @else 
+         <a href="{{ route('monthbudgets.create',['id' => $id]) }}" class="bg-primary-700 hover:bg-primary-800 focus:ring-4
           focus:ring-primary-300 font-medium rounded-lg
            text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2
             dark:bg-primary-600 dark:hover:bg-primary-700 
             focus:outline-none dark:focus:ring-primary-800 text-white">+ Create New Data</a>
-      </div>
+      
+         
+      @endif
+     
 
       <div class="flex flex-col mt-10 pb-5 mb-5">
           <div class="flex flex-col">
@@ -157,7 +172,7 @@ MonthBudgets CRUD
                               <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
                                 {{ $monthbudget->date }}
                               </td>
-                             
+                            
                               <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
                                 <form action="{{ route('monthbudgets.destroy',$monthbudget->id) }}" 
                                    id="form-delete"  method="POST">
@@ -169,7 +184,7 @@ MonthBudgets CRUD
                                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                   </a>
-                                  {{$monthbudget->id}}
+                                  
                                   <a href="{{ route('monthbudgets.edit', [$monthbudget->id, 'id' => $id]) }} "
                                      class="text-indigo-600 hover:text-indigo-900 ">
                                       <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
