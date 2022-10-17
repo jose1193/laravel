@@ -51,6 +51,10 @@ use App\Http\Controllers\SendbudgetsController;
 /* IMPORT CLASS CHART JS CONTROLLER CONTROLLER*/
 use App\Http\Controllers\ChartJSController;
 /* IMPORT CLASS CHART JS CONTROLLER CONTROLLER*/
+
+/* IMPORT CLASS FORM USERS CONTROLLER*/
+use App\Http\Controllers\UsersController;
+/* IMPORT CLASS FORM USERS  CONTROLLER*/
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -120,7 +124,7 @@ Route::resource('apisurl', ApisController::class);
 Route::resource('sendbudgets', SendbudgetsController::class);
  /* END ROUTE SENDBUDGETS */
 
- 
+
 /* ROUTE CHART BUDGET */
 Route::resource('chart', ChartJSController::class);
 /* END ROUTE CHART BUDGET */
@@ -148,15 +152,25 @@ Route::get('register', [AuthController::class, 'registration'])->name('register'
 Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post'); 
 Route::get('dashboard', [AuthController::class, 'dashboard']); 
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('users-list', [AuthController::class, 'lists'])->name('list');
+Route::get('new-user', [AuthController::class, 'create'])->name('auth.create'); 
+Route::post('new-user', [AuthController::class, 'store'])->name('auth.store'); 
+Route::post('destroy', [AuthController::class, 'destroy'])->name('auth.destroy'); 
+Route::get('show', [AuthController::class, 'show'])->name('auth.show'); 
+Route::get('edit', [AuthController::class, 'edit'])->name('auth.edit'); 
+Route::post('update', [AuthController::class, 'update'])->name('auth.update'); 
 
-   
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
 Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
+
+
 Route::group(['middleware' => ['auth']], function () { // PROTEGER RUTAS SIN USUARIO NO ESTA AUTENTICADO
     
+   
+       
 Route::get('change-password', [ChangePasswordController::class, 'index']);
 Route::post('change-password', [ChangePasswordController::class, 'changePassword'])->name('change.password');  
 
