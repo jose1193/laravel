@@ -69,8 +69,8 @@ use App\Http\Controllers\HomeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// ROUTE GROUP REDIRECCIONAR SI YA ESTA AUTENTICADO
-Route::group(['middleware' => ['guest']], function () { 
+
+
 
 Route::get('/', HomeController::class)->name('home');
 Route::get('about', [HomeController::class, 'about'])->name('about');
@@ -81,7 +81,7 @@ Route::get('contact', [ContactController::class, 'contactForm'])->name('contact'
 Route::post('contact', [ContactController::class, 'storeContactForm'])->name('contact-form.store');
 /* END ROUTE CONTACT FORM*/
 
-});
+
 // ROUTE GROUP REDIRECCIONAR GUEST PAGES SI YA ESTA AUTENTICADO
 
 // ROUTES USER AUTH PAGES //  GROUP AUTH PROTEGER RUTAS SIN USUARIO NO ESTA AUTENTICADO
