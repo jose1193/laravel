@@ -55,6 +55,10 @@ use App\Http\Controllers\ChartJSController;
 /* IMPORT CLASS FORM USERS CONTROLLER*/
 use App\Http\Controllers\UsersController;
 /* IMPORT CLASS FORM USERS  CONTROLLER*/
+
+/* IMPORT CLASS HOME CONTROLLER*/
+use App\Http\Controllers\HomeController;
+/* IMPORT CLASS  HOME  CONTROLLER*/
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -67,19 +71,14 @@ use App\Http\Controllers\UsersController;
 */
 // ROUTE GROUP REDIRECCIONAR SI YA ESTA AUTENTICADO
 Route::group(['middleware' => ['guest']], function () { 
-Route::get('/', function () {
-    return view('home');
-});
 
-
-Route::get('/about', function () {
-    return view('about');
-});
+Route::get('/', HomeController::class)->name('home');
+Route::get('about', [HomeController::class, 'about'])->name('about');
 
 
 /* ROUTE CONTACT FORM*/
-Route::get('/contact', [ContactController::class, 'contactForm'])->name('contact');
-Route::post('/contact', [ContactController::class, 'storeContactForm'])->name('contact-form.store');
+Route::get('contact', [ContactController::class, 'contactForm'])->name('contact');
+Route::post('contact', [ContactController::class, 'storeContactForm'])->name('contact-form.store');
 /* END ROUTE CONTACT FORM*/
 
 });
