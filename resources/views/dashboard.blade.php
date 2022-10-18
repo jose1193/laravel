@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
        <meta name="csrf-token" content="{{ csrf_token() }}">
+       <meta name="theme-color" content="#3B71CA" />
         <title>Web App - @yield('titulo')</title>
         @vite('resources/css/app.css','resources/js/app.js')
         
@@ -101,25 +102,33 @@ Home
             
            
           </div>
-          <h5 class="text-lg font-bold mb-4">Support 24/7</h5>
+          <h5 class="text-lg font-bold mb-4 capitalize">monthly budget</h5>
           <p class="text-gray-500">
-            Laudantium totam quas cumque pariatur at doloremque hic quos quia eius. Reiciendis
-            optio minus mollitia rerum labore facilis inventore voluptatem ad, quae quia sint.
-            Ullam.
+            Make a financial plan where you determine what the expenses and income are for each month. 
+            A good way to know how much money you have on a monthly basis
           </p>
         </div>
   
         <div class="mb-12 md:mb-0">
           <div class="p-4 bg-primary-700 rounded-lg shadow-lg inline-block mb-6">
             <svg class="w-5 h-5 text-white"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                <!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License -
-                     https://fontawesome.com/license (Commercial License) --><path fill="currentColor" d="M224 512c35.32 0 63.97-28.65 63.97-64H160.03c0 35.35 28.65 64 63.97 64zm215.39-149.71c-19.32-20.76-55.47-51.99-55.47-154.29 0-77.7-54.48-139.9-127.94-155.16V32c0-17.67-14.32-32-31.98-32s-31.98 14.33-31.98 32v20.84C118.56 68.1 64.08 130.3 64.08 208c0 102.3-36.15 133.53-55.47 154.29-6 6.45-8.66 14.16-8.61 21.71.11 16.4 12.98 32 32.1 32h383.8c19.12 0 32-15.6 32.1-32 .05-7.55-2.61-15.27-8.61-21.71z"/></svg>
-
+              <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License -
+                https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. 
+               -->< <path fill="currentColor"  
+               path d="M32 32c17.7 0 32 14.3 32 32V400c0 8.8 7.2 16 16 16H480c17.7
+                0 32 14.3 32 32s-14.3 32-32 32H80c-44.2 0-80-35.8-80-80V64C0 46.3 14.3 
+                32 32 32zM160 224c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32s-32-14.3-32-32V256c0-17.7
+                 14.3-32 32-32zm128-64V320c0 17.7-14.3 32-32 32s-32-14.3-32-32V160c0-17.7 14.3-32 
+                 32-32s32 14.3 32 32zm64 32c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 
+                 32s-32-14.3-32-32V224c0-17.7 14.3-32 32-32zM480 96V320c0 17.7-14.3 32-32
+                  32s-32-14.3-32-32V96c0-17.7 14.3-32 32-32s32 14.3 32 32z"/></svg>
           </div>
-          <h5 class="text-lg font-bold mb-4">Safe and solid</h5>
+          <h5 class="text-lg font-bold mb-4 capitalize">statistics</h5>
           <p class="text-gray-500">
-            Eum nostrum fugit numquam, voluptates veniam neque quibusdam ullam aspernatur odio
-            soluta, quisquam dolore animi mollitia a omnis praesentium, expedita nobis!
+            Downloads and export of statistical graphs for month-to-month comparisons 
+            of your consumption and therefore, determine which expenses you can adjust.
+             They serve as an evaluator of the management of your resources, help you to know your 
+            current financial status and allow you to take control of your economy.
           </p>
         </div>
   
@@ -130,10 +139,10 @@ Home
                     https://fontawesome.com/license (Commercial License) --><path fill="currentColor" d="M176 216h160c8.84 0 16-7.16 16-16v-16c0-8.84-7.16-16-16-16H176c-8.84 0-16 7.16-16 16v16c0 8.84 7.16 16 16 16zm-16 80c0 8.84 7.16 16 16 16h160c8.84 0 16-7.16 16-16v-16c0-8.84-7.16-16-16-16H176c-8.84 0-16 7.16-16 16v16zm96 121.13c-16.42 0-32.84-5.06-46.86-15.19L0 250.86V464c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V250.86L302.86 401.94c-14.02 10.12-30.44 15.19-46.86 15.19zm237.61-254.18c-8.85-6.94-17.24-13.47-29.61-22.81V96c0-26.51-21.49-48-48-48h-77.55c-3.04-2.2-5.87-4.26-9.04-6.56C312.6 29.17 279.2-.35 256 0c-23.2-.35-56.59 29.17-73.41 41.44-3.17 2.3-6 4.36-9.04 6.56H96c-26.51 0-48 21.49-48 48v44.14c-12.37 9.33-20.76 15.87-29.61 22.81A47.995 47.995 0 0 0 0 200.72v10.65l96 69.35V96h320v184.72l96-69.35v-10.65c0-14.74-6.78-28.67-18.39-37.77z"/></svg>
 
           </div>
-          <h5 class="text-lg font-bold mb-4">Extremely fast</h5>
+          <h5 class="text-lg font-bold mb-4 capitalize">send multiple emails</h5>
           <p class="text-gray-500">
-            Enim cupiditate, minus nulla dolor cumque iure eveniet facere ullam beatae hic
-            voluptatibus dolores exercitationem? Facilis debitis aspernatur amet nisi?
+            Send your monthly budget reports to multiple emails or contacts registered in the web application. 
+            fast and secure to multiple mail servers.
           </p>
         </div>
       </div>

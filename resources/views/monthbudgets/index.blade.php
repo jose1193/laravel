@@ -46,18 +46,20 @@ MonthBudgets CRUD
             text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2
              dark:bg-primary-600 dark:hover:bg-primary-700 
              focus:outline-none dark:focus:ring-primary-800 text-white capitalize">
-             <svg xmlns="http://www.w3.org/2000/svg"   class="w-6 h-6 inline-block  "
-              stroke="currentColor" viewBox="0 0 384 512" fill="white" viewBox="0 0 512 512">
-              <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License -
-                 https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                 <path d="M32 32c17.7 0 32 14.3 32 32V400c0 8.8 7.2 16 16 16H480c17.7 0 32 14.3 32
-                  32s-14.3 32-32 32H80c-44.2 0-80-35.8-80-80V64C0 46.3 14.3 32 32 32zm96 96c0-17.7
-                   14.3-32 32-32l192 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-192 0c-17.7 0-32-14.3-32-32zm32
-                    64H288c17.7 0 32 14.3 32 32s-14.3 32-32 32H160c-17.7 0-32-14.3-32-32s14.3-32 32-32zm0 
-                    96H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H160c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/>
-                  </svg>
+             <svg xmlns="http://www.w3.org/2000/svg"   class="w-6 h-6 inline-block text-white "
+              stroke="currentColor" viewBox="0 0 384 512" fill="currentColor"  viewBox="0 0 512 512">
+              <!--! Font Awesome Pro 6.2.0 by 
+                @fontawesome - https://fontawesome.com License - 
+                https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                <path d="M32 32c17.7 0 32 14.3 32 32V400c0 8.8 7.2 16 16 16H480c17.7 0 32 14.3 32 32s-14.3 32-32 
+              32H80c-44.2 0-80-35.8-80-80V64C0 46.3 14.3 32 32 32zM160 224c17.7
+               0 32 14.3 32 32v64c0 17.7-14.3 32-32 32s-32-14.3-32-32V256c0-17.7 
+               14.3-32 32-32zm128-64V320c0 17.7-14.3 32-32 32s-32-14.3-32-32V160c0-17.7
+                14.3-32 32-32s32 14.3 32 32zm64 32c17.7 0 32 14.3 32 32v96c0 17.7-14.3 
+                32-32 32s-32-14.3-32-32V224c0-17.7 14.3-32 32-32zM480 96V320c0 17.7-14.3 
+                32-32 32s-32-14.3-32-32V96c0-17.7 14.3-32 32-32s32 14.3 32 32z"/> </svg>
                      view chart</a>
-
+                   
         @php
          $date = new DateTime("now", new DateTimeZone('America/Argentina/Buenos_Aires') );
          $datenow=$date->format('M-d-Y g:i a');
