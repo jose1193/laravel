@@ -22,8 +22,7 @@ class AuthController extends Controller
      *
      * @return response()
      */
-
-
+    
     public function index()
     {
         return view('auth.login');

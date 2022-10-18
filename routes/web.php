@@ -65,7 +65,8 @@ use App\Http\Controllers\UsersController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// ROUTE GROUP REDIRECCIONAR SI YA ESTA AUTENTICADO
+Route::group(['middleware' => ['guest']], function () { 
 Route::get('/', function () {
     return view('home');
 });
@@ -77,12 +78,15 @@ Route::get('/about', function () {
 
 
 /* ROUTE CONTACT FORM*/
-Route::get('/contact', [App\Http\Controllers\ContactController::class, 'contactForm'])->name('contact');
-Route::post('/contact', [App\Http\Controllers\ContactController::class, 'storeContactForm'])->name('contact-form.store');
+Route::get('/contact', [ContactController::class, 'contactForm'])->name('contact');
+Route::post('/contact', [ContactController::class, 'storeContactForm'])->name('contact-form.store');
 /* END ROUTE CONTACT FORM*/
 
-// ROUTES USER AUTH PAGES
-Route::group(['middleware' => ['auth']], function () { // PROTEGER RUTAS SIN USUARIO NO ESTA AUTENTICADO
+});
+// ROUTE GROUP REDIRECCIONAR GUEST PAGES SI YA ESTA AUTENTICADO
+
+// ROUTES USER AUTH PAGES //  GROUP AUTH PROTEGER RUTAS SIN USUARIO NO ESTA AUTENTICADO
+Route::group(['middleware' => ['auth']], function () { 
     
     Route::get('about-user', function () {
         return view('about-user');
@@ -132,32 +136,33 @@ Route::resource('chart', ChartJSController::class);
 /* ROUTE CHART MONTHBUDGET */
 Route::get('chart-monthbudgets', [ChartJSController::class, 'chartmonthbudgets'])->name('chart.monthbudgets');
 /* END ROUTE CHART MONTHBUDGET */
-    });
-
+   
    
 /* ROUTE ENVIAR VARIABLE POR PARAMETROS BUDGETS A MONTHBUDGETS 
 Route::get('monthbudgets/{id}', function ($id) {
        
     });
  END ROUTE ENVIAR VARIABLE POR PARAMETROS BUDGETS A MONTHBUDGETS */
+});
+
+// // END ROUTES USER AUTH PAGES // END GROUP PROTEGER RUTAS SIN USUARIO NO ESTA AUTENTICADO
 
 
-// END PROTEGER RUTAS SIN USUARIO NO ESTA AUTENTICADO
-// END ROUTES USER AUTH PAGES
 
- /* ----- RUTAS MODULO AUTH*/
-Route::get('login', [AuthController::class, 'index'])->name('login');
+ /* ----- RUTAS MODULO AUTH------------------------*/
+ 
+Route::get('login', [AuthController::class, 'index'])->middleware('guest')->name('login');
 Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post'); 
-Route::get('register', [AuthController::class, 'registration'])->name('register');
+Route::get('register', [AuthController::class, 'registration'])->middleware('guest')->name('register');
 Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post'); 
-Route::get('dashboard', [AuthController::class, 'dashboard']); 
+Route::get('dashboard', [AuthController::class, 'dashboard'])->middleware('auth'); 
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
-Route::get('users-list', [AuthController::class, 'lists'])->name('list');
-Route::get('new-user', [AuthController::class, 'create'])->name('auth.create'); 
+Route::get('users-list', [AuthController::class, 'lists'])->middleware('auth')->name('list');
+Route::get('new-user', [AuthController::class, 'create'])->middleware('auth')->name('auth.create'); 
 Route::post('new-user', [AuthController::class, 'store'])->name('auth.store'); 
 Route::post('destroy', [AuthController::class, 'destroy'])->name('auth.destroy'); 
-Route::get('show', [AuthController::class, 'show'])->name('auth.show'); 
-Route::get('edit', [AuthController::class, 'edit'])->name('auth.edit'); 
+Route::get('show', [AuthController::class, 'show'])->middleware('auth')->name('auth.show'); 
+Route::get('edit', [AuthController::class, 'edit'])->middleware('auth')->name('auth.edit'); 
 Route::post('update', [AuthController::class, 'update'])->name('auth.update'); 
 
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
