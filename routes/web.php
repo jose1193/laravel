@@ -82,16 +82,11 @@ Route::post('contact', [ContactController::class, 'storeContactForm'])->name('co
 /* END ROUTE CONTACT FORM*/
 
 
-// ROUTE GROUP REDIRECCIONAR GUEST PAGES SI YA ESTA AUTENTICADO
+
 
 // ROUTES USER AUTH PAGES //  GROUP AUTH PROTEGER RUTAS SIN USUARIO NO ESTA AUTENTICADO
 Route::group(['middleware' => ['auth']], function () { 
     
-    Route::get('about-user', function () {
-        return view('about-user');
-    });
-
-
 /* ROUTE CRUD EMAILS*/
 Route::resource('emails', EmailsController::class);
 /* END CRUD EMAILS*/
