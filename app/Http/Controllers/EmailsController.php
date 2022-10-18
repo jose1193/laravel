@@ -18,8 +18,8 @@ class EmailsController extends Controller
         $iduser=auth()->user()->id;
         $email =DB::table('emails')
         ->join('users', 'users.id', '=', 'emails.iduser')
-        ->where('users.id', $iduser)//<-- $var query
-       ->select( 'emails.*', 'users.id','users.name')
+        ->where('emails.iduser', $iduser)//<-- $var query
+       ->select( 'emails.*','users.name')
        ->get();
        
       
