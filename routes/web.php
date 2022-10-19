@@ -60,6 +60,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\HomeController;
 /* IMPORT CLASS  PRODUCT COMPANIES  CONTROLLER*/
 use App\Http\Controllers\BusinessesController;
+use App\Http\Controllers\PostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -81,7 +82,7 @@ Route::get('about', [HomeController::class, 'about'])->name('about');
 Route::get('contact', [ContactController::class, 'contactForm'])->name('contact');
 Route::post('contact', [ContactController::class, 'storeContactForm'])->name('contact-form.store');
 /* END ROUTE CONTACT FORM*/
-
+Route::resource('posts', PostController::class);
 
 // ROUTES USER AUTH PAGES //  GROUP AUTH PROTEGER RUTAS SIN USUARIO NO ESTA AUTENTICADO
 Route::group(['middleware' => ['auth']], function () { 
@@ -96,11 +97,11 @@ Route::resource('budgets', BudgetsController::class);
 
 /* ROUTE CRUD BUSINESSES */
 Route::controller(BusinessesController::class)->group(function(){
-Route::get('businesses',  'index')->middleware('auth')->name('businesses.index');
-Route::get('create', 'create')->middleware('auth')->name('businesses.create');
-Route::post('businesses.destroy',  'destroy')->middleware('auth')->name('businesses.destroy'); 
-Route::get('businesses.show', 'show')->middleware('auth')->name('businesses.show'); 
-Route::get('businesses/edit', 'edit')->middleware('auth')->name('businesses.edit'); 
+Route::get('businesses',  'index')->name('businesses.index');
+Route::get('create', 'create')->name('businesses.create');
+Route::post('businesses.destroy',  'destroy')->name('businesses.destroy'); 
+Route::get('businesses.show', 'show')->name('businesses.show'); 
+Route::get('businesses/edit', 'edit')->name('businesses.edit'); 
 Route::post('businesses.update', 'update')->name('businesses.update'); 
 Route::post('businesses.store', 'store')->name('businesses.store'); 
 });

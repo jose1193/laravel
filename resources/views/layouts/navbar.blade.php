@@ -148,8 +148,8 @@
                         capitalize"> market companies </a>
                       </li>
                       <li>
-                        <a href="/" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white
-                        capitalize">menu 1 </a>
+                        <a href="/posts" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white
+                        capitalize">post </a>
                       </li>
 
                       <li>
