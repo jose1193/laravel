@@ -19,7 +19,7 @@ class ApisController extends Controller
         $apisurl =DB::table('apis')
         ->join('users', 'users.id', '=', 'apis.iduser')
         ->where('users.id', $iduser)//<-- $var query
-       ->select( 'apis.*', 'users.id','users.name')
+       ->select( 'apis.*','users.name')
        ->get();
 
        if (count($apisurl)) { //CONDICION SI LA CONSULTA ES VALIDA O EXISTENTE  
