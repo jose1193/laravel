@@ -94,13 +94,16 @@ Route::resource('emails', EmailsController::class);
 Route::resource('budgets', BudgetsController::class);
 /* END  CRUD BUDGETS*/
 
-Route::get('businesses', [BusinessesController::class, 'index'])->middleware('auth')->name('businesses.index');
-Route::get('create', [BusinessesController::class, 'create'])->middleware('auth')->name('businesses.create');
-Route::post('businesses.destroy', [BusinessesController::class, 'destroy'])->middleware('auth')->name('businesses.destroy'); 
-Route::get('businesses.show', [BusinessesController::class, 'show'])->middleware('auth')->name('businesses.show'); 
-Route::get('businesses/edit', [BusinessesController::class, 'edit'])->middleware('auth')->name('businesses.edit'); 
-Route::post('businesses.update', [BusinessesController::class, 'update'])->name('businesses.update'); 
-Route::post('businesses.store', [BusinessesController::class, 'store'])->name('businesses.store'); 
+/* ROUTE CRUD BUSINESSES */
+Route::controller(BusinessesController::class)->group(function(){
+Route::get('businesses',  'index')->middleware('auth')->name('businesses.index');
+Route::get('create', 'create')->middleware('auth')->name('businesses.create');
+Route::post('businesses.destroy',  'destroy')->middleware('auth')->name('businesses.destroy'); 
+Route::get('businesses.show', 'show')->middleware('auth')->name('businesses.show'); 
+Route::get('businesses/edit', 'edit')->middleware('auth')->name('businesses.edit'); 
+Route::post('businesses.update', 'update')->name('businesses.update'); 
+Route::post('businesses.store', 'store')->name('businesses.store'); 
+});
 
 /* ROUTE CRUD MONTHBUDGETS*/
 Route::resource('monthbudgets', MonthbudgetsController::class);
