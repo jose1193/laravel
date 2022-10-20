@@ -153,8 +153,8 @@
                       </li>
 
                       <li>
-                        <a href="/" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white
-                        capitalize">menu 2 </a>
+                        <a href="/monthlyfood" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white
+                        capitalize">Market Budget </a>
                       </li>
                      
                     </ul>

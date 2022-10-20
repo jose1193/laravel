@@ -61,6 +61,7 @@ use App\Http\Controllers\HomeController;
 /* IMPORT CLASS  PRODUCT COMPANIES  CONTROLLER*/
 use App\Http\Controllers\BusinessesController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\MonthlyfoodsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -86,7 +87,9 @@ Route::resource('posts', PostController::class);
 
 // ROUTES USER AUTH PAGES //  GROUP AUTH PROTEGER RUTAS SIN USUARIO NO ESTA AUTENTICADO
 Route::group(['middleware' => ['auth']], function () { 
-    
+
+    Route::resource('monthlyfood', MonthlyfoodsController::class);
+
 /* ROUTE CRUD EMAILS*/
 Route::resource('emails', EmailsController::class);
 /* END CRUD EMAILS*/

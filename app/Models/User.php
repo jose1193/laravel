@@ -50,4 +50,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Businesses::class);
     }
+
+    public function monthlyfood()
+    {
+        return $this->hasMany(Monthlyfoods::class);
+    }
 }
