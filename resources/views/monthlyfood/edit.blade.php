@@ -2,7 +2,7 @@
 
     
 @section('titulo')
-Edit Budget
+Edit Budget Market
 @endsection
 
 @section('container')
@@ -76,7 +76,14 @@ Edit Budget
                                   name="amount" required maxlength="50" >
                             </div>
 
-                           
+                            <div >
+                                <label class="block text-md font-bold text-gray-700" for="title">Dollar Rate</label>
+                                <input type="text" placeholder="Dollar Rate"
+                                class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
+                                focus:outline-none focus:ring-1 focus:ring-blue-600" 
+                                id="amount" value="{{ $monthlyfood->dollar_rate }}"
+                                 name="dollar_rate" readonly required maxlength="50" >
+                            </div>
 
                              <div>
                                 <label class="block text-md font-bold text-gray-700" for="title">Date</label>
@@ -85,6 +92,16 @@ Edit Budget
                                 focus:outline-none focus:ring-1 mb-5 focus:ring-blue-600" 
                                 id="date" value="{{ $monthlyfood->date }}" name="date" required maxlength="20"
                                  readonly >
+                            </div>
+
+                            <div>
+                                <label class="block text-md font-bold text-gray-700" for="title">Total Market </label>
+                                <input type="text" placeholder="Total" readonly
+                                class=" w-full px-4 py-2 mt-2 mb-5 border rounded-md 
+                                focus:outline-none focus:ring-1 focus:ring-blue-600" 
+                                id="totalbudget" jAutoCalc="{amount} * {dollar_rate}" value="{{ $monthlyfood->total_market }}"
+                                 name="total_market" required
+                                 maxlength="50" >
                             </div>
 
                             <div class="flex items-center justify-start mt-4 gap-x-2 my-10">

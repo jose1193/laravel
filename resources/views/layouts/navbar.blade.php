@@ -124,7 +124,7 @@
                         </li>
                         <li>
                           <a href="/sendbudgets" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white
-                          capitalize">send monthly budget </a>
+                          capitalize">send year budget </a>
                         </li>
   
                         <li>
@@ -148,14 +148,22 @@
                         capitalize"> market companies </a>
                       </li>
                       <li>
+                        <a href="/monthlyfood" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white
+                        capitalize">Market Budget </a>
+                      </li>
+                      <a href="/chart-market" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white
+                          capitalize">chart </a></li>
+
+                          <li>
+                            <a href="/sendmarket" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white
+                            capitalize">send year budget </a>
+                          </li>
+                      <li>
                         <a href="/posts" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white
                         capitalize">post </a>
                       </li>
 
-                      <li>
-                        <a href="/monthlyfood" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white
-                        capitalize">Market Budget </a>
-                      </li>
+                     
                      
                     </ul>
                    

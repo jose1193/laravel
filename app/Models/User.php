@@ -55,4 +55,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Monthlyfoods::class);
     }
+
+    public function sendmarketbudgets()
+    {
+        return $this->hasMany(Sendmarkets::class);
+    }
 }

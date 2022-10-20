@@ -9,12 +9,15 @@ class Monthlyfoods extends Model
 {
     use HasFactory;
     public $fillable = [
-        'amount',  'date', 'month','year','users_id'
+        'amount',  'date', 'month','year','users_id','dollar_rate','total_market'
     ];
 
     public function users()
     {
         return $this->belongsTo(User::class);
     }
-
+    public function budgets()
+    {
+        return $this->belongsTo(Sendmarkets::class);
+    }
 }

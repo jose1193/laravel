@@ -82,7 +82,7 @@ Edit Budget
                                 class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
                                 id="amount" value="{{ $budget->dollarchange }}"
-                                 name="dollarchange" readonly required maxlength="50" >
+                                 name="dollarchange" required maxlength="50" >
                             </div>
 
                             <div>
@@ -90,7 +90,7 @@ Edit Budget
                                 <input type="text" placeholder="Total" readonly
                                 class=" w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" jAutoCalc="{amount} / {dollarchange}"
-                                id="totalbudget"  value="{{ $budget->totalbudget }}" name="totalbudget" required
+                                id="totalbudget" jAutoCalc="{amount} / {dollarchange}" value="{{ $budget->totalbudget }}" name="totalbudget" required
                                  maxlength="50" >
                             </div>
 

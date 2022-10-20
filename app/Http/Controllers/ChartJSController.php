@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Budgets;
 use App\Models\Monthbudgets;
+use App\Models\Monthlyfoods;
 use DB;
 
 class ChartJSController extends Controller
@@ -33,6 +34,7 @@ class ChartJSController extends Controller
     return view('chart.budgets', $data,compact('sum'));
     }
 
+   
     public function chartmonthbudgets(Request $request)
     {
        
@@ -54,6 +56,24 @@ class ChartJSController extends Controller
     return view('chart.monthbudgets', $data,compact('sum','id'));
     }
  
+    public function chartmarket()
+    {
+        $iduser=auth()->user()->id;
+        $sum=  DB::table('monthlyfoods')->where('year',date('Y'))->select('monthlyfoods.*')->sum('total_market');
+        $sum2=  DB::table('monthlyfoods')->where('year',date('Y'))->select('monthlyfoods.*')->sum('amount');
+        $record = Monthlyfoods::where('users_id',$iduser)->get();
+
+
+     $data = [];
+ 
+     foreach($record as $row) {
+        $data['labels'][] = $row->date;
+        $data['data'] []= $row->total_market;
+      }
+ 
+    $data['chart_data'] = json_encode($data);
+    return view('chart.chart-market', $data,compact('sum','sum2'));
+    }
 
 
 }

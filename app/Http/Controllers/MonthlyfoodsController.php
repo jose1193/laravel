@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Http;
 use App\Models\Monthlyfoods;
 use Illuminate\Http\Request;
-
+use DataTables;// import DATATABLES
+use Illuminate\Support\Str;
+use DB;
 class MonthlyfoodsController extends Controller
 {
     /**
@@ -14,14 +16,24 @@ class MonthlyfoodsController extends Controller
      */
     public function index()
     {
-        $monthlyfoods = Monthlyfoods::latest()->get();
+        $iduser=auth()->user()->id;
+        $monthlyfoods =DB::table('monthlyfoods')
+        ->join('users', 'users.id', '=', 'monthlyfoods.users_id')
+        ->where('users.id', $iduser)//<-- $var query
+       ->select( 'monthlyfoods.*')
+       ->get();
+       $sum=  DB::table('monthlyfoods')->where('users_id',$iduser)->select('monthlyfoods.*')->sum('amount');
+             
+       $sum2=  DB::table('monthlyfoods')->where('users_id',$iduser)->select('monthbudgets.*')->sum('total_market');
         if (count($monthlyfoods)) {
-        return view('monthlyfood.index',compact('monthlyfoods'))
+        return view('monthlyfood.index',compact('monthlyfoods','sum','sum2'))
                 ->with('i', (request()->input('page', 1) - 1) * 5);
         }else
         {
 
-            return view('monthlyfood.create');
+            $response2 = Http::get('https://api.bluelytics.com.ar/v2/latest');
+            $dataArray2=$response2->json();
+            return view('monthlyfood.create',compact('dataArray2'));
         }
     }
 
@@ -32,7 +44,9 @@ class MonthlyfoodsController extends Controller
      */
     public function create()
     {
-        return view('monthlyfood.create');
+        $response2 = Http::get('https://api.bluelytics.com.ar/v2/latest');
+        $dataArray2=$response2->json();
+        return view('monthlyfood.create',compact('dataArray2'));
     }
 
 
@@ -46,6 +60,7 @@ class MonthlyfoodsController extends Controller
     {
         $request->validate([
             'amount' => 'required|max:20|min:2',
+            
          'date' => 'required',
             
         ]);
@@ -58,6 +73,8 @@ class MonthlyfoodsController extends Controller
             'year' => $request->year,
             'month' => $request->month,
             'users_id' => auth()->user()->id,
+            'dollar_rate' => $request->dollar_rate,
+            'total_market' => Str::replace(',', '', $request->total_market)
           ]);
        
         return redirect()->route('monthlyfood.index')
@@ -97,11 +114,18 @@ class MonthlyfoodsController extends Controller
     {
         $request->validate([
             'amount' => 'required|max:20|min:2',
-         'date' => 'required',
+         
             
         ]);
       
-        $monthlyfood->update($request->all());
+        $monthlyfood->update([
+            'amount' => $request->amount,
+            
+            
+            'users_id' => auth()->user()->id,
+            'dollar_rate' => $request->dollar_rate,
+            'total_market' => Str::replace(',', '', $request->total_market)
+          ]);
        
       
         return redirect()->route('monthlyfood.index')

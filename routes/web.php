@@ -48,6 +48,9 @@ use App\Http\Controllers\ApisController;
 use App\Http\Controllers\SendbudgetsController;
 /* IMPORT CLASS SENDBUDGETS  CONTROLLER*/
 
+/* IMPORT CLASS SENDBUDGETS CONTROLLER*/
+use App\Http\Controllers\SendmarketsController;
+
 /* IMPORT CLASS CHART JS CONTROLLER CONTROLLER*/
 use App\Http\Controllers\ChartJSController;
 /* IMPORT CLASS CHART JS CONTROLLER CONTROLLER*/
@@ -62,6 +65,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BusinessesController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\MonthlyfoodsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -133,7 +137,8 @@ Route::resource('apisurl', ApisController::class);
 /* ROUTE SENDBUDGETS */
 Route::resource('sendbudgets', SendbudgetsController::class);
  /* END ROUTE SENDBUDGETS */
-
+/* ROUTE SENDMARKETS */
+Route::resource('sendmarket', SendmarketsController::class);
 
 /* ROUTE CHART BUDGET */
 Route::resource('chart', ChartJSController::class);
@@ -142,7 +147,10 @@ Route::resource('chart', ChartJSController::class);
 /* ROUTE CHART MONTHBUDGET */
 Route::get('chart-monthbudgets', [ChartJSController::class, 'chartmonthbudgets'])->name('chart.monthbudgets');
 /* END ROUTE CHART MONTHBUDGET */
-   
+
+/* ROUTE CHART MARKET */
+Route::get('chart-market', [ChartJSController::class, 'chartmarket']);
+
    
 /* ROUTE ENVIAR VARIABLE POR PARAMETROS BUDGETS A MONTHBUDGETS 
 Route::get('monthbudgets/{id}', function ($id) {

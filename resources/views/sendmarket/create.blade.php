@@ -2,7 +2,7 @@
 
     
 @section('titulo')
-Create Budget Market
+Create New Send Monthly Market
 @endsection
 
 @section('container')
@@ -19,8 +19,8 @@ Create Budget Market
       <li>
         <div class="flex items-center">
           <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-          <a href="/monthlyfood" class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white">
-            <a href="/monthlyfood" class="text-blue-600 hover:text-blue-700">@yield('titulo')</a></a>
+          <a href="/sendmarket" class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white">
+            <a href="/sendmarket" class="text-blue-600 hover:text-blue-700">@yield('titulo')</a></a>
         </div>
       </li>
      
@@ -43,7 +43,7 @@ Create Budget Market
                  text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2
                   dark:bg-primary-600 dark:hover:bg-primary-700 
                   focus:outline-none dark:focus:ring-primary-800 text-white"
-                 href="{{ route('monthlyfood.index') }}">< Back</a>
+                 href="{{ route('sendmarket.index') }}">< Back</a>
             </div>
         </div>
 
@@ -62,41 +62,53 @@ Create Budget Market
                         </div>
                     @endif
                     
-                    <div class="w-full px-6 py-4 bg-white rounded shadow-md ring-1 ring-gray-900/10">
+                    <div class="capitalize 
+                    w-full px-6 py-4 bg-white rounded  shadow-md ring-1 ring-gray-900/10">
 
-                        <form action="{{ route('monthlyfood.store') }}" 
+                        <form action="{{ route('sendmarket.store') }}" 
                         id="calculator" method="POST" novalidate autocomplete="off">
                             @csrf
-                            <div >
-                                <label class="block text-md font-bold text-gray-700" for="title">Price in Dollars</label>
-                                <input type="num" placeholder=""
-                                class="w-full px-4 py-2 mt-2 mb-5 border rounded-md 
-                                focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                 name="amount"  required maxlength="120"
-                                 >
-                            </div>
-                            <div>
-                                <label class="block text-md font-bold text-gray-700" for="title">
-                                   Dollar Rate</label>
-                                    
 
-                                <input type="num" placeholder="Dollar"
-                                class="  w-full px-4 py-2 mt-2 mb-5 border rounded-md 
-                                focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                name="dollar_rate"  value=" {{$dataArray2['blue']['value_sell']}}"  readonly maxlength="100"
-                                 >
+                            <div class="mb-5">
+                                <label class=" block text-md font-bold text-gray-700 mb-3" for="title">
+                                    select registered budget</label>
+                               
+                                <select 
+                                 class="bg-gray-50 border border-gray-300
+                                  text-gray-900 text-sm rounded-lg
+                                   focus:ring-blue-500
+                                    focus:border-blue-500 block
+                                     w-full p-2.5 dark:bg-gray-700
+                                      dark:border-gray-600
+                                       dark:placeholder-gray-400
+                                        dark:text-white
+                                         dark:focus:ring-blue-500
+                                          dark:focus:border-blue-500
+                                          capitalize" name="idmonthlymarket">
+                                  <option value="">Choose a budget</option>
+                                  @foreach ($monthlyfoods as $monthlyfoods)
+                                  <option value="{{ $monthlyfoods->id }}">{{ $monthlyfoods->amount }} - {{ $monthlyfoods->date }}</option>
+                                  @endforeach
+                                </select>
+                                
+
+
+                            </div>
+<!-- PLUGIN SELECT MULTIPLE -->
+                            <div class="mb-5 demo-example modal-example" >
+                               
+                                <label class=" block text-md font-bold text-gray-700
+                                mb-3" for="title">select registered emails</label>
+                                <select id="modal-example" name="email[]" multiple>
+                                    @foreach ($emails as $emails =>$value)
+                                    <option value="{{ $value->email }}">{{ $value->email }}</option>
+                                    @endforeach
+                                </select>
+                               <!-- END PLUGIN SELECT MULTIPLE -->
+                              
                             </div>
 
                             <div>
-                                <label class="block text-md font-bold
-                                 text-gray-700" for="title">Total Market </label>
-                                <input type="num" placeholder="Total"
-                                class="  w-full px-4 py-2 mt-2 mb-5 border rounded-md 
-                                focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                name="total_market" jAutoCalc="{amount} * {{$dataArray2['blue']['value_sell']}}" readonly maxlength="100"
-                                 >
-                            </div>
-                             <div>
                                 <label class="block text-md font-bold text-gray-700" for="title">Create Date</label>
                                 
                                 <input type="text" placeholder="Date"
@@ -105,26 +117,24 @@ Create Budget Market
                                 name="date" required maxlength="100"
                                  readonly value="{{ date('M-d-Y') }}">
                             </div>
-                           
+
+                            @php
+                            $date = new DateTime("now", new DateTimeZone('America/Argentina/Buenos_Aires') );
+                            $datenow=$date->format('M-d-Y g:i a');
+                           @endphp
                             <div>
                                
                                 <input type="hidden" placeholder=""
                                 class="  w-full px-4 py-2 mt-2 border rounded-md 
                                 focus:outline-none focus:ring-1 mb-5 focus:ring-blue-600" 
-                                name="user_id" required maxlength="100"
-                                 readonly value="{{ auth()->user()->id }}">
-                               
-                                 <input type="hidden" placeholder="Date"
+                                name="datenow" required maxlength="100"
+                                 readonly value="{{ date('M-d-Y') }}">
+                                 
+                                 <input type="hidden" placeholder=""
                                 class="  w-full px-4 py-2 mt-2 border rounded-md 
                                 focus:outline-none focus:ring-1 mb-5 focus:ring-blue-600" 
-                                name="year" required maxlength="100"
-                                 readonly value="{{ date('Y') }}">
-
-                                 <input type="hidden" placeholder="Date"
-                                 class="  w-full px-4 py-2 mt-2 border rounded-md 
-                                 focus:outline-none focus:ring-1 mb-5 focus:ring-blue-600" 
-                                 name="month" required maxlength="100"
-                                  readonly value="{{ date('M') }}">
+                                name="users_id" required maxlength="100"
+                                 readonly value="{{ auth()->user()->id }}">
                             </div>
 
                             <div class="flex items-center justify-start mt-4 gap-x-2 my-10">
@@ -144,7 +154,10 @@ Create Budget Market
             </div>
         </div>
     </div>
-  
+
+<!-- CSS PLUGIN SELECT MULTIPLE -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/select-input-multiple.css') }}">
+    <!-- END CSS PLUGIN SELECT MULTIPLE -->
 <!-- END CREATE BUDGET CRUD--> 
  
     @endsection
