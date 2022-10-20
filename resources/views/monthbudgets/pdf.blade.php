@@ -43,7 +43,7 @@
            </span></h6>
        
         <table class="table table-borderless  text-center mt-5 
-         text-capitalize font-weight-bold" border="1" style="width:100%" >
+         text-capitalize font-weight-bold" border="1" style="width:100%;text-align: center;" >
             <thead>
                 <tr style="background-color:#1A237E; color:#ffff;" class="text-white">
                    

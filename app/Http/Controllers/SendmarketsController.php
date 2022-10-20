@@ -20,15 +20,9 @@ class SendmarketsController extends Controller
     public function index()
     {
         $iduser=auth()->user()->id;
-        $sendmarkets = DB::table('sendmarkets')
+        $sendmarkets = DB::table('sendmarkets')->where('users_id', $iduser)->get();
         
-        ->join('monthlyfoods', 'monthlyfoods.id', '=', 'sendmarkets.idmonthlymarket')
-        ->join('users', 'users.id', '=', 'sendmarkets.users_id')
-        ->where('users.id', $iduser)//<-- $var query
-        ->select( 'sendmarkets.*', 
-        'monthlyfoods.amount','monthlyfoods.date')
-       
-       ->get();
+        
 
         if (count($sendmarkets)) { //CONDICION SI LA CONSULTA ES VALIDA O EXISTENTE  
         
@@ -83,7 +77,7 @@ class SendmarketsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'idmonthlymarket' => 'required',
+           
             'email' => 'required',
             'date' => 'required',
             'users_id' => 'required',
@@ -93,7 +87,7 @@ class SendmarketsController extends Controller
         foreach ($data['email'] as $index => $dataNumber) {
             Sendmarkets::create([
                
-                'idmonthlymarket' => $data['idmonthlymarket'],
+                
                 'email' => $data['email'][$index],
                 'date' => $data['date'],
                 'users_id' => $data['users_id'],
@@ -105,41 +99,40 @@ class SendmarketsController extends Controller
         }
        
         
-  $id=$request->idmonthlymarket; //CONSULTA RECIBIDA POR PARAMETROS CON REQUEST
+  
   $datenow=$request->datenow;
   $iduser=auth()->user()->id;
   
   // retreive all records from db
-  $sendmarkets =DB::table('sendmarkets')
-  ->join('monthlyfoods', 'monthlyfoods.id', '=', 'sendmarkets.idmonthlymarket')
-  ->where('sendmarkets.idmonthlymarket',$id)//<-- $var query
- ->select( 'sendmarkets.*', 'monthlyfoods.amount','monthlyfoods.date')
+  $monthlyfoods =DB::table('monthlyfoods')
+  ->where('monthlyfoods.users_id',$iduser)//<-- $var query
+ ->select( 'monthlyfoods.*')
  ->get();
  
- $sum=  DB::table('monthlyfoods')->where('id',$id)->select('monthlyfoods.*')->sum('amount');
-       
+ $sum=  DB::table('monthlyfoods')->where('users_id',$iduser)->select('monthlyfoods.*')->sum('amount');
+ $sum2=  DB::table('monthlyfoods')->where('users_id',$iduser)->select('monthlyfoods.*')->sum('total_market');  
 
  
  
  $user = DB::table('users')->where('id', $iduser)->first();
   // share data to view
-  view()->share('sendmarket.pdf',$sendmarkets);
+  view()->share('sendmarket.pdf',$monthlyfoods);
 
 
 // Email to users
 
-  $pdf = PDF::loadView('sendmarket.pdf', ['sendmarkets' => $sendmarkets,
-  'sum' => $sum, 'user' => $user ]);
+  $pdf = PDF::loadView('sendmarket.pdf', ['monthlyfoods' => $monthlyfoods,
+  'sum' => $sum, 'sum2' => $sum2,'user' => $user ]);
         
-  $fileName = 'Monthly-Market'.'-'.$user->name .'-'.$user->lastname. '-'.$datenow. '.' . 'pdf' ;
+  $fileName = 'Total-Year-Market'.'-'.$user->name .'-'.$user->lastname. '-'.$datenow. '.' . 'pdf' ;
   
   // sending mail to users.
   $email=$request->email; //variable con emails array seleccionados
   // Send Email
 
-  Mail::send('sendmarket.pdf', ['sendmarkets' => $sendmarkets,
-  'sum' => $sum,  'user' => $user ],
-   function($message)use($sendmarkets, $pdf,$fileName,$email ) {
+  Mail::send('sendmarket.pdf', ['monthlyfoods' => $monthlyfoods,
+  'sum' => $sum, 'sum2' => $sum2, 'user' => $user ],
+   function($message)use($monthlyfoods, $pdf,$fileName,$email ) {
       $message->to($email,$email)
               ->subject('Web App - '.$fileName)
               ->attachData($pdf->output(), $fileName);

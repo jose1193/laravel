@@ -2,7 +2,7 @@
 
     
 @section('titulo')
-Create New Send Monthly Market
+Submit New Annual Market Record
 @endsection
 
 @section('container')
@@ -27,7 +27,7 @@ Create New Send Monthly Market
     </ol>
   </nav>
 
-  <h1 class="mb-4 my-5 py-5 text-3xl text-center font-extrabold
+  <h1 class="mb-4 my-5 py-5 text-3xl text-center font-extrabold capitalize
   text-gray-900 dark:text-white md:text-4xl lg:text-4xl"><span 
      class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
      @yield('titulo')</span> </h1>
@@ -69,7 +69,7 @@ Create New Send Monthly Market
                         id="calculator" method="POST" novalidate autocomplete="off">
                             @csrf
 
-                            <div class="mb-5">
+                            <!-- <div class="mb-5">
                                 <label class=" block text-md font-bold text-gray-700 mb-3" for="title">
                                     select registered budget</label>
                                
@@ -93,7 +93,7 @@ Create New Send Monthly Market
                                 
 
 
-                            </div>
+                            </div> -->
 <!-- PLUGIN SELECT MULTIPLE -->
                             <div class="mb-5 demo-example modal-example" >
                                

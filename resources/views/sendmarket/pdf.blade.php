@@ -29,12 +29,12 @@
 <body class="bg">
     <br>
     <div class="container-fluid mt-5 mx-auto">
-        <h5 class=" font-weight-bold" style="font-size:21px;">MONTHLY BUDGET MARKET PDF Report</h5>
+        <h5 class=" font-weight-bold" style="font-size:21px;">YEAR BUDGET MARKET PDF Report</h5>
         <h6 class=" text-capitalize font-weight-bold" style="font-size:16px;
         text-transform: capitalize;">User: <span style="color:#01579B;">
             {{$user->name }}  {{$user->lastname }}
         </span></h6>
-        <h6 class=" font-weight-bold" style="font-size:16px;">Budget Market Date: <span style="color:#01579B;">
+        <h6 class=" font-weight-bold" style="font-size:16px;"> Date: <span style="color:#01579B;">
             
             @php
          
@@ -43,31 +43,30 @@
            </span></h6>
        
         <table class="table table-borderless  text-center mt-5 
-         text-capitalize font-weight-bold" border="1" style="width:100%" >
+         text-capitalize font-weight-bold" border="1" style="width:100%;text-align: center;" >
             <thead>
                 <tr style="background-color:#1A237E; color:#ffff;" class="text-white">
                    
-                    <th>Amount</th>
+                    <th>Budget $</th>
+                    <th>Dollar Rate</th>
+                    <th>total local currency  </th>
                     <th> Date</th>
-                    <th> month</th>
                     
-                    <th>  year </th>
+                    
+                    
                     
                    
                 </tr>
             </thead>
             <tbody style="font-weight:bold;">
-                @forelse ($sendmarkets as $sendmarket)
+                @forelse ($monthlyfoods as $sendmarket)
                 <tr>
                     
                     <td>  {{ $sendmarket->amount }}</td>
+                    <td> {{ $sendmarket->dollar_rate }}</td>
+                    <td>  {{ $sendmarket->total_market }}</td>
                     <td>  {{ $sendmarket->date }}</td>
-                   
-                    <td> {{ $sendmarket->month }}</td>
-                    <td>  {{ $sendmarket->year }}</td>
-                 
-                   
-                   
+                
                 </tr>
                 @empty
 
@@ -80,12 +79,13 @@
             <tbody>
                
                 <tr>
+                    <td>Total Year In Dollars:<span style="color:#1A237E;"> 
+                        $ {{ number_format($sum, 2, ',', ' ') }}
+                    </span></td>
                     <td>total market local currency:  <span style="color:#1A237E;"> 
                         ${{ number_format($sum2, 2, ',', ' ') }} </span></td>
 
-                    <td>Remaining Salary Local Currency:<span style="color:#1A237E;"> 
-                        $ {{ number_format($sendmarket->amount-$sum2, 2, ',', ' ') }}
-                    </span></td>
+                   
                 </tr>
                
             </tbody>

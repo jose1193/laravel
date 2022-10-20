@@ -62,7 +62,7 @@ Data CRUD
                                 Nro
                               </th>
                               <th scope="col" class="text-sm font-medium uppercase text-white px-6 py-4">
-                                Budget
+                               Email
                               </th>
                              
                               
@@ -83,7 +83,7 @@ Data CRUD
                                 {{ ++$i }}
                               </td>
                               <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                {{ $sendmarket->amount }}
+                                {{ $sendmarket->email }}
                               </td>
                              
                               <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">

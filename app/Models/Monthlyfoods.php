@@ -16,8 +16,5 @@ class Monthlyfoods extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function budgets()
-    {
-        return $this->belongsTo(Sendmarkets::class);
-    }
+   
 }
