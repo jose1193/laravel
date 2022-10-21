@@ -16,10 +16,27 @@ class ChartJSController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    public function selectchartbudget()
     {
-        $iduser=auth()->user()->id;
-        $sum=  DB::table('budgets')->where('year',date('Y'))->select('budgets.*')->sum('amount');
+      $iduser=auth()->user()->id;
+      $budgets = DB::table('budgets')
+      ->join('users', 'users.id', '=', 'budgets.iduser')
+      ->where('users.id', $iduser)//<-- $var query
+                  ->selectRaw('count(budgets.year) as groupyear, year')
+                  ->groupBy('year')
+                  ->get();
+                
+     
+        return view('chart.select-chart-budget',compact('budgets'));
+    }
+
+    public function budgetchart(Request $request)
+    {
+      $iduser=auth()->user()->id;
+      $year=$request->year;
+       
+        $sum=  DB::table('budgets')->where('year',$year)->select('budgets.*')->sum('amount');
  $record = Budgets::where('iduser',$iduser)->get();
 
 
@@ -56,11 +73,28 @@ class ChartJSController extends Controller
     return view('chart.monthbudgets', $data,compact('sum','id'));
     }
  
-    public function chartmarket()
+
+
+    public function selectchartmarket()
+    {
+      $iduser=auth()->user()->id;
+      $monthlyfoods = DB::table('monthlyfoods')
+      ->join('users', 'users.id', '=', 'monthlyfoods.users_id')
+      ->where('users.id', $iduser)//<-- $var query
+                  ->selectRaw('count(monthlyfoods.year) as groupyear, year')
+                  ->groupBy('year')
+                  ->get();
+                
+     
+        return view('chart.select-chart-market',compact('monthlyfoods'));
+    }
+
+    public function chartmarket(Request $request)
     {
         $iduser=auth()->user()->id;
-        $sum=  DB::table('monthlyfoods')->where('year',date('Y'))->select('monthlyfoods.*')->sum('total_market');
-        $sum2=  DB::table('monthlyfoods')->where('year',date('Y'))->select('monthlyfoods.*')->sum('amount');
+        $year=$request->year;
+        $sum=  DB::table('monthlyfoods')->where('year',$year)->select('monthlyfoods.*')->sum('total_market');
+        $sum2=  DB::table('monthlyfoods')->where('year',$year)->select('monthlyfoods.*')->sum('amount');
         $record = Monthlyfoods::where('users_id',$iduser)->get();
 
 

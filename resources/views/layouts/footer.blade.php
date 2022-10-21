@@ -4,7 +4,7 @@
 
 
 
-<footer class="bg-blue-700 text-center lg:text-left">
+<footer class="bg-blue-700 text-center lg:text-left mt-5">
     <div class="text-white text-center p-4" style="background-color: rgba(0, 0, 0, 0.2);">
       © {{ date('Y') }}
       Copyright - 

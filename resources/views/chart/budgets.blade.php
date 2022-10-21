@@ -42,7 +42,7 @@ Chart
  
 
 
-<!-- END INDEX SHOW CHART BUDGETS --> 
+<!-- END INDEX SHOW CHART  --> 
  
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -63,7 +63,7 @@ Chart
       };
   
       const config = {
-        type: 'line',
+        type: 'bar',
         data: data,
         options: {}
       };

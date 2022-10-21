@@ -141,7 +141,8 @@ Route::resource('sendbudgets', SendbudgetsController::class);
 Route::resource('sendmarket', SendmarketsController::class);
 
 /* ROUTE CHART BUDGET */
-Route::resource('chart', ChartJSController::class);
+Route::get('chart', [ChartJSController::class, 'selectchartbudget'])->name('chart');
+Route::post('chart-budgets', [ChartJSController::class, 'budgetchart'])->name('chart.budgetchart'); 
 /* END ROUTE CHART BUDGET */
 
 /* ROUTE CHART MONTHBUDGET */
@@ -149,8 +150,10 @@ Route::get('chart-monthbudgets', [ChartJSController::class, 'chartmonthbudgets']
 /* END ROUTE CHART MONTHBUDGET */
 
 /* ROUTE CHART MARKET */
-Route::get('chart-market', [ChartJSController::class, 'chartmarket']);
 
+/* END  CRUD BUDGETS*/
+Route::get('select-chart-market', [ChartJSController::class, 'selectchartmarket'])->name('select-chart-market');
+Route::post('chart-market', [ChartJSController::class, 'chartmarket'])->name('chart.chartmarket'); 
    
 /* ROUTE ENVIAR VARIABLE POR PARAMETROS BUDGETS A MONTHBUDGETS 
 Route::get('monthbudgets/{id}', function ($id) {
