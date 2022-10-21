@@ -19,16 +19,17 @@ class SendbudgetsController extends Controller
      */
     public function index()
     {
-        $iduser=auth()->user()->id;
-        $sendbudgets = DB::table('sendbudgets')
-        
+       $iduser=auth()->user()->id;
+         $sendbudgets = DB::table('sendbudgets')
         ->join('budgets', 'budgets.id', '=', 'sendbudgets.idbudget')
         ->join('users', 'users.id', '=', 'sendbudgets.iduser')
-        ->where('users.id', $iduser)//<-- $var query
-        ->select( 'sendbudgets.*', 
-        'budgets.amount','budgets.totalbudget','budgets.dollarchange')
-       
-       ->get();
+        ->where('users.id', $iduser )//<-- $var query
+        ->select('sendbudgets.date','budgets.*'
+        ,DB::raw('COUNT(*) AS total'))
+        ->groupBy('sendbudgets.idbudget','sendbudgets.date')
+        ->get();
+                
+             
 
         if (count($sendbudgets)) { //CONDICION SI LA CONSULTA ES VALIDA O EXISTENTE  
         

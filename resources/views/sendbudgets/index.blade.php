@@ -65,6 +65,9 @@ Sendbudgets CRUD
                                 Budget
                               </th>
                               <th scope="col" class="text-sm font-medium uppercase text-white px-6 py-4">
+                                Budget Date
+                              </th>
+                              <th scope="col" class="text-sm font-medium uppercase text-white px-6 py-4">
                                 Dolar Rate
                               </th>
                                <th scope="col" class="text-sm font-medium uppercase text-white px-6 py-4">
@@ -88,6 +91,10 @@ Sendbudgets CRUD
                               </td>
                               <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
                                 {{ $sendbudgets->amount }}
+                              </td>
+
+                              <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
+                                {{ $sendbudgets->month.'-'.$sendbudgets->year }}
                               </td>
                               <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
                                 {{ $sendbudgets->dollarchange }}

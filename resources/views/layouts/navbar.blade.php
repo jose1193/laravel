@@ -124,7 +124,7 @@
                         </li>
                         <li>
                           <a href="/sendbudgets" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white
-                          capitalize">send year budget </a>
+                          capitalize">send budget </a>
                         </li>
   
                         <li>

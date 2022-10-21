@@ -166,7 +166,7 @@ Route::get('monthbudgets/{id}', function ($id) {
 
 
 
- /* ----- RUTAS MODULO AUTH------------------------*/
+ /* ---------------------------------- RUTAS MODULO AUTH------------------------*/
  
 Route::get('login', [AuthController::class, 'index'])->middleware('guest')->name('login');
 Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post'); 
@@ -186,21 +186,14 @@ Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPassw
 Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
-
-
-
-Route::group(['middleware' => ['auth']], function () { // PROTEGER RUTAS SIN USUARIO NO ESTA AUTENTICADO
-    
-   
        
-Route::get('change-password', [ChangePasswordController::class, 'index']);
-Route::post('change-password', [ChangePasswordController::class, 'changePassword'])->name('change.password');  
+Route::get('change-password', [ChangePasswordController::class, 'index'])->middleware('auth');
+Route::post('change-password', [ChangePasswordController::class, 'changePassword'])->middleware('auth')->name('change.password');
 
-});// END PROTEGER RUTAS SIN USUARIO NO ESTA AUTENTICADO
 
 /* ROUTE USER VERIFY*/
 Route::get('dashboard', [AuthController::class, 'dashboard'])->middleware(['auth', 'is_verify_email']); 
 Route::get('account/verify/{token}', [AuthController::class, 'verifyAccount'])->name('user.verify'); 
 /* FIN ROUTE USER VERIFY*/
 
-/* ------- END RUTAS MODULO AUTH*/
+/* ------------------------------------------------- END RUTAS MODULO AUTH-----------------------*/
