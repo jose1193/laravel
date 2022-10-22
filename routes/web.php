@@ -65,7 +65,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BusinessesController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\MonthlyfoodsController;
-
+use App\Http\Controllers\BuyfoodsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -76,7 +76,7 @@ use App\Http\Controllers\MonthlyfoodsController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-/* ---------------------------------- END PREVENT BROWSER BACK BUTTON AUTH-----------------------*/
+/* ---------------------------------- PREVENT BROWSER BACK BUTTON AUTH-----------------------*/
 Route::group(['middleware' => 'prevent-back-history'],function(){
 
 Route::get('/', HomeController::class)->name('home');
@@ -91,7 +91,10 @@ Route::resource('posts', PostController::class);
 
 // ROUTES USER AUTH PAGES //  GROUP AUTH PROTEGER RUTAS SIN USUARIO NO ESTA AUTENTICADO
 Route::group(['middleware' => ['auth']], function () { 
-    
+   
+Route::resource('foods', BuyfoodsController::class);
+Route::get('foods-pdf', [BuyfoodsController::class, 'downloadPdf'])->name('foods-pdf');
+
     Route::resource('monthlyfood', MonthlyfoodsController::class);
 
 /* ROUTE CRUD EMAILS*/
@@ -148,7 +151,7 @@ Route::post('chart-budgets', [ChartJSController::class, 'budgetchart'])->name('c
 /* ROUTE CHART MONTHBUDGET */
 Route::get('chart-monthbudgets', [ChartJSController::class, 'chartmonthbudgets'])->name('chart.monthbudgets');
 /* END ROUTE CHART MONTHBUDGET */
-
+Route::get('chart-foods', [ChartJSController::class, 'chartfoods'])->name('chart.foods');
 /* ROUTE CHART MARKET */
 
 /* END  CRUD BUDGETS*/

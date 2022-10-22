@@ -16,5 +16,11 @@ class Monthlyfoods extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function Bmonthbudgetfoods()
+    {
+return $this->hasMany('App\Models\Buyfoods');
+
+    }
    
 }

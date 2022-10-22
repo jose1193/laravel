@@ -6,6 +6,8 @@
        <meta name="csrf-token" content="{{ csrf_token() }}">
        <meta name="theme-color" content="#3B71CA" />
         <title>Web App - @yield('titulo')</title>
+        <link rel="icon" href="{{  asset('img/favicon/favicon.ico')  }}">
+     
         @vite('resources/css/app.css','resources/js/app.js')
         
     <!-- SWEET ALERT AND ALPINE JS-->        

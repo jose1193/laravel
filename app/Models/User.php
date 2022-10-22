@@ -56,6 +56,12 @@ class User extends Authenticatable
         return $this->hasMany(Monthlyfoods::class);
     }
 
+    public function usbuyfoods()
+    {
+return $this->hasMany('App\Models\Buyfoods');
+
+    }
+
     public function sendmarketbudgets()
     {
         return $this->hasMany(Sendmarkets::class);

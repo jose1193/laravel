@@ -2,7 +2,7 @@
 
     
 @section('titulo')
-Market CRUD
+Buy Foods CRUD
 @endsection
 
 @section('container')
@@ -19,8 +19,8 @@ Market CRUD
       <li>
         <div class="flex items-center">
           <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-          <a href="/monthlyfood" class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white">
-            <a href="/monthlyfood" class="text-blue-600 hover:text-blue-700">@yield('titulo')</a></a>
+          <a href="{{ route('foods.index',['id' => $id]) }}" class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white">
+            <a href="{{ route('foods.index',['id' => $id]) }}" class="text-blue-600 hover:text-blue-700">@yield('titulo')</a></a>
         </div>
       </li>
      
@@ -36,15 +36,77 @@ Market CRUD
     <div class="max-w-4xl mx-auto mt-8 my-5 pb-5 py-5">
 
  
-   
+     
 
       <div class="flex justify-end mt-10">
-          <a href="{{ route('monthlyfood.create') }}" class="bg-primary-700 hover:bg-primary-800 focus:ring-4
+
+        <a href="{{ route('chart.foods',['id' => $id]) }}" 
+          target="_blank" class="bg-primary-700 hover:bg-primary-800 focus:ring-4
+           focus:ring-primary-300 font-medium rounded-lg
+            text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2
+             dark:bg-primary-600 dark:hover:bg-primary-700 
+             focus:outline-none dark:focus:ring-primary-800 text-white capitalize">
+             <svg xmlns="http://www.w3.org/2000/svg"   class="w-6 h-6 inline-block text-white "
+              stroke="currentColor" viewBox="0 0 384 512" fill="currentColor"  viewBox="0 0 512 512">
+              <!--! Font Awesome Pro 6.2.0 by 
+                @fontawesome - https://fontawesome.com License - 
+                https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                <path d="M32 32c17.7 0 32 14.3 32 32V400c0 8.8 7.2 16 16 16H480c17.7 0 32 14.3 32 32s-14.3 32-32 
+              32H80c-44.2 0-80-35.8-80-80V64C0 46.3 14.3 32 32 32zM160 224c17.7
+               0 32 14.3 32 32v64c0 17.7-14.3 32-32 32s-32-14.3-32-32V256c0-17.7 
+               14.3-32 32-32zm128-64V320c0 17.7-14.3 32-32 32s-32-14.3-32-32V160c0-17.7
+                14.3-32 32-32s32 14.3 32 32zm64 32c17.7 0 32 14.3 32 32v96c0 17.7-14.3 
+                32-32 32s-32-14.3-32-32V224c0-17.7 14.3-32 32-32zM480 96V320c0 17.7-14.3 
+                32-32 32s-32-14.3-32-32V96c0-17.7 14.3-32 32-32s32 14.3 32 32z"/> </svg>
+                     view chart</a>
+                   
+        @php
+         $date = new DateTime("now", new DateTimeZone('America/Argentina/Buenos_Aires') );
+         $datenow=$date->format('M-d-Y g:i a');
+        @endphp
+        
+        <a href="{{ route('foods-pdf',['id' => $id, 'datenow'=>$datenow, 'iduser'=>auth()->user()->id]) }}" 
+         target="_blank" class="bg-primary-700 hover:bg-primary-800 focus:ring-4
           focus:ring-primary-300 font-medium rounded-lg
            text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2
             dark:bg-primary-600 dark:hover:bg-primary-700 
-            focus:outline-none dark:focus:ring-primary-800 text-white">+ Create New Market Budget</a>
+            focus:outline-none dark:focus:ring-primary-800 text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="white"
+            class="w-6 h-6 inline-block  " stroke="currentColor" viewBox="0 0 384 512">
+            <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License
+               - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc.
+               --><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7
+                64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM64 224H88c30.9 0
+                 56 25.1 56 56s-25.1 56-56 56H80v32c0 8.8-7.2 16-16 16s-16-7.2-16-16V320 240c0-8.8
+                  7.2-16 16-16zm24 80c13.3 0 24-10.7 24-24s-10.7-24-24-24H80v48h8zm72-64c0-8.8 
+                  7.2-16 16-16h24c26.5 0 48 21.5 48 48v64c0 26.5-21.5 48-48 48H176c-8.8
+                   0-16-7.2-16-16V240zm32 112h8c8.8 0 
+                   16-7.2 16-16V272c0-8.8-7.2-16-16-16h-8v96zm96-128h48c8.8 0 16 7.2 16 16s-7.2 16-16 
+                   16H304v32h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H304v48c0 8.8-7.2 16-16 16s-16-7.2-16-16V304
+                    240c0-8.8 7.2-16 16-16z"/></svg>
+            Export to PDF</a>
+
+         
       </div>
+
+     
+      
+      @if( $sum>=$totalbudget->amount)
+      
+      <button class="bg-red-500 capitalize text-white font-bold py-2
+       px-4 rounded opacity-50 cursor-not-allowed">
+        total buy foods completed
+      </button>
+      @else 
+         <a href="{{ route('foods.create',['id' => $id]) }}" class="bg-primary-700 hover:bg-primary-800 focus:ring-4
+          focus:ring-primary-300 font-medium rounded-lg
+           text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2
+            dark:bg-primary-600 dark:hover:bg-primary-700 
+            focus:outline-none dark:focus:ring-primary-800 text-white">+ Create New Data</a>
+      
+         
+      @endif
+     
 
       <div class="flex flex-col mt-10 pb-5 mb-5">
           <div class="flex flex-col">
@@ -62,19 +124,24 @@ Market CRUD
                                 Nro
                               </th>
                               <th scope="col" class="text-sm font-medium uppercase text-white px-6 py-4">
-                                Budget in Dollar
+                           Description
                               </th>
                               <th scope="col" class="text-sm font-medium uppercase text-white px-6 py-4">
-                                Dollar Rate
+                               Qty
+                                   </th>
+                              <th scope="col" class="text-sm font-medium uppercase text-white px-6 py-4">
+                                price in dollar
+                              </th>
+                               <th scope="col" class="text-sm font-medium uppercase text-white px-6 py-4">
+                                Total 
                               </th>
                               <th scope="col" class="text-sm font-medium uppercase text-white px-6 py-4">
-                                Total Expenses Local
+                               Dollar Rate
                               </th>
-                              <th scope="col" class="text-sm font-medium uppercase text-white px-6 py-4">
-                               Date
-                              </th>
-                              
 
+                              <th scope="col" class="text-sm font-medium uppercase text-white px-6 py-4">
+                                Date
+                              </th>
                               <th scope="col" class="text-sm font-medium uppercase text-white px-6 py-4">
                                Action
                               </th>
@@ -82,52 +149,47 @@ Market CRUD
                             </tr>
                           </thead class="border-b">
                           <tbody>
-                            @foreach ($monthlyfoods as $monthlyfood)
+                            @foreach ($buyfoods as $food)
                             <tr class="bg-white border-b">
                               <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"> 
                                 {{ ++$i }}
                               </td>
                               <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                {{ number_format($monthlyfood->amount, 2, ',', ' ')  }}
-                              
+                                {{ $food->description }}
                               </td>
                               <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                {{ $monthlyfood->dollar_rate  }}
-                              
+                                {{ $food->unitquantity }}
                               </td>
                               <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                {{ number_format($monthlyfood->total_market, 2, ',', ' ')  }}
-                              
-                              </td>
-                              <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                {{ $monthlyfood->date }}
+                                {{ $food->price }} 
                               </td>
 
                               <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
-                                <form action="{{ route('monthlyfood.destroy',$monthlyfood->id) }}" id="form-delete" method="POST">
-                      
-                                  <a class="" 
-                                  href="{{ route('foods.index',['id' => $monthlyfood->id]) }}"><!-- ENVIAR RUTA POR PARAMETRO ERL-->
-                                  <svg class="w-6 h-6 inline-block text-indigo-600 hover:text-indigo-900" stroke="currentColor"
-                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Pro 6.2.0 by
-                                       @fontawesome - https://fontawesome.com License 
-                                       - https://fontawesome.com/license (Commercial License)
-                                        Copyright 2022 Fonticons, Inc. -->
-                                        <path d="M312 24V34.5c6.4 1.2 12.6 2.7
-                                         18.2 4.2c12.8 3.4 20.4 16.6 17 29.4s-16.6 
-                                         20.4-29.4 17c-10.9-2.9-21.1-4.9-30.2-5c-7.3-.1-14.7 1.7-19.4 4.4c-2.1 1.3-3.1 2.4-3.5 3c-.3 .5-.7 1.2-.7 2.8c0 .3 0 .5 0 .6c.2 .2 .9 1.2 3.3 2.6c5.8 3.5 14.4 6.2 27.4 10.1l.9 .3 0 0c11.1 3.3 25.9 7.8 37.9 15.3c13.7 8.6 26.1 22.9 26.4 44.9c.3 22.5-11.4 38.9-26.7 48.5c-6.7 4.1-13.9 7-21.3 8.8V232c0 13.3-10.7 24-24 24s-24-10.7-24-24V220.6c-9.5-2.3-18.2-5.3-25.6-7.8c-2.1-.7-4.1-1.4-6-2c-12.6-4.2-19.4-17.8-15.2-30.4s17.8-19.4 30.4-15.2c2.6 .9 5 1.7 7.3 2.5c13.6 4.6 23.4 7.9 33.9 8.3c8 .3 15.1-1.6 19.2-4.1c1.9-1.2 2.8-2.2 3.2-2.9c.4-.6 .9-1.8 .8-4.1l0-.2c0-1 0-2.1-4-4.6c-5.7-3.6-14.3-6.4-27.1-10.3l-1.9-.6c-10.8-3.2-25-7.5-36.4-14.4c-13.5-8.1-26.5-22-26.6-44.1c-.1-22.9 12.9-38.6 27.7-47.4c6.4-3.8 13.3-6.4 20.2-8.2V24c0-13.3 10.7-24 24-24s24 10.7 24 24zM568.2 336.3c13.1 17.8 9.3 42.8-8.5 55.9L433.1 485.5c-23.4 17.2-51.6 26.5-80.7 26.5H192 32c-17.7 0-32-14.3-32-32V416c0-17.7 14.3-32 32-32H68.8l44.9-36c22.7-18.2 50.9-28 80-28H272h16 64c17.7 0 32 14.3 32 32s-14.3 32-32 32H288 272c-8.8 0-16 7.2-16 16s7.2 16 16 16H392.6l119.7-88.2c17.8-13.1 42.8-9.3 55.9 8.5zM193.6 384l0 0-.9 0c.3 0 .6 0 .9 0z"/></svg>
-                                 
-                                    </a>
+                                {{ number_format($food->total, 2, ',', ' ')  }} 
+                              </td>
+                              <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
+                                ${{ $food->dollar }} 
+                               
+                              </td>
+                              <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
+                                {{ $food->date }}
+                              </td>
+                            
+                              <td class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap">
+                                <form action="{{ route('foods.destroy',[$food->id, 'id' => $id]) }}" 
+                                   id="form-delete"  method="POST">
                                   
-
+                                 
                                   <a class="text-indigo-600 hover:text-indigo-900" 
-                                  href="{{ route('monthlyfood.show',$monthlyfood->id) }}">
+                                  href="
+                                  {{ route('foods.show',[$food->id, 'id' => $id]) }}">
                                       <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                   </a>
                                   
-                                  <a href="{{ route('monthlyfood.edit',$monthlyfood->id) }}" class="text-indigo-600 hover:text-indigo-900 ">
+                                  <a href="{{ route('foods.edit', [$food->id, 'id' => $id]) }} "
+                                     class="text-indigo-600 hover:text-indigo-900 ">
                                       <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                       </svg>
@@ -156,26 +218,27 @@ Market CRUD
                     </div>
                   </div>
                 </div>
-
 <!-- Two columns -->
 <div class="flex mb-4 text-lg font-bold mt-5  ">
   <div class=" ml-5 w-1/2  h-full"> 
-    <p class="capitalize  text-red-900 mt-5"><span class="text-purple-700">
-      total Year in dollars: </span>{{ number_format($sum, 2, ',', ' ') }}$</p>
+    <p class=" capitalize  text-green-700 mt-5"><span class="text-purple-700">
+   budget food: </span>{{ number_format($food->amount, 2, ',', ' ') }}$</p>
    
-  
+  <p class="capitalize  text-blue-700 mt-5"><span class="text-purple-700">
+    total dollar monthly expenses: </span>{{ number_format($sum, 2, ',', ' ') }}$</p>
    </div>
   
       <div class="w-1/2  h-full">  
-        <p class=" capitalize  text-blue-700 mt-5"><span class="text-purple-700">
-          total year in local currency: </span>${{ number_format($sum2, 2, ',', ' ') }} 
+   
+      <p class=" capitalize  text-red-900 mt-5"><span class="text-purple-700">
+        remaining food budget: </span>{{ number_format($food->amount-$sum, 2, ',', ' ') }}$</p>
+        <p class=" capitalize  text-red-900 mt-5"><span class="text-purple-700">
+          total expenses local currency: </span>${{ number_format($sum2, 2, ',', ' ') }} 
        </p>
-     
 
         </div>
 </div>
-
-                 
+               
               </div>
           </div>
       </div>
@@ -183,6 +246,6 @@ Market CRUD
  
 
 
-<!-- END INDEX SHOW BUDGETS CRUD--> 
+<!-- END INDEX SHOW MONTHBUDGETS CRUD--> 
 
     @endsection
