@@ -76,8 +76,8 @@ use App\Http\Controllers\MonthlyfoodsController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
+/* ---------------------------------- END PREVENT BROWSER BACK BUTTON AUTH-----------------------*/
+Route::group(['middleware' => 'prevent-back-history'],function(){
 
 Route::get('/', HomeController::class)->name('home');
 Route::get('about', [HomeController::class, 'about'])->name('about');
@@ -91,7 +91,7 @@ Route::resource('posts', PostController::class);
 
 // ROUTES USER AUTH PAGES //  GROUP AUTH PROTEGER RUTAS SIN USUARIO NO ESTA AUTENTICADO
 Route::group(['middleware' => ['auth']], function () { 
-
+    
     Route::resource('monthlyfood', MonthlyfoodsController::class);
 
 /* ROUTE CRUD EMAILS*/
@@ -197,3 +197,4 @@ Route::get('account/verify/{token}', [AuthController::class, 'verifyAccount'])->
 /* FIN ROUTE USER VERIFY*/
 
 /* ------------------------------------------------- END RUTAS MODULO AUTH-----------------------*/
+}); /* ------------------------------------------------- END PREVENT BROWSER BACK BUTTON AUTH-----------------------*/
