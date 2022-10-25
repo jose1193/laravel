@@ -17,7 +17,7 @@ class Monthbudgets extends Model
         'unitquantity', 'price', 'total', 'dollar', 'date', 'idbudget','description',
     ];
 
-    public function Mbudgets()
+    public function mbudgets()
     {
         return $this->belongsTo('App\Models\Budgets');
 

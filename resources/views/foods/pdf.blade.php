@@ -29,7 +29,7 @@
 <body class="bg">
     <br>
     <div class="container-fluid mt-5 mx-auto">
-        <h5 class=" font-weight-bold" style="font-size:21px;">MONTHLY BUDGET PDF Report</h5>
+        <h5 class=" font-weight-bold" style="font-size:21px;">FOOD BUDGET PDF Report</h5>
         <h6 class=" text-capitalize font-weight-bold" style="font-size:16px;
         text-transform: capitalize;">User: <span style="color:#01579B;">
             {{$user->name }}  {{$user->lastname }}
@@ -56,16 +56,16 @@
                 </tr>
             </thead>
             <tbody style="font-weight:bold;">
-                @forelse ($monthbudget as $monthbudget)
+                @forelse ($buyfoods as $food)
                 <tr>
                     
-                    <td>  {{ $monthbudget->description }}</td>
-                    <td>  {{ $monthbudget->unitquantity }}</td>
-                    <td> {{ $monthbudget->price }}</td>
+                    <td>  {{ $food->description }}</td>
+                    <td>  {{ $food->unitquantity }}</td>
+                    <td> {{ $food->price }}</td>
 
-                    <td>   {{ $monthbudget->total }}</td>
+                    <td>   {{ $food->total }}</td>
                    
-                    <td>  {{ $monthbudget->date }}</td>
+                    <td>  {{ $food->date }}</td>
                 </tr>
                 @empty
 
@@ -77,27 +77,24 @@
          cellpadding="1" cellspacing="1" style="width:750px; font-weight:bold;text-transform: capitalize; ">
             <tbody>
                 <tr>
-                    <td> salary work: <span style="color:#05852c;"> ${{ number_format($monthbudget->amount, 2, ',', ' ') }}</span></td>
-                    <td> salary work in dollars: 
-                        <span style="color:#05852c;">
-                            {{ number_format($monthbudget->totalbudget, 2, ',', ' ')  }}$
+                    <td> budget food in dollars: <span style="color:#05852c;"> {{ number_format($food->amount, 2, ',', ' ') }}$</span></td>
+                    <td>   remaining food budget in dollars:  <span style="color:#7e1a1a;"> 
+                        {{ number_format($food->amount-$sum, 2, ',', ' ') }}$</span>
                     </span></td>
                 </tr>
                 <tr>
-                    <td>total expenses local currency:  <span style="color:#1A237E;"> 
-                        ${{ number_format($sum2, 2, ',', ' ') }} </span></td>
+                    <td> </td>
 
-                    <td>Remaining Salary Local Currency:<span style="color:#1A237E;"> 
-                        $ {{ number_format($monthbudget->amount-$sum2, 2, ',', ' ') }}
-                    </span></td>
+                    <td> 
+                   </td>
                 </tr>
                 <tr>
-                    <td> total dollar monthly expenses:  <span style="color:#7e1a1a;">
+                    <td> total dollar monthly expenses:  <span style="color:#2231b3;">
                         {{ number_format($sum, 2, ',', ' ') }}$
                     </span></td>
-                    <td>Remaining Salary Work In Dollars:
+                    <td> total expenses local currency:
                         <span style="color:#7e1a1a;"> 
-                            {{ number_format($monthbudget->totalbudget-$sum, 2, ',', ' ') }}$
+                            ${{ number_format($sum2, 2, ',', ' ') }}
                             </span>
 
                     </td>
