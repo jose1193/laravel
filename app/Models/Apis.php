@@ -17,4 +17,9 @@ class Apis extends Model
         'nameapi', 'urlapi', 'country', 'flag','provider', 'iduser', 
 
     ];
+
+    public function tusers()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

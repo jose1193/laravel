@@ -11,4 +11,9 @@ class Sendbudgets extends Model
     protected $fillable = [
         'idbudget', 'email','date','iduser'
     ];
+
+    public function tuser()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

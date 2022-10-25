@@ -22,5 +22,10 @@ class Budgets extends Model
 return $this->hasMany('App\Models\Monthbudgets');
 
     }
+
+    public function tuser()
+    {
+        return $this->belongsTo(User::class);
+    }
    
 }

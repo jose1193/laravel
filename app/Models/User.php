@@ -66,4 +66,24 @@ return $this->hasMany('App\Models\Buyfoods');
     {
         return $this->hasMany(Sendmarkets::class);
     }
+
+    public function apis()
+    {
+        return $this->hasMany(Apis::class);
+    }
+
+    public function budgets()
+    {
+        return $this->hasMany(Budgets::class);
+    }
+
+    public function temails()
+    {
+        return $this->hasMany(Emails::class);
+    }
+
+    public function tsendbudgets()
+    {
+        return $this->hasMany(Sendbudgets::class);
+    }
 }

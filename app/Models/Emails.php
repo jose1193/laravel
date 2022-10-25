@@ -11,4 +11,9 @@ class Emails extends Model
     protected $fillable = [
         'email','name','iduser'
     ];
+
+    public function tuser()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
