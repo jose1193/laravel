@@ -124,7 +124,7 @@ class SendmarketsController extends Controller
   $pdf = PDF::loadView('sendmarket.pdf', ['monthlyfoods' => $monthlyfoods,
   'sum' => $sum, 'sum2' => $sum2,'user' => $user ]);
         
-  $fileName = 'Total-Year-Market'.'-'.$user->name .'-'.$user->lastname. '-'.$datenow. '.' . 'pdf' ;
+  $fileName = 'annual-market-budget'.'-'.$user->name .'-'.$user->lastname. '-'.$datenow. '.' . 'pdf' ;
   
   // sending mail to users.
   $email=$request->email; //variable con emails array seleccionados

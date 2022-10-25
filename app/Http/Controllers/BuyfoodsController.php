@@ -79,7 +79,7 @@ class BuyfoodsController extends Controller
         $pdf = PDF::loadView('foods.pdf', ['buyfoods' => $buyfoods,
         'sum' => $sum, 'sum2' => $sum2, 'user' => $user ]);
               
-        $fileName = 'budget-foods'.'-'.$user->name .'-'.$user->lastname. '-'.$datenow. '.' . 'pdf' ;
+        $fileName = 'food-budget'.'-'.$user->name .'-'.$user->lastname. '-'.$datenow. '.' . 'pdf' ;
        
         // Send Email
         Mail::send('foods.pdf', ['buyfoods' => $buyfoods,
