@@ -9,7 +9,7 @@ class Sendmarkets extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'email','date','users_id','idmonthlymarket'
+        'email','date','users_id'
    ];
    public function monthlyfood()
    {

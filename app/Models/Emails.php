@@ -12,7 +12,7 @@ class Emails extends Model
         'email','name','iduser'
     ];
 
-    public function tuser()
+    public function tusers()
     {
         return $this->belongsTo(User::class);
     }
