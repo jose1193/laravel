@@ -152,7 +152,7 @@ class SendmarketsController extends Controller
      */
     public function show(Sendmarkets $sendmarket)
     {
-        
+        $this->authorize('sendmarkets', $sendmarket); // <-- Policy
         return view('sendmarket.show',compact('sendmarket'));
     }
 
@@ -187,6 +187,7 @@ class SendmarketsController extends Controller
      */
     public function destroy(Sendmarkets $sendmarket)
     {
+        $this->authorize('sendmarkets', $sendmarket); // <-- Policy
         $sendmarket->delete();
        
         return redirect()->route('sendmarket.index')

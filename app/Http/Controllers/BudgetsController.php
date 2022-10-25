@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
 use App\Models\Budgets;
 use App\Models\Monthbudgets;
 use Illuminate\Http\Request;
@@ -97,6 +97,7 @@ class BudgetsController extends Controller
      */
     public function show(Budgets $budget)
     {
+        $this->authorize('budgets', $budget); // <-- Policy
         return view('budgets.show',compact('budget'));
     }
   
@@ -108,6 +109,7 @@ class BudgetsController extends Controller
      */
     public function edit(Budgets $budget)
     {
+        $this->authorize('budgets', $budget); // <-- Policy
         return view('budgets.edit',compact('budget')); // <-- variable $budget a consultar
     }
   
@@ -120,6 +122,7 @@ class BudgetsController extends Controller
      */
     public function update(Request $request, Budgets $budget)
     {
+        
         $request->validate([
             'amount' => 'required|max:20|min:2',
             'dollarchange' => 'required|max:20|min:2',
@@ -148,6 +151,7 @@ class BudgetsController extends Controller
      */
     public function destroy(Budgets $budget)
     {
+        $this->authorize('budgets', $budget); // <-- Policy
         $budget->delete();
         $monthbudgets = DB::table('monthbudgets')->where('idbudget',  $budget->id)->delete();  
         return redirect()->route('budgets.index')

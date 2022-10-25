@@ -19,7 +19,8 @@ class Monthlyfoods extends Model
 
     public function Bmonthbudgetfoods()
     {
-return $this->hasMany('App\Models\Buyfoods');
+        return $this->hasMany(Buyfoods::class);
+
 
     }
    

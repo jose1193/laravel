@@ -77,6 +77,7 @@ class ApisController extends Controller
      */
     public function show(Apis $apisurl)
     {
+        $this->authorize('apispolicy', $apisurl); // <-- Policy
         return view('apisurl.show',compact('apisurl'));
     }
   
@@ -88,6 +89,7 @@ class ApisController extends Controller
      */
     public function edit(Apis $apisurl)
     {
+        $this->authorize('apispolicy', $apisurl); // <-- Policy
         return view('apisurl.edit',compact('apisurl')); // <-- variable $Apis a consultar
     }
   
@@ -123,6 +125,7 @@ class ApisController extends Controller
      */
     public function destroy(Apis $apisurl)
     {
+        $this->authorize('apispolicy', $apisurl); // <-- Policy
         $apisurl->delete();
        
         return redirect()->route('apisurl.index')

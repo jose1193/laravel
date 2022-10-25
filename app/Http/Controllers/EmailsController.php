@@ -66,6 +66,7 @@ class EmailsController extends Controller
      */
     public function show(Emails $email)
     {
+        $this->authorize('emails', $email); // <-- Policy
         return view('emails.show',compact('email'));
     }
   
@@ -77,6 +78,7 @@ class EmailsController extends Controller
      */
     public function edit(Emails $email)
     {
+        $this->authorize('emails', $email); // <-- Policy
         return view('emails.edit',compact('email')); // <-- variable $email a consultar
     }
   
@@ -109,6 +111,7 @@ class EmailsController extends Controller
      */
     public function destroy(Emails $email)
     {
+        $this->authorize('emails', $email); // <-- Policy
         $email->delete();
        
         return redirect()->route('emails.index')

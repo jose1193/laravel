@@ -89,6 +89,7 @@ class MonthlyfoodsController extends Controller
      */
     public function show(Monthlyfoods $monthlyfood)
     {
+        $this->authorize('monthlyfoods', $monthlyfood); // <-- Policy
         return view('monthlyfood.show',compact('monthlyfood'));
     }
 
@@ -100,6 +101,7 @@ class MonthlyfoodsController extends Controller
      */
     public function edit(Monthlyfoods $monthlyfood)
     {
+        $this->authorize('monthlyfoods', $monthlyfood); // <-- Policy
         return view('monthlyfood.edit',compact('monthlyfood'));
     }
 
@@ -140,6 +142,7 @@ class MonthlyfoodsController extends Controller
      */
     public function destroy(Monthlyfoods $monthlyfood)
     {
+        $this->authorize('monthlyfoods', $monthlyfood); // <-- Policy
         $monthlyfood->delete();
        
         return redirect()->route('monthlyfood.index')
