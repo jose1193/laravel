@@ -29,7 +29,7 @@
 <body class="bg">
     <br>
     <div class="container-fluid mt-5 mx-auto">
-        <h5 class=" font-weight-bold" style="font-size:21px;">YEAR BUDGET MARKET PDF Report</h5>
+        <h5 class=" font-weight-bold" style="font-size:21px;">ANNUAL MARKET BUDGET PDF Report</h5>
         <h6 class=" text-capitalize font-weight-bold" style="font-size:16px;
         text-transform: capitalize;">User: <span style="color:#01579B;">
             {{$user->name }}  {{$user->lastname }}
