@@ -58,7 +58,7 @@ Change Password User
                     
                      <input type="password" class="form-control @error('current_password') 
                      is-invalid @enderror bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg
-                     focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5
+                     focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5
                       dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
                        dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="current_password" autocomplete="current_password">
                        @error('current_password')
@@ -72,7 +72,7 @@ Change Password User
                 <input type="password" name="password" id="password" 
                 placeholder="••••••••" class="@error('password') is-invalid @enderror
                 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg
-                 focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5
+                 focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5
                   dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
                    dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required
                    autocomplete="password">
@@ -88,8 +88,8 @@ Change Password User
                    text-gray-900 dark:text-white">Password Confirmation</label>
                   <input type="password" name="password_confirmation" id="password-confirm"
                    placeholder="••••••••" class="bg-gray-50 border border-gray-300
-                    text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600
-                     focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700
+                    text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600
+                     focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700
                       dark:border-gray-600 dark:placeholder-gray-400
                        dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
                        @error('password_confirmation') is-invalid @enderror"  autocomplete="password_confirmation"
@@ -100,11 +100,11 @@ Change Password User
                   @enderror
                 </div>
            
-              <button type="submit" class="my-5 w-full text-white bg-primary-600
-               hover:bg-primary-700 focus:ring-4 focus:outline-none
-                focus:ring-primary-300 font-medium rounded-lg
-                 text-sm px-5 py-2.5 text-center dark:bg-primary-600
-                  dark:hover:bg-primary-700 dark:focus:ring-primary-800">Change Password</button>
+              <button type="submit" class="my-5 w-full text-white bg-blue-600
+               hover:bg-blue-700 focus:ring-4 focus:outline-none
+                focus:ring-blue-300 font-medium rounded-lg
+                 text-sm px-5 py-2.5 text-center dark:bg-blue-600
+                  dark:hover:bg-blue-700 dark:focus:ring-blue-800">Change Password</button>
                
             </form>
       </div>

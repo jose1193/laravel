@@ -1,7 +1,7 @@
 <header>
     <nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
       <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-          <a href="/dashboard" class="flex items-center">
+          <a href="/" class="flex items-center">
               <img src="{{ asset('img/logo.png') }}" class="mr-3 h-6 sm:h-20" alt=" Logo" />
              
           </a>
@@ -11,7 +11,7 @@
               <a href="{{ route('register') }}" class="text-gray-800 dark:text-white hover:bg-gray-50 
               focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 
               py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Join</a>
-              <a href="{{ route('login') }}" class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">Log in</a>
+              <a href="{{ route('login') }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Log in</a>
              
               @else
               <a href="/profile" class="text-gray-800 dark:text-white hover:bg-gray-50 
@@ -42,11 +42,11 @@
                     <form action="{{ route('logout') }}" method="POST" novalidate>
                       @csrf
                       <button type="submit" class="text-white
-                      bg-primary-700 hover:bg-primary-800 focus:ring-4
-                       focus:ring-primary-300 font-medium rounded-lg
+                      bg-blue-700 hover:bg-blue-800 focus:ring-4
+                       focus:ring-blue-300 font-medium rounded-lg
                         text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2
-                         dark:bg-primary-600 dark:hover:bg-primary-700 
-                         focus:outline-none dark:focus:ring-primary-800">Logout</button>
+                         dark:bg-blue-600 dark:hover:bg-blue-700 
+                         focus:outline-none dark:focus:ring-blue-800">Logout</button>
                     
                      
                     </form>
@@ -68,19 +68,19 @@
                <!-- SHOW LINKS SI EL USER ESTA AUTENTICADO -->
                 @if(auth()->check()) 
                 <li>
-                      <a href="/dashboard" class="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white" aria-current="page">Home</a>
+                      <a href="/dashboard" class="block py-2 pr-4 pl-3 text-white rounded bg-blue-700 lg:bg-transparent lg:text-blue-700 lg:p-0 dark:text-white" aria-current="page">Home</a>
                   </li>
                   @else
                   <li>
-                    <a href="{{ route('home') }}" class="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white" aria-current="page">Home</a>
+                    <a href="{{ route('home') }}" class="block py-2 pr-4 pl-3 text-white rounded bg-blue-700 lg:bg-transparent lg:text-blue-700 lg:p-0 dark:text-white" aria-current="page">Home</a>
                 </li>
                   @endif
                    <!-- SHOW LINKS SI EL USER ESTA AUTENTICADO -->
                   <li>
-                      <a href="/about" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">About</a>
+                      <a href="/about" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">About</a>
                   </li>
                   <li>
-                    <a href="{{route('contact')}}" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
+                    <a href="{{route('contact')}}" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
                 </li>
 
                  <!-- SHOW LINKS SI EL USER ESTA AUTENTICADO -->
@@ -170,7 +170,7 @@
                   <li>
                       <a href="/emails" class="block py-2 pr-4 pl-3 text-gray-700 border-b
                        border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0
-                        lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white
+                        lg:hover:text-blue-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white
                          dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent
                           dark:border-gray-700">Emails</a>
                   </li>

@@ -37,11 +37,11 @@ Edit Budget Market
         <div class="mb-4">
             
             <div class="flex justify-end mt-5">
-                <a class="bg-primary-700 hover:bg-primary-800 focus:ring-4
-                focus:ring-primary-300 font-medium rounded-lg
+                <a class="bg-blue-700 hover:bg-blue-800 focus:ring-4
+                focus:ring-blue-300 font-medium rounded-lg
                  text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2
-                  dark:bg-primary-600 dark:hover:bg-primary-700 
-                  focus:outline-none dark:focus:ring-primary-800 text-white" href="javascript:history.back()">< Back</a>
+                  dark:bg-blue-600 dark:hover:bg-blue-700 
+                  focus:outline-none dark:focus:ring-blue-800 text-white" href="javascript:history.back()">< Back</a>
             </div>
         </div>
     
@@ -105,11 +105,11 @@ Edit Budget Market
                             </div>
 
                             <div class="flex items-center justify-start mt-4 gap-x-2 my-10">
-                                <button type="submit" class="bg-primary-700 hover:bg-primary-800 focus:ring-4
-                                focus:ring-primary-300 font-medium rounded-lg
+                                <button type="submit" class="bg-blue-700 hover:bg-blue-800 focus:ring-4
+                                focus:ring-blue-300 font-medium rounded-lg
                                  text-sm px-4 lg:px-5 py-5 my-4 lg:py-2.5 mr-2
-                                  dark:bg-primary-600 dark:hover:bg-primary-700 
-                                  focus:outline-none dark:focus:ring-primary-800 text-white
+                                  dark:bg-blue-600 dark:hover:bg-blue-700 
+                                  focus:outline-none dark:focus:ring-blue-800 text-white
                                   transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110">Submit</button>
                             </div>
                    

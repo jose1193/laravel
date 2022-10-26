@@ -40,7 +40,7 @@ class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-40
 <!-- API COINS --> 
 <div class="overflow-x-auto relative border-primary-200 shadow-xl lg:rounded-xl ">
   <table class=" w-full text-center text-sm  text-gray-500 dark:text-gray-400" >
-      <thead class="border-b text-xs text-white uppercase bg-primary-800 dark:bg-primary-800">
+      <thead class="border-b text-xs text-white uppercase bg-blue-800 dark:bg-blue-800">
           <tr>
               <th scope="col" class="py-3 px-6">
                 coins

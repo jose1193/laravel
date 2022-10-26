@@ -41,11 +41,11 @@ MonthBudgets CRUD
       <div class="flex justify-end mt-10">
 
         <a href="{{ route('chart.monthbudgets',['id' => $id]) }}" 
-          target="_blank" class="bg-primary-700 hover:bg-primary-800 focus:ring-4
-           focus:ring-primary-300 font-medium rounded-lg
+          target="_blank" class="bg-blue-700 hover:bg-blue-800 focus:ring-4
+           focus:ring-blue-300 font-medium rounded-lg
             text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2
-             dark:bg-primary-600 dark:hover:bg-primary-700 
-             focus:outline-none dark:focus:ring-primary-800 text-white capitalize">
+             dark:bg-blue-600 dark:hover:bg-blue-700 
+             focus:outline-none dark:focus:ring-blue-800 text-white capitalize">
              <svg xmlns="http://www.w3.org/2000/svg"   class="w-6 h-6 inline-block text-white "
               stroke="currentColor" viewBox="0 0 384 512" fill="currentColor"  viewBox="0 0 512 512">
               <!--! Font Awesome Pro 6.2.0 by 
@@ -66,11 +66,11 @@ MonthBudgets CRUD
         @endphp
         
         <a href="{{ route('monthbudget-pdf',['id' => $id, 'datenow'=>$datenow, 'iduser'=>auth()->user()->id]) }}" 
-         target="_blank" class="bg-primary-700 hover:bg-primary-800 focus:ring-4
-          focus:ring-primary-300 font-medium rounded-lg
+         target="_blank" class="bg-blue-700 hover:bg-blue-800 focus:ring-4
+          focus:ring-blue-300 font-medium rounded-lg
            text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2
-            dark:bg-primary-600 dark:hover:bg-primary-700 
-            focus:outline-none dark:focus:ring-primary-800 text-white">
+            dark:bg-blue-600 dark:hover:bg-blue-700 
+            focus:outline-none dark:focus:ring-blue-800 text-white">
             <svg xmlns="http://www.w3.org/2000/svg" fill="white"
             class="w-6 h-6 inline-block  " stroke="currentColor" viewBox="0 0 384 512">
             <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License
@@ -98,11 +98,11 @@ MonthBudgets CRUD
         total budget completed
       </button>
       @else 
-         <a href="{{ route('monthbudgets.create',['id' => $id]) }}" class="bg-primary-700 hover:bg-primary-800 focus:ring-4
-          focus:ring-primary-300 font-medium rounded-lg
+         <a href="{{ route('monthbudgets.create',['id' => $id]) }}" class="bg-blue-700 hover:bg-blue-800 focus:ring-4
+          focus:ring-blue-300 font-medium rounded-lg
            text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2
-            dark:bg-primary-600 dark:hover:bg-primary-700 
-            focus:outline-none dark:focus:ring-primary-800 text-white">+ Create New Data</a>
+            dark:bg-blue-600 dark:hover:bg-blue-700 
+            focus:outline-none dark:focus:ring-blue-800 text-white">+ Create New Data</a>
       
          
       @endif
@@ -111,14 +111,14 @@ MonthBudgets CRUD
       <div class="flex flex-col mt-10 pb-5 mb-5">
           <div class="flex flex-col">
               <div class="inline-block min-w-full overflow-hidden align-middle border-b
-               border-primary-200 shadow-xl sm:rounded-lg ">
+               border-blue-200 shadow-xl sm:rounded-lg ">
 
                 <div class="flex flex-col ">
                   <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-4 inline-block min-w-full sm:px-6 lg:px-8">
                       <div class="overflow-hidden">
                         <table class="min-w-full text-center " id="dataTable" >
-                          <thead class="border-b bg-primary-800">
+                          <thead class="border-b bg-blue-800">
                             <tr>
                               <th scope="col" class="text-sm font-medium uppercase text-white px-6 py-4">
                                 Nro

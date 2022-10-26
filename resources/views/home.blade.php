@@ -16,7 +16,7 @@ Home
               From checkout to global sales tax compliance, companies around the world use Flowbite 
               to simplify their payment stack.</p>
             <a href="/register" class="inline-flex items-center justify-center px-5 py-3 mr-3
-             text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
+             text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
                 Get started
                 <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
             </a>
@@ -39,7 +39,7 @@ Home
       <h2 class="text-3xl font-bold mb-12">Why is it so<u class="text-blue-600"> great?</u></h2>
       <div class="grid md:grid-cols-3 lg:gap-x-12">
         <div class="mb-12 md:mb-0">
-          <div class="p-4 bg-primary-700 rounded-lg shadow-lg inline-block mb-6">
+          <div class="p-4 bg-blue-700 rounded-lg shadow-lg inline-block mb-6">
             <svg class="w-5 h-5 text-white"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                 <!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License -
                      https://fontawesome.com/license (Commercial License) -->
@@ -55,7 +55,7 @@ Home
         </div>
   
         <div class="mb-12 md:mb-0">
-          <div class="p-4 bg-primary-700 rounded-lg shadow-lg inline-block mb-6">
+          <div class="p-4 bg-blue-700 rounded-lg shadow-lg inline-block mb-6">
             <svg class="w-5 h-5 text-white"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
              <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License -
                https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. 
@@ -80,7 +80,7 @@ Home
         </div>
   
         <div class="mb-12 md:mb-0">
-          <div class="p-4 bg-primary-700 rounded-lg shadow-lg inline-block mb-6">
+          <div class="p-4 bg-blue-700 rounded-lg shadow-lg inline-block mb-6">
             <svg class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                 <!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - 
                     https://fontawesome.com/license (Commercial License) --><path fill="currentColor" d="M176 216h160c8.84 0 16-7.16 16-16v-16c0-8.84-7.16-16-16-16H176c-8.84 0-16 7.16-16 16v16c0 8.84 7.16 16 16 16zm-16 80c0 8.84 7.16 16 16 16h160c8.84 0 16-7.16 16-16v-16c0-8.84-7.16-16-16-16H176c-8.84 0-16 7.16-16 16v16zm96 121.13c-16.42 0-32.84-5.06-46.86-15.19L0 250.86V464c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V250.86L302.86 401.94c-14.02 10.12-30.44 15.19-46.86 15.19zm237.61-254.18c-8.85-6.94-17.24-13.47-29.61-22.81V96c0-26.51-21.49-48-48-48h-77.55c-3.04-2.2-5.87-4.26-9.04-6.56C312.6 29.17 279.2-.35 256 0c-23.2-.35-56.59 29.17-73.41 41.44-3.17 2.3-6 4.36-9.04 6.56H96c-26.51 0-48 21.49-48 48v44.14c-12.37 9.33-20.76 15.87-29.61 22.81A47.995 47.995 0 0 0 0 200.72v10.65l96 69.35V96h320v184.72l96-69.35v-10.65c0-14.74-6.78-28.67-18.39-37.77z"/></svg>
