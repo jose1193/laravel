@@ -63,7 +63,7 @@
                     <td>  {{ $monthbudget->unitquantity }}</td>
                     <td> {{ $monthbudget->price }}</td>
 
-                    <td>   {{ $monthbudget->total }}</td>
+                    <td>    {{ number_format($monthbudget->total, 2, ',', ' ')  }} </td>
                    
                     <td>  {{ $monthbudget->date }}</td>
                 </tr>

@@ -8,7 +8,8 @@ RewriteRule (.*) /public/$1 [L]
 </IfModule>
 
 
-
 database: venmasters_venmasters
 user:venmasters_bread
 GVjgez{v31qO
+
+ <script src="https://cdn.tailwindcss.com"></script>

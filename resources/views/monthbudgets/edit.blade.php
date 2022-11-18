@@ -117,7 +117,7 @@ Edit Budget
                                 <input type="text" placeholder="Total"
                                 class="  w-full px-4 py-2 mt-2 mb-5 border rounded-md 
                                 focus:outline-none focus:ring-1 focus:ring-blue-600" 
-                                name="total" jAutoCalc="{unitquantity} * {price} * {dollar}" value="{{ $monthbudget->total }}"
+                                name="total" jAutoCalc="{unitquantity} * {price} *  {{$dataArray2['blue']['value_sell']}}" value="{{ $monthbudget->total }}"
                                  readonly maxlength="100"
                                  >
                             </div>
